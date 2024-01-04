@@ -1,4 +1,5 @@
-BOR_dummy,2,RESALT_dummy,1
+BOR_ID,IDX,RESALT_ID,RATE
+BOR_dummy,0,RESALT_dummy,1
 BOR_OP-COP-Module-ASSY,1,RESALT_Machine_OP-COP-Module-ASSY,1
 BOR_OP-COP-Module-ASSY,2,RESALT_Labor_OP-COP-Module-ASSY,1
 BOR_OP-COP-Module-ATS,1,RESALT_Machine_OP-COP-Module-ATS,1

@@ -1,4 +1,5 @@
-RESOURCE_dummy,-,6000,M,-,-,-,-,-,-,1,2,-,Period_Manager_Machine,-,-,-,-,-,-,-,-,-
+RESOURCE_ID,DESCRIPTION,LOCATION,RES_TYPE,BATCH_PERIOD,BATCH_TYPE,AVG_BATCH_VOLUME,MIN_BATCH_VOLUME,MAX_BATCH_VOLUME,SPEED_FACTOR,MULTI_RES_FACTOR,CARE,DELAY_ALLOWED,PERIOD_MGR_ID,SETUP_MATRIX_ID,CAPABLE_TYPE,MIX_TYPE,HIER_LEVEL_1,HIER_LEVEL_2,HIER_LEVEL_3,OpOverrideType,HIER_LEVEL_3-bak,HIER_LEVEL_1_bak
+RESOURCE_dummy,-,,,-,-,-,-,-,-,0,2,-,,-,-,-,-,-,-,-,-,-
 RESOURCE_Machine_OP-COP-Module-ASSY,-,1000,M,-,-,-,-,-,-,1,2,-,Period_Manager_Machine,-,-,-,-,-,-,-,-,-
 RESOURCE_Machine_OP-COP-Module-ASSY,-,2000,M,-,-,-,-,-,-,1,2,-,Period_Manager_Machine,-,-,-,-,-,-,-,-,-
 RESOURCE_Machine_OP-COP-Module-ASSY,-,5000,M,-,-,-,-,-,-,1,2,-,Period_Manager_Machine,-,-,-,-,-,-,-,-,-
