@@ -1,0 +1,8 @@
+CREATE TABLE [dbo].[adx_uda] (
+    [USER_CLASS_ID] NVARCHAR (50) NULL,
+    [USER_NAME]     NVARCHAR (50) NULL,
+    [USER_TYPE]     NVARCHAR (50) NULL,
+    [USER_DESC]     NVARCHAR (50) NULL
+);
+GO
+

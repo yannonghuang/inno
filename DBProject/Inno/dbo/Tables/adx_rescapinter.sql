@@ -1,0 +1,9 @@
+CREATE TABLE [dbo].[adx_rescapinter] (
+    [RESOURCE_ID] NVARCHAR (50) NULL,
+    [START_TIME]  NVARCHAR (50) NULL,
+    [OFFSET]      NVARCHAR (50) NULL,
+    [CAP_FACTOR]  TINYINT       NULL,
+    [PATTERN_ID]  NVARCHAR (50) NULL
+);
+GO
+

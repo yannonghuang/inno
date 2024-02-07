@@ -1,0 +1,21 @@
+CREATE TABLE [dbo].[adx_transportation] (
+    [PRODUCT]           NVARCHAR (50) NOT NULL,
+    [FROM_LOCATION]     NVARCHAR (50) NOT NULL,
+    [TO_LOCATION]       NVARCHAR (50) NOT NULL,
+    [TRANS_RT]          NVARCHAR (50) NOT NULL,
+    [MODE]              NVARCHAR (50) NOT NULL,
+    [PREFERENCE]        TINYINT       NOT NULL,
+    [COST]              FLOAT (53)    NOT NULL,
+    [TRANSIT_TIME]      TINYINT       NOT NULL,
+    [TRANSIT_TIME_UOM]  NVARCHAR (50) NOT NULL,
+    [EFFECTIVE_START]   NVARCHAR (50) NOT NULL,
+    [EFFECTIVE_END]     NVARCHAR (50) NOT NULL,
+    [DEST_TYPE]         NVARCHAR (50) NOT NULL,
+    [ASSY_LOC]          NVARCHAR (50) NOT NULL,
+    [HIER_LEVEL_1]      NVARCHAR (50) NOT NULL,
+    [HIER_LEVEL]        NVARCHAR (50) NOT NULL,
+    [HIER_LEVEL_3]      NVARCHAR (50) NOT NULL,
+    [process_unit_cost] TINYINT       NOT NULL
+);
+GO
+

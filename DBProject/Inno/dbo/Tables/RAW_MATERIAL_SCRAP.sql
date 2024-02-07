@@ -1,0 +1,7 @@
+CREATE TABLE [dbo].[RAW_MATERIAL_SCRAP] (
+    [PN]    NVARCHAR (50) NULL,
+    [Plant] NVARCHAR (50) NULL,
+    [Scrap] NVARCHAR (50) NULL
+);
+GO
+

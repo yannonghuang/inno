@@ -1,0 +1,10 @@
+CREATE TABLE [dbo].[adx_period_manager] (
+    [PERIOD_MGR_ID]  NVARCHAR (50) NULL,
+    [HORIZON_START]  NVARCHAR (50) NULL,
+    [IDX]            TINYINT       NULL,
+    [BUCKET_TYPE]    NVARCHAR (50) NULL,
+    [NUMBER_BUCKETS] TINYINT       NULL,
+    [LATE_RANGE]     NVARCHAR (50) NULL
+);
+GO
+

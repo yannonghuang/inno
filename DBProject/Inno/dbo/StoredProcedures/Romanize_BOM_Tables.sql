@@ -1,0 +1,23 @@
+
+CREATE PROCEDURE [dbo].[Romanize_BOM_Tables] 
+AS
+BEGIN
+DECLARE @sSQL nvarchar(500)
+   declare @count bigint;
+   declare @table_name varchar(500)
+   select @count = (select count(*) from BOM_Tables)
+   declare MyCursor cursor for (select bom_table_name from BOM_Tables)
+   open MyCursor 
+   while @count > 0
+      begin
+        fetch MyCursor into @table_name
+        print @table_name
+        SET @sSQL = 'Update Table ' + @table_name + 'set componenttype = ''P'' where componenttype = ''采购件'' '
+        EXEC(@sSQL)
+        set @count = @count - 1
+      end
+   close MyCursor 
+   deallocate MyCursor 
+END
+GO
+
