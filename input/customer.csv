@@ -1,0 +1,111 @@
+﻿Sold to customer,Ship to customer,Name,Country,abbreviate customer code 
+0000100023,0000100023,华为技术有限公司,CN,888
+0000100023,0000300036,华为技术有限公司,CN,888
+0000100042,0000100042,深圳市中兴康讯电子有限公司,CN,828
+0000100042,0000300063,深圳市中兴康讯电子有限公司,CN,828
+0000100082,0000100082,腾讯科技(深圳)有限公司,CN,898
+0000100108,0000100108,明泰电子(常熟)有限公司（juniper）,CN,domestic_others
+0000100156,0000100156,苏柏科技有限公司,CN,domestic_others
+0000100185,0000100185,深圳融溢科技有限公司,CN,domestic_others
+0000100200,0000100200,Ericsson (China) Communications,CN,domestic_others
+0000100217,0000100217,新华三信息技术有限公司,CN,858
+0000100235,0000100235,浪潮电子信息产业股份有限公司,CN,domestic_others
+0000100277,0000100277,湖州百捷科技有限公司,CN,domestic_others
+0000100280,0000100280,常州光创通信合伙企业(有限合伙）,CN,domestic_others
+0000100281,0000100281,深圳市迅飞凌科技有限公司,CN,domestic_others
+0000100300,0000100300,北京字跳网络技术有限公司,CN,domestic_others
+0000100329,0000100329,中兴通讯（南京）有限责任公司,CN,828
+0000100341,0000100341,深圳市科睿特通信技术有限公司,CN,domestic_others
+0000100345,0000100345,百度（中国）有限公司,CN,855
+0000100366,0000100366,百度时代网络技术（北京）有限公司,CN,855
+0000100373,0000100373,京东云计算有限公司,CN,domestic_others
+0000100380,0000100380,百度在线网络技术（北京）有限公司,CN,855
+0000100388,0000100388,北京柏实科技有限公司,CN,domestic_others
+0000100391,0000100391,阿里云计算有限公司,CN,818
+0000100398,0000100398,浙江天猫技术有限公司,CN,818
+0000100403,0000100403,度链网络科技（海南）有限公司,CN,domestic_others
+0000100407,0000100407,杭州阿里云飞天信息技术有限公司,CN,818
+0000100409,0000100409,百度云计算技术（保定徐水）有限公司,CN,855
+0000100413,0000100413,山东旭创通信科技有限公司,CN,domestic_others
+0000100417,0000100417,北京百度网讯科技有限公司,CN,855
+0000200022,0000200022,OptoWiz Co.  Ltd,KR,international_others
+0000200022,0000300084,OptoWiz Co.  Ltd,KR,international_others
+0000200026,0000200026,FlexOptix GmbH,DE,international_others
+0000200026,0000300089,FlexOptix GmbH,DE,international_others
+0000200028,0000200028,LucaTech Technology,TW,international_others
+0000200028,0000300091,LucaTech Technology,TW,international_others
+0000200030,0000200030,Google LLC,US,666
+0000200030,0000300093,Google LLC,US,666
+0000200030,0000300132,Google LLC,US,666
+0000200030,0000300094,Google LLC,US,666
+0000200036,0000200036,VITEX,US,international_others
+0000200036,0000300100,VITEX,US,international_others
+0000200050,0000200050,Arista Networks.Inc.,US,655
+0000200050,0000300114,Arista Networks.Inc.,US,655
+0000200053,0000200053,Gigamon Inc.,US,international_others
+0000200053,0000300117,Gigamon Inc.,US,international_others
+0000200065,0000200065,Cisco Systems,US,677
+0000200065,0000300188,Cisco Systems,US,677
+0000200065,0000300192,Cisco Systems,US,677
+0000200071,0000200071,Juniper Networks,US,633
+0000200071,0000300150,Juniper Networks,US,633
+0000200078,0000200078,Palo Alto Networks,US,international_others
+0000200088,0000200088,Amazon-AWS,US,688
+0000200090,0000200090,Add-On Computer,US,international_others
+0000200109,0000200109,Precision Optical Transceivers,US,international_others
+0000200109,0000300174,Precision Optical Transceivers,US,international_others
+0000200114,0000200114,HYVE USA-AWS,US,international_others
+0000200114,0000300182,HYVE USA-AWS,US,international_others
+0000200127,0000200127,Akamai Technologies Inc.,US,international_others
+0000200127,0000300189,Akamai Technologies Inc.,US,international_others
+0000200133,0000200133,EKINOPS SAS,FR,international_others
+0000200141,0000200141,HYVE Europe-AWS,GB,international_others
+0000200145,0000200145,HAKUTO CO.LTD,JP,international_others
+0000200146,0000200146,ADVA Optical Networking,US,international_others
+0000200158,0000200158,Netflix Streaming Services Inc.,US,international_others
+0000200158,0000300197,Netflix Streaming Services Inc.,US,international_others
+0000200160,0000200160,SKYLANE OPTICS S.A.,BE,international_others
+0000200190,0000200190,Jabil EMS Switzerland GmbH,MX,international_others
+0000200191,0000200191,Jabil-Coriant,MY,international_others
+0000200193,0000200193,NEC Hong Kong,HK,international_others
+0000200194,0000200194,FLEXTRONICS Israel Ltd.,IL,international_others
+0000200225,0000200225,歐普科技,TW,international_others
+0000200232,0000200232,HYVE Solutions China-AWS,US,international_others
+0000200232,0000300216,HYVE Solutions China-AWS,US,international_others
+0000200271,0000200271,Ericsson AB (EAB),SE,international_others
+0000200275,0000200275,Do Networks Limited,HK,international_others
+0000200296,0000200296,Jabil-IXIA,MY,international_others
+0000200317,0000200317,ProLabs (UK) Limited,GB,international_others
+0000200340,0000200340,ZHEJIANG SUPER TECHNOLOGY CO.，LTD,HK,international_others
+0000200356,0000200356,"Ufi Space Co., Ltd.",TW,international_others
+0000200357,0000200357,"Delta Electronics, Inc.",TW,international_others
+0000200378,0000200378,Jabil Circuit Sdn Bhd,MY,international_others
+0000200382,0000200382,"Keysight Technologies, Inc.",US,international_others
+0000200383,0000200383,Akamai International B.V.,NL,international_others
+0000200390,0000200390,Aceville Pte. Ltd.,SG,international_others
+0000200391,0000200391,FONNET Comercio de Equipamentos,BR,international_others
+0000200421,0000200421,Ciena India Private Ltd.,IN,international_others
+0000200433,0000200433,INGRASYS (SINGAPORE) PTE. LTD,SG,international_others
+0000200437,0000200437,"ePlus Technology, inc.",US,international_others
+0000200452,0000200452,Tencent Cloud LLC,US,international_others
+0000200465,0000200465,LAUDREN Electronique,FR,international_others
+0000200474,0000200474,Cloud Network Technology,SG,international_others
+0000200495,0000200495,"Ciena Global Products Company, Ltd.",GB,international_others
+0000200499,0000200499,Celestica LLC (6100),US,international_others
+0000200513,0000200513,TikTok Inc.,US,international_others
+0000200522,0000200522,"Facebook Procurement, LLC",US,678
+0000200530,0000200530,ADVA Optical Networking SE,DE,international_others
+0000200535,0000200535,ORIENTAL POWER HOLDINGS LIMITED,CN,international_others
+0000200540,0000200540,GLORYBIRD JAPAN G.K.,JP,international_others
+0000200542,0000200542,Precision Optical Transceivers,GB,international_others
+0000200543,0000200543,"Meta Platforms, Inc.",US,international_others
+0000200545,0000200545,"REDAPT, INC.",US,international_others
+0000200550,0000200550,Tencent (Thailand) Company Limited,TH,international_others
+0000200567,0000200567,Marvell Semiconductor Inc,US,international_others
+0000200568,0000200568,Kite Bird Korea Yuhan Hoesa,KR,international_others
+0000200580,0000200580,Nvidia Corporation,US,international_others
+0000200584,0000200584,"IPROAD CO., LTD",KR,international_others
+0000200610,0000200610,"PANOPTICS CO., LTD",KR,international_others
+0000200613,0000200613,绿能国际投资有限公司,CN,international_others
+0000200618,0000200618,CREATEOPTICS TECHNOLOGY LIMITED,HK,international_others
+0000200622,0000200622,Spirent Communications SAS,FR,international_others

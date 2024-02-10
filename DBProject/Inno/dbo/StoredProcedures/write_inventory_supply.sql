@@ -1,0 +1,69 @@
+CREATE PROCEDURE [dbo].[write_inventory_supply]
+AS
+insert into [master].[dbo].[adx_supply] (
+      [SUPPLY_ID]
+      ,[DESCRIPTION]
+      ,[VENDOR_ID]
+      ,[LOCATION_ID]
+      ,[PRODUCT_ID]
+      ,[SUPPLY_DATE]
+      ,[QTY]
+      ,[STATUS]
+      ,[METHOD]
+      ,[COST]
+      ,[FAB_LOC]
+      ,[FAB_PART_ID]
+      ,[LOT_ID]
+      ,[TECHNOLOGY]
+      ,[MASK_LAYERS]
+      ,[WAFER_SIZE]
+      ,[MAT_TYPE]
+      ,[PASSIVATION]
+      ,[BUMP_LOC]
+      ,[PROBE_LOC]
+      ,[DB_LOC]
+      ,[PACKAGE_FAMILY]
+      ,[PACKAGE]
+      ,[ASSY_LOC]
+      ,[TEST_LOC]
+      ,[DM_SPEC]
+      ,[DEMAND_ID]
+      ,[WIRE_COLOR]
+      ,[PROD_AREA]
+      ,[ALLOCATION]
+)
+SELECT
+    [SN]
+    ,[Description]
+    , '-'
+    ,[Plant]
+    ,[PN]
+    ,'-'
+    ,[UnconstrainedQuantity]
+    ,'s'
+
+    ,'-'
+    ,'-'
+    ,'-'
+    ,'-'
+    ,'-'
+    ,'-'
+    ,'-'
+    ,'-'
+    ,'-'
+    ,'-'
+    ,'-'
+    ,'-'
+    ,'-'
+    ,'-'
+    ,'-'
+    ,'-'
+    ,'-'
+    ,'-'
+    ,'-'
+    ,'-'
+    ,'-'
+    ,'-'               
+  FROM [master].[dbo].[Stock_all]
+GO
+
