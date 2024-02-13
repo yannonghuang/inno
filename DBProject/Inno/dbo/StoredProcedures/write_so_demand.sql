@@ -1,5 +1,7 @@
 CREATE PROCEDURE [dbo].[write_so_demand]
 AS
+BEGIN
+
 insert into [master].[dbo].[adx_demand] (
        [DEMAND_ID]
       ,[DESCRIPTION]
@@ -22,14 +24,22 @@ insert into [master].[dbo].[adx_demand] (
       ,[WIRE_COLOR_S]
 )
 SELECT
-      [SONumber]
+      concat([SONumber], '_', [ItemId])
       ,[Description]
+
       ,[CustomerCode]
+
       ,'1'
       ,'100'
-      ,[DeliveryDate]
-      ,[DeliveryDate]
-      ,[IndustrialStandard] + '@' + customer.abbreviate_customer_code -- ???
+      ,substring(CONVERT(VARCHAR, DeliveryDate), 1, 4) + '/' + substring(CONVERT(VARCHAR, DeliveryDate), 6, 2) + '/' + substring(CONVERT(VARCHAR, DeliveryDate), 9, 2)      
+      ,substring(CONVERT(VARCHAR, DeliveryDate), 1, 4) + '/' + substring(CONVERT(VARCHAR, DeliveryDate), 6, 2) + '/' + substring(CONVERT(VARCHAR, DeliveryDate), 9, 2)    
+
+      , case 
+        when abbreviate_customer_code is not null then IndustrialStandard + '@' + abbreviate_customer_code
+        else IndustrialStandard + '@domestic_others' -- ???   
+        -- else [PN]           
+      end
+
       ,'VIRTUAL'
       ,[Quantity]
       ,'-'
@@ -43,7 +53,9 @@ SELECT
       ,'-'
       ,'-'               
 
-  FROM [master].[dbo].[SO], customer
-  where '0000' + [CustomerCode] = customer.Sold_to_customer
+  FROM [master].[dbo].[SO] 
+    left OUTER JOIN customer on '0000' + [CustomerCode] = customer.Sold_to_customer
+
+END
 GO
 

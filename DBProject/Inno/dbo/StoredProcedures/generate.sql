@@ -2,9 +2,13 @@ CREATE PROCEDURE [dbo].[generate]
 AS
 BEGIN
 
+------------ pre-processing
 EXEC Truncate_ADX_Tables
 EXEC populate_process
+EXEC populate_method_buy
+EXEC Populate_Raw_Substitutes
 
+------------ BEGIN: static
 EXEC write_bom_bom
 EXEC write_bom_method_make
 EXEC write_bom_product
@@ -44,12 +48,30 @@ EXEC dedup_method_Buy
 EXEC dedup_vendor
 EXEC dedup_productlocation
 EXEC dedup_transportation
+------------ END: static
 
+------------ BEGIN: static post-processing
 EXEC Trim_Unserved_Method_Make
 EXEC Trim_Unserved_ProductLocation
 EXEC Trim_Unused_ProductLocation
-
 EXEC Unset_Obsolete_Flag
+------------ END: static post-processing
+
+------------ BEGIN: demand
+EXEC write_customer
+EXEC dedup_customer
+EXEC write_so_demand
+EXEC write_dp_demand
+EXEC dedup_demand
+EXEC Trim_Demand
+------------ END: demand
+
+------------ BEGIN: supply
+EXEC write_inventory_supply
+EXEC write_workorder_supply
+EXEC dedup_supply
+------------ END: supply
+
 END
 GO
 

@@ -22,13 +22,13 @@ insert into [master].[dbo].[adx_demand] (
       ,[WIRE_COLOR_S]
 )
 SELECT
-      concat(Customer, '_', New_Model.Code, '_', Month)
+      concat(Customer, '_', New_Model.Code, Month)
       ,Model
-      ,Customer
+      ,SUBSTRING(customer.Sold_to_customer, 5, 6) --Customer
       ,'2'
       ,'100'
-      ,Month
-      ,Month
+      ,substring(Month, 2, 4) + '/' + substring(Month, 7, 2) + '/01'
+      ,substring(Month, 2, 4) + '/' + substring(Month, 7, 2) + '/01'
       ,New_Model.Code
       ,'VIRTUAL'
       ,Forecast
@@ -44,7 +44,7 @@ SELECT
       ,'-'
       ,'-'               
 
-from New_Model, (
+from New_Model, adx_productlocation, customer, (
 SELECT Customer, Model, Month, Forecast  
 FROM 
    (SELECT Customer, Model, 
@@ -80,5 +80,7 @@ UNPIVOT
 ) AS unpvt
 ) TranposedDP
 where TranposedDP.Model = New_Model.DPModel
+    and New_Model.Code = adx_productlocation.PRODUCT_ID and 'VIRTUAL' = adx_productlocation.[LOCATION]
+    and Customer = customer.abbreviate_customer_code
 GO
 

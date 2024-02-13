@@ -10,7 +10,10 @@ $tables = @(
     'adx_method_make',
     'adx_transportation',
     'adx_vendor',
-    'adx_product'
+    'adx_product',
+    'adx_demand',
+    'adx_customer',
+    'adx_supply'
     )
 $folder = "/Users/yannonghuang/Documents/personal/projects/SRI/Import prospects/Adexa/Innolight/PoC 2023/Adexa Feeds/csv_deduped/"
 

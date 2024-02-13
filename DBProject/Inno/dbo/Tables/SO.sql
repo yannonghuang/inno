@@ -1,6 +1,6 @@
 CREATE TABLE [dbo].[SO] (
     [Creation_Date]      DATE           NULL,
-    [分销渠道描述]             NVARCHAR (50)  NULL,
+    [Sales_Channel]      NVARCHAR (50)  NULL,
     [订单类型描述]             NVARCHAR (50)  NULL,
     [CustomerCode]       NVARCHAR (50)  NULL,
     [CustomerName]       NVARCHAR (50)  NULL,
@@ -19,7 +19,7 @@ CREATE TABLE [dbo].[SO] (
     [SONumber]           NVARCHAR (50)  NULL,
     [CompanyCode]        SMALLINT       NULL,
     [SystemSONumber]     NVARCHAR (50)  NULL,
-    [销售凭证项目]             SMALLINT       NULL,
+    [ItemId]             SMALLINT       NULL,
     [CompanyName]        NVARCHAR (50)  NULL,
     [IndustrialStandard] NVARCHAR (50)  NULL,
     [CustomerPN]         NVARCHAR (50)  NULL,

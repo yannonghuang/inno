@@ -1,4 +1,4 @@
-CREATE PROCEDURE [dbo].[write_inventory_supply]
+CREATE PROCEDURE [dbo].[write_workorder_supply]
 AS
 insert into [master].[dbo].[adx_supply] (
       [SUPPLY_ID]
@@ -33,15 +33,14 @@ insert into [master].[dbo].[adx_supply] (
       ,[ALLOCATION]
 )
 SELECT
-    concat([SN], '_', Plant, '_', Storage, '_', PN)
-    , REPLACE(Stock_all.Description, ',', ';') -- [Description]         
-    , '-'
+    [WO]
+    , REPLACE(production_order.[Description], ',', ';') -- [Description]        
+    , '-'    
     ,[Plant]
     ,[PN]
-    ,'-'
-    ,[UnconstrainedQuantity]
-    ,'s'
-
+    ,REPLACE(Due_Date, '-', '/')
+    ,[Quantity_GMEIN]
+    ,'f'
     ,'-'
     ,'-'
     ,'-'
@@ -64,8 +63,8 @@ SELECT
     ,'-'
     ,'-'
     ,'-'               
-  FROM [master].[dbo].[Stock_all], adx_productlocation
-  where SN is not NULL
-    and PN = adx_productlocation.PRODUCT_ID and plant = adx_productlocation.[LOCATION]
+  FROM [master].[dbo].[production_order], adx_productlocation
+  where WO is not NULL
+  and PN = adx_productlocation.PRODUCT_ID and Plant = adx_productlocation.[LOCATION]
 GO
 

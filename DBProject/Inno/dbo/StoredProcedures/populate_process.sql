@@ -1,6 +1,11 @@
 CREATE PROCEDURE [dbo].[populate_process]
 AS
 
+--pre-processing
+EXEC Populate_Subcon_Process
+EXEC Populate_Virtual_Parent_Process
+EXEC Populate_Saleable_Process
+
 truncate table Process
 
 insert into [Process] (
