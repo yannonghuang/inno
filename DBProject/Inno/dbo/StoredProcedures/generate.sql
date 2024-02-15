@@ -72,6 +72,9 @@ EXEC write_workorder_supply
 EXEC dedup_supply
 ------------ END: supply
 
+------------ BEGIN: mrp
+EXEC write_mrp
+------------ END: mrp
 END
 GO
 

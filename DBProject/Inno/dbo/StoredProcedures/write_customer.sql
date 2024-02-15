@@ -13,7 +13,7 @@ SELECT
     ,[CustomerName]
     ,'1'
     ,'HIER_LEVEL_1'
-    ,'HIER_LEVEL'
+    ,'HIER_LEVEL_2'
     ,'HIER_LEVEL_3'
  
   FROM [master].[dbo].[SO]

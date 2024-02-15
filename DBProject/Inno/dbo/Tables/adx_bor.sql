@@ -1,8 +1,8 @@
 CREATE TABLE [dbo].[adx_bor] (
-    [BOR_ID]    NVARCHAR (50) NULL,
-    [IDX]       TINYINT       NULL,
-    [RESALT_ID] NVARCHAR (50) NULL,
-    [RATE]      TINYINT       NULL
+    [BOR_ID]    NVARCHAR (50) NOT NULL,
+    [IDX]       TINYINT       NOT NULL,
+    [RESALT_ID] NVARCHAR (50) NOT NULL,
+    [RATE]      TINYINT       NOT NULL
 );
 GO
 

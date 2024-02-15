@@ -13,7 +13,15 @@ $tables = @(
     'adx_product',
     'adx_demand',
     'adx_customer',
-    'adx_supply'
+    'adx_supply',
+    'adx_route',
+    'adx_operation',	
+    'adx_bor',
+    'adx_bora',		
+    'adx_resalt',		
+    'adx_resource',
+    'adx_rescapinter',
+    'adx_op_override'
     )
 $folder = "/Users/yannonghuang/Documents/personal/projects/SRI/Import prospects/Adexa/Innolight/PoC 2023/Adexa Feeds/csv_deduped/"
 
@@ -29,4 +37,8 @@ for ($i = 0; $i -lt $tables.Length; $i++) {
     Export-Csv -UseQuotes Never -NoTypeInformation -Encoding UTF8 -Path $file ","
 
 }
+
+
+
+#adx_cappattern	
 
