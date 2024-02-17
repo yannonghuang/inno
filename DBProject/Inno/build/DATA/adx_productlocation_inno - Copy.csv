@@ -1,0 +1,32 @@
+PRODUCT_ID,DESCRIPTION,LOCATION,PRODUCT_TYPE,RESOLUTION,MIN_LOT_SIZE,MAX_LOT_SIZE,STD_LOT_SIZE,INCR_LOT_SIZE,BUILD_PERIOD,OBSOLETE,TIME_FENCE,CYCLE_TYPE, CYCLE_FAMILY ,INVENTORY,REVENUE,SHARE_FLAG,MIX,PROD_AREA,HIER_LEVEL_1,HIER_LEVEL_2,HIER_LEVEL_3,Product_Unit_Cost,UDA_string_-_-_LOC_ID,UDA_float_-_-_HOLD_COST,UDA_string_-_-_PRODUCT_FAMILY,UDA_string_-_-_PRODUCT_GROUP,UDA_string_-_-_TECHNOLOGY,UDA_string_-_-_PACKAGE,UDA_string_-_-_SHARED,UDA_string_-_-_FAB_LOC,UDA_string_-_-_MASK_LAYERS,UDA_string_-_-_WAFER_SIZE,UDA_string_-_-_BUMP_LOC,UDA_string_-_-_BUMP_TYPE,UDA_string_-_-_PROBE_LOC,UDA_string_-_-_PACKAGE_FAMILY,UDA_string_-_-_ASSY_LOC,UDA_string_-_-_TEST_LOC,UDA_string_-_-_A_MAT_STATUS
+500-3264-007,100G QSFP28 AOC V2M;850nm;7m;0~70C;HP,VIRTUAL,1,D,100,10000,10000,100,-,-,-,factor,2,-,-,1,1,VIRTUAL,VIRTUAL,VIRTUAL,ALL,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+500-3264-010,100G QSFP28 AOC V2M;850nm10m;0~70C;HP,SZ_MOD,1,D,100,10000,10000,100,-,-,-,factor,2,-,-,1,1,MODULE,MODULE,MODULE,ALL,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+500-3264-020,100G QSFP28 AOC V2M;850nm;20m;0~70C;HP,SZ_OB,1,D,100,10000,10000,100,-,-,-,factor,2,-,-,1,1,OB,OB,MODULE,ALL,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+500-3265-005,100G QSFP28 AOC V2M;850nm;5m;0~70C;H3C,SZ_CB,1,D,100,10000,10000,100,-,-,-,factor,2,-,-,1,1,CB,CB,OPTICAL,ALL,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+500-3265-007,100G QSFP28 AOC V2M;850nm;7m;0~70C;H3C,SZ_TXCOC,1,D,100,10000,10000,100,-,-,-,factor,2,-,-,1,1,TXCOC,TXCOC,OPTICAL,ALL,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+500-3265-010,100G QSFP28 AOC V2M;850nm;10m;0~70C;H3C,SZ_TXCOC,1,D,100,10000,10000,100,-,-,-,factor,2,-,-,1,1,TXCOC,TXCOC,OPTICAL,ALL,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+500-3265-020,100G QSFP28 AOC V2M;850nm;20m;0~70C;H3C,SZ_TXCOC,1,D,100,10000,10000,100,-,-,-,factor,2,-,-,1,1,TXCOC,TXCOC,OPTICAL,ALL,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+500-3265-030,100G QSFP28 AOC V2M;850nm;30m;0~70C;H3C,SZ_TXCOC,1,D,100,10000,10000,100,-,-,-,factor,2,-,-,1,1,TXCOC,TXCOC,OPTICAL,ALL,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+500-3417-001,100G QSFP28 AOC V2 Macom;850nm;1m;Blank,SZ_PREF,1,D,100,10000,10000,100,-,-,-,factor,2,-,-,1,1,PREFORM,PREFORM,OPTICAL,ALL,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+500-3417-002,100G QSFP28 AOC V2M;MMF 2m;0~70C;Blank,SZ_PREF,1,D,100,10000,10000,100,-,-,-,factor,2,-,-,1,1,PREFORM,PREFORM,OPTICAL,ALL,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+500-3417-003,100G QSFP28 AOC V2 Macom;850nm;3m;Blank,TL_MOD,1,D,100,10000,10000,100,-,-,-,factor,2,-,-,1,1,MODULE,MODULE,MODULE,ALL,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+500-3417-004,100G QSFP28 AOC V2M;MMF 4m;0~70C;Blank,TL_OB,1,D,100,10000,10000,100,-,-,-,factor,2,-,-,1,1,OB,OB,MODULE,ALL,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+500-3417-005,100G QSFP28 AOC V2 Macom;850nm;5m;Blank,TL_CB,1,D,100,10000,10000,100,-,-,-,factor,2,-,-,1,1,CB,CB,OPTICAL,ALL,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+500-3417-006,100G QSFP28 AOC V2M;MMF 6m;0~70C;Blank,TL_TXCOC,1,D,100,10000,10000,100,-,-,-,factor,2,-,-,1,1,TXCOC,TXCOC,OPTICAL,ALL,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+500-3417-007,100G QSFP28 AOC V2 Macom;850nm;7m;Blank,TL_TXCOC,1,D,100,10000,10000,100,-,-,-,factor,2,-,-,1,1,TXCOC,TXCOC,OPTICAL,ALL,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+500-3417-008,100G QSFP28 AOC V2M;MMF 8m;0~70C;Blank,TL_TXCOC,1,D,100,10000,10000,100,-,-,-,factor,2,-,-,1,1,TXCOC,TXCOC,OPTICAL,ALL,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+500-3417-010,100G QSFP28 AOC V2 Macom;850nm;10m;Blank,TL_TXCOC,1,D,100,10000,10000,100,-,-,-,factor,2,-,-,1,1,TXCOC,TXCOC,OPTICAL,ALL,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+500-3417-013,100G QSFP28 AOC V2M;MMF 13m;0~70C;Blank,TL_PREF,1,D,100,10000,10000,100,-,-,-,factor,2,-,-,1,1,PREFORM,PREFORM,OPTICAL,ALL,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+500-3417-015,100G QSFP28 AOC V2 Macom;850nm;15m;Blank,TL_PREF,1,D,100,10000,10000,100,-,-,-,factor,2,-,-,1,1,PREFORM,PREFORM,OPTICAL,ALL,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+500-3417-020,100G QSFP28 AOC V2 Macom;850nm;20m;Blank,TH_MOD,1,D,100,10000,10000,100,-,-,-,factor,2,-,-,1,1,MODULE,MODULE,MODULE,ALL,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+500-3417-025,100G QSFP28 AOC V2M;MMF 25m;0~70C;Blank,TH_OB,1,D,100,10000,10000,100,-,-,-,factor,2,-,-,1,1,OB,OB,MODULE,ALL,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+500-3417-030,100G QSFP28 AOC V2M;MMF 30m;0~70C;Blank,TH_CB,1,D,100,10000,10000,100,-,-,-,factor,2,-,-,1,1,CB,CB,OPTICAL,ALL,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+500-3417-040,100G QSFP28 AOC V2Macom;40m;0~70C;Blank,TH_TXCOC,1,D,100,10000,10000,100,-,-,-,factor,2,-,-,1,1,TXCOC,TXCOC,OPTICAL,ALL,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+500-3417-100,100G QSFP28 AOCV2 Macom;850nm;100m;Blank,TH_TXCOC,1,D,100,10000,10000,100,-,-,-,factor,2,-,-,1,1,TXCOC,TXCOC,OPTICAL,ALL,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+502-1915-XXX,QSFP28 AOC V2M With Nalux Lens;H3C,TH_TXCOC,1,D,100,10000,10000,100,-,-,-,factor,2,-,-,1,1,TXCOC,TXCOC,OPTICAL,ALL,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+504-1569,OE;QSFP28 AOC V2M;Nalux lens&ULM PD;H3C,TH_TXCOC,1,D,100,10000,10000,100,-,-,-,factor,2,-,-,1,1,TXCOC,TXCOC,OPTICAL,ALL,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+280-1243-40,Lens asse(4.0dB)QSFP28 AOC;Packing Nalux,TH_PREF,1,D,100,10000,10000,100,-,-,-,factor,2,-,-,1,1,PREFORM,PREFORM,OPTICAL,ALL,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+280-0654-CN,Vcsel for other NRZ Version,TH_PREF,1,D,100,10000,10000,100,-,-,-,factor,2,-,-,1,1,PREFORM,PREFORM,OPTICAL,ALL,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+504-1694,PCBA;100G SR4 V2M;nalux lens;for prevent,TW_MOD,1,D,100,10000,10000,100,-,-,-,factor,2,-,-,1,1,MODULE,MODULE,MODULE,ALL,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+502-1600-XXX,QSFP28 AOC V2M With Nalux Lens;H3C,SZ_MOD,1,D,100,10000,10000,100,-,-,-,factor,2,-,-,1,1,OB,OB,MODULE,ALL,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+504-1397,OE;100G QSFP28 AOC V2M;N-lens & ULM PD,TW_MOD,1,D,100,10000,10000,100,-,-,-,factor,2,-,-,1,1,OB,OB,MODULE,ALL,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-

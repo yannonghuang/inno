@@ -1,0 +1,14 @@
+PRODUCT_ID,DESCRIPTION,LOCATION,PRODUCT_TYPE,RESOLUTION,MIN_LOT_SIZE,MAX_LOT_SIZE,STD_LOT_SIZE,INCR_LOT_SIZE,BUILD_PERIOD,OBSOLETE,TIME_FENCE,CYCLE_TYPE, CYCLE_FAMILY ,INVENTORY,REVENUE,SHARE_FLAG,MIX,PROD_AREA,HIER_LEVEL_1,HIER_LEVEL_2,HIER_LEVEL_3,Product_Unit_Cost,UDA_string_-_-_LOC_ID,UDA_float_-_-_HOLD_COST,UDA_string_-_-_PRODUCT_FAMILY,UDA_string_-_-_PRODUCT_GROUP,UDA_string_-_-_TECHNOLOGY,UDA_string_-_-_PACKAGE,UDA_string_-_-_SHARED,UDA_string_-_-_FAB_LOC,UDA_string_-_-_MASK_LAYERS,UDA_string_-_-_WAFER_SIZE,UDA_string_-_-_BUMP_LOC,UDA_string_-_-_BUMP_TYPE,UDA_string_-_-_PROBE_LOC,UDA_string_-_-_PACKAGE_FAMILY,UDA_string_-_-_ASSY_LOC,UDA_string_-_-_TEST_LOC,UDA_string_-_-_A_MAT_STATUS
+AON6538,-,-,1,D,1,31262,31262,1,-,-,-,factor,2,-,-,-,-,BACKEND,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+JSN182Q#PS3G4M1TA4-die,-,-,1,D,1,25033,25033,1,-,-,-,factor,2,-,-,-,-,DB,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+JSN182Q#PS3G4M1-die,-,-,1,D,1,31262,31262,1,-,-,-,factor,2,-,-,-,-,DB,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+JSN182Q#PSG4M1-die,-,-,1,D,1,31262,31262,1,-,-,-,factor,2,-,-,-,-,DB,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+JSN182Q#PG4M1-die,-,-,1,D,1,28424,28424,1,-,-,-,factor,2,-,-,-,-,DB,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+JSN182Q#PS3G4M1TA4,-,-,1,D,1,31262,31262,1,-,-,-,factor,2,-,-,-,-,WC,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+JSN182Q#PSG4M1,-,-,1,D,1,28424,28424,1,-,-,-,factor,2,-,-,-,-,T032,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+JSN182Q#PG4M1,-,-,1,D,1,28424,28424,1,-,-,-,factor,2,-,-,-,-,FG,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+JSN182Q#PS3G4M1T,-,-,1,D,1,28424,28424,1,-,-,-,factor,2,-,-,-,-,FG,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+JSN182Q@GM#PS3,-,-,1,D,1,28424,28424,1,-,-,-,factor,2,-,-,-,-,FG,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+JSN182Q@GM#PS,-,-,1,D,1,28424,28424,1,-,-,-,factor,2,-,-,-,-,FG,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+JSN182Q@GM#P,-,-,1,D,1,85000,85000,1,-,-,-,factor,2,-,-,-,-,FG,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-
+JSN182Q@GM,-,-,1,D,1,85000,85000,1,-,-,-,factor,2,-,-,-,-,FG,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-

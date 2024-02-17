@@ -1,0 +1,7 @@
+Date,Change Description
+9/21/2022,"1. Reorganize the fields so ""must have"" UDA are placed before option UDA which can be truncated:
+- adx_product: remove PRODUCT_VALUE UDA; move Product_Unit_Cost, HOLD_COST, LOC_ID to between FG_HIER_LEVEL3 and PRODUCT_FAMILY
+- adx_productlocation: move Product_Unit_Cost, LOC_ID, HOLD_COST to between FG_HIER_LEVEL3 and PRODUCT_FAMILY
+- adx_supply: move COST UDA to between METHOD attribute and FAB_LOC UDA
+2. Fix adx_transportation mode values
+3. Sync up method and PordLoc UDA"

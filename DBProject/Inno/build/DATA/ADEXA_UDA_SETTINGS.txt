@@ -1,0 +1,61 @@
+UDA_SETTINGS
+Adding com@location attribute called UDA_string_LOC_ID of type string
+com@location attribute set UDA_string_LOC_ID propagation_direction LOC
+com@location attribute set UDA_string_LOC_ID propagate_default_value ID
+Adding com@location attribute called UDA_float_HOLD_COST of type float
+com@location attribute set UDA_float_HOLD_COST propagation_direction HOLD
+com@location attribute set UDA_float_HOLD_COST propagate_default_value COST
+Adding com@location attribute called UDA_string_PRODUCT_FAMILY of type string
+com@location attribute set UDA_string_PRODUCT_FAMILY propagation_direction PRODUCT
+com@location attribute set UDA_string_PRODUCT_FAMILY propagate_default_value FAMILY
+Adding com@location attribute called UDA_string_PRODUCT_GROUP of type string
+com@location attribute set UDA_string_PRODUCT_GROUP propagation_direction PRODUCT
+com@location attribute set UDA_string_PRODUCT_GROUP propagate_default_value GROUP
+Adding com@location attribute called UDA_string_TECHNOLOGY of type string
+com@location attribute set UDA_string_TECHNOLOGY propagation_direction TECHNOLOGY
+com@location attribute set UDA_string_TECHNOLOGY propagate_default_value 
+Adding com@location attribute called UDA_string_PACKAGE of type string
+com@location attribute set UDA_string_PACKAGE propagation_direction PACKAGE
+com@location attribute set UDA_string_PACKAGE propagate_default_value 
+Adding com@location attribute called UDA_string_SHARED of type string
+com@location attribute set UDA_string_SHARED propagation_direction SHARED
+com@location attribute set UDA_string_SHARED propagate_default_value 
+Adding com@location attribute called UDA_string_FAB_LOC of type string
+com@location attribute set UDA_string_FAB_LOC propagation_direction FAB
+com@location attribute set UDA_string_FAB_LOC propagate_default_value LOC
+Adding com@location attribute called UDA_string_MASK_LAYERS of type string
+com@location attribute set UDA_string_MASK_LAYERS propagation_direction MASK
+com@location attribute set UDA_string_MASK_LAYERS propagate_default_value LAYERS
+Adding com@location attribute called UDA_string_WAFER_SIZE of type string
+com@location attribute set UDA_string_WAFER_SIZE propagation_direction WAFER
+com@location attribute set UDA_string_WAFER_SIZE propagate_default_value SIZE
+Adding com@location attribute called UDA_string_BUMP_LOC of type string
+com@location attribute set UDA_string_BUMP_LOC propagation_direction BUMP
+com@location attribute set UDA_string_BUMP_LOC propagate_default_value LOC
+Adding com@location attribute called UDA_string_BUMP_TYPE of type string
+com@location attribute set UDA_string_BUMP_TYPE propagation_direction BUMP
+com@location attribute set UDA_string_BUMP_TYPE propagate_default_value TYPE
+Adding com@location attribute called UDA_string_PROBE_LOC of type string
+com@location attribute set UDA_string_PROBE_LOC propagation_direction PROBE
+com@location attribute set UDA_string_PROBE_LOC propagate_default_value LOC
+Adding com@location attribute called UDA_string_PACKAGE_FAMILY of type string
+com@location attribute set UDA_string_PACKAGE_FAMILY propagation_direction PACKAGE
+com@location attribute set UDA_string_PACKAGE_FAMILY propagate_default_value FAMILY
+Adding com@location attribute called UDA_string_ASSY_LOC of type string
+com@location attribute set UDA_string_ASSY_LOC propagation_direction ASSY
+com@location attribute set UDA_string_ASSY_LOC propagate_default_value LOC
+Adding com@location attribute called UDA_string_TEST_LOC of type string
+com@location attribute set UDA_string_TEST_LOC propagation_direction TEST
+com@location attribute set UDA_string_TEST_LOC propagate_default_value LOC
+Adding com@location attribute called STATUS of type string
+com@location attribute set STATUS propagation_direction A
+com@location attribute set STATUS propagate_default_value MAT
+Adding method attribute called UDA_string_DMDSPEC of type string
+method attribute set UDA_string_DMDSPEC propagation_direction DMDSPEC
+method attribute set UDA_string_DMDSPEC propagate_default_value 
+Adding method attribute called ASSY_LOC of type string
+method attribute set ASSY_LOC propagation_direction to_workorder
+method attribute set ASSY_LOC propagate_default_value no
+Adding method attribute called FAB_LOC of type string
+method attribute set FAB_LOC propagation_direction to_workorder
+method attribute set FAB_LOC propagate_default_value no
