@@ -49,7 +49,7 @@ SELECT
       else 
         case 
             when COP_resource.Number_of_station is not null and COP_resource.Number_of_station <> 0 then COP_resource.Number_of_station
-            else '1' -- number of machines 
+            else '0.1' -- number of machines 
         END
       end
 */
@@ -98,7 +98,8 @@ insert into [master].[dbo].[adx_resource] (
       ,[HIER_LEVEL_3_bak]
       ,[HIER_LEVEL_1_bak]
 )
-values (  
+values 
+(  
       'RESOURCE_Crew'
       ,'-'
       ,'2000'-- [LOCATION]
@@ -112,17 +113,37 @@ values (
       ,'-' -- [MAX_BATCH_VOLUME]
       ,'-' -- [SPEED_FACTOR]
 
-/*
-      ,case
-      when RES_ID like '%_Crew' then '1000' -- number of line workers at 2000      
-      else 
-        case 
-            when COP_resource.Number_of_station is not null and COP_resource.Number_of_station <> 0 then COP_resource.Number_of_station
-            else '1' -- number of machines 
-        END
-      end
-*/
       ,'1000' -- [MULTI_RES_FACTOR]
+      
+      ,'2' --[CARE]
+
+      ,'-' -- [DELAY_ALLOWED]
+      ,'SCP' -- [PERIOD_MGR_ID]
+      ,'-' -- [SETUP_MATRIX_ID]
+      ,'-' -- [CAPABLE_TYPE]
+      ,'-' -- [MIX_TYPE]
+      ,'HIER_LEVEL_1' -- [HIER_LEVEL_1]
+      ,'HIER_LEVEL_2' -- [HIER_LEVEL_2]
+      ,'HIER_LEVEL_3' -- [HIER_LEVEL_3]
+      ,'-' -- [OpOverrideType]
+      ,'-' -- [HIER_LEVEL_3_bak]
+      ,'-' -- [HIER_LEVEL_1_bak]
+),
+(  
+      'RESOURCE_dummy'
+      ,'-'
+      ,'-'-- [LOCATION]
+
+      ,'M'
+
+      ,'-' -- [BATCH_PERIOD]
+      ,'-' -- [BATCH_TYPE]
+      ,'-' -- [AVG_BATCH_VOLUME]
+      ,'-' -- [MIN_BATCH_VOLUME]
+      ,'-' -- [MAX_BATCH_VOLUME]
+      ,'-' -- [SPEED_FACTOR]
+
+      ,'1' -- [MULTI_RES_FACTOR]
       
       ,'2' --[CARE]
 

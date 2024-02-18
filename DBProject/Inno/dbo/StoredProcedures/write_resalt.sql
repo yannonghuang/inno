@@ -1,5 +1,21 @@
 CREATE PROCEDURE [dbo].[write_resalt]
 AS
+
+insert into [master].[dbo].[adx_resalt] (
+       [OPERATION_ID]
+      ,[RESALT_ID]
+      ,[PREFERENCE]
+      ,[RES_ID]
+      ,[ELEM_IX]
+)
+values (
+       '-' 
+      ,'RESALT_dummy'
+      ,'1'
+      ,'RESOURCE_dummy'
+      ,'1'
+)
+
 insert into [master].[dbo].[adx_resalt] (
        [OPERATION_ID]
       ,[RESALT_ID]
@@ -8,12 +24,13 @@ insert into [master].[dbo].[adx_resalt] (
       ,[ELEM_IX]
 )
 SELECT  
-       replace(BOR_ID, 'BOR' , 'OP')
+       '-' --replace(BOR_ID, 'BOR' , 'OP')
       ,[RESALT_ID]
       ,'1'
       ,replace(RESALT_ID, 'RESALT' , 'RESOURCE')
       ,'1'
-FROM [master].[dbo].[adx_bor]
+FROM [master].[dbo].[adx_bor] 
+where not RESALT_ID like '%dummy%'
 
 
 insert into [master].[dbo].[adx_resalt] (
@@ -24,7 +41,7 @@ insert into [master].[dbo].[adx_resalt] (
       ,[ELEM_IX]
 )
 SELECT  
-       replace(BOR_ID, 'BOR' , 'OP')
+       '-' --replace(BOR_ID, 'BOR' , 'OP')
       ,[RESALT_ID]
       ,'1'
       ,replace(replace(RESALT_ID, 'RESALT' , 'RESOURCE'), '_Machine', '_s_Machine')

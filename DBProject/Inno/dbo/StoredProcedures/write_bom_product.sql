@@ -2,7 +2,7 @@ CREATE PROCEDURE [dbo].[write_bom_product]
 AS
 
 begin
-    DECLARE @sSQL nvarchar(1000)
+    DECLARE @sSQL nvarchar(2000)
     --declare @table_name varchar(500)
     --set @table_name = 'BOM_1000_part1'
 
@@ -63,18 +63,55 @@ begin
             ' END ' +             
         ' ELSE ''OPTICAL'' ' +
         ' END ' +
+        -- HIER_LEVEL_1 -- 
 
-        ',''FACTORY'' ' +
-        ',''ALL'' ' +
-        
+        ',CASE   ' +
+        ' WHEN Process.Process is not null THEN ' +
+            ' CASE   ' +
+            ' WHEN Process.Process = ''Module'' THEN ''MODULE'' ' +
+            ' ELSE ''OPTICAL'' ' +
+            ' END ' +             
+        ' ELSE ''OPTICAL'' ' +
+        ' END ' +
+        -- ',''FACTORY'' ' +
+        -- HIER_LEVEL_2 -- 
+
+        ',CASE   ' +
+            ' WHEN MPS_Model is not null THEN MPS_Model ' +         
+            ' ELSE ''-'' ' +
+        ' END ' +     
+        -- HIER_LEVEL_3 -- 
+                
         ',''-'' ' +
-        ',''-'' ' +
-        ',''-'' ' +
+        -- FG_HIER_LEVEL_1 -- 
+
+        ',CASE   ' +
+        ' WHEN partnumber = FG THEN ' +
+            ' CASE   ' +
+            ' WHEN DP_Models.Code is not null THEN DP_Models.Code ' +
+            ' ELSE ''-'' ' +
+            ' END ' +             
+        ' ELSE ''-'' ' +
+        ' END ' +        
+        -- FG_HIER_LEVEL_2 -- 
+
+        ',CASE   ' +
+        ' WHEN partnumber = FG THEN ' +
+            ' CASE   ' +
+            ' WHEN MPS_Model is not null THEN MPS_Model ' +
+            ' ELSE ''-'' ' +
+            ' END ' +             
+        ' ELSE ''-'' ' +
+        ' END ' +        
+        -- FG_HIER_LEVEL_3 -- 
+
+
         ',''-'' ' +
         ',''-'' ' +
         ',''-'' ' +
         ',''-'' ' +   
-        'FROM ' + @table_name + ' left outer JOIN Process on ' + @table_name + '.partnumber = Process.P_N ' 
+        'FROM ' + @table_name + ' left outer JOIN Process on ' + @table_name + '.partnumber = Process.P_N ' +
+            ' left outer JOIN DP_Models on ' + @table_name + '.FG = DP_Models.PN ' 
             -- + 'where componenttype is not null  ' 
   
         print @sSQL

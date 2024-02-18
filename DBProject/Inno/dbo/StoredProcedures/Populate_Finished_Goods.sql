@@ -1,5 +1,5 @@
 
-CREATE PROCEDURE [dbo].[Write_Finished_Goods] 
+CREATE PROCEDURE [dbo].[Populate_Finished_Goods] 
 AS
 BEGIN
 

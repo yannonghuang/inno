@@ -2,7 +2,7 @@ CREATE PROCEDURE [dbo].[write_subs_product]
 AS
 
 begin
-    DECLARE @sSQL nvarchar(1000)
+    DECLARE @sSQL nvarchar(2000)
     --declare @table_name varchar(500)
     --set @table_name = 'BOM_1000_part1'
 
@@ -57,20 +57,40 @@ begin
             ' END ' +             
         ' ELSE ''OPTICAL'' ' +
         ' END ' +
+        -- HIER_LEVEL_1 --   
 
-        ',''FACTORY'' ' +
-        ',''ALL'' ' +
+        ',CASE   ' +
+            ' WHEN adx_product.HIER_LEVEL_2 is not null THEN adx_product.HIER_LEVEL_2 ' +         
+            ' ELSE ''-'' ' +
+        ' END ' +   
+        -- ',adx_product.HIER_LEVEL_2 ' +
+        -- HIER_LEVEL_2 --   
+        -- ',''FACTORY'' ' +
+
+        ',CASE   ' +
+            ' WHEN adx_product.HIER_LEVEL_3 is not null THEN adx_product.HIER_LEVEL_3 ' +         
+            ' ELSE ''-'' ' +
+        ' END ' +     
+        --',adx_product.HIER_LEVEL_3 ' +
+        -- HIER_LEVEL_3 --         
+        -- ',''ALL'' ' +
         
         ',''-'' ' +
+        -- FG_HIER_LEVEL_1 --  
+
+        ',''-'' ' +
+        -- FG_HIER_LEVEL_2 --         
+
+        ',''-'' ' +
+        -- FG_HIER_LEVEL_3 -- 
+
         ',''-'' ' +
         ',''-'' ' +
-        ',''-'' ' +
-        ',''-'' ' +
-        ',''-'' ' +
+        ',''-'' ' +        
         ',''-'' ' + 
   
         'FROM ' + @table_name + ' left outer JOIN Process on ' + @table_name + '.Assemble_P_N = Process.P_N ' 
-  
+            + ' left outer JOIN adx_product on ' + @table_name + '.Assemble_P_N = adx_product.PRODUCT_ID '
         print @sSQL
         EXEC(@sSQL)
 

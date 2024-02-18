@@ -6,6 +6,19 @@ insert into [master].[dbo].[adx_bor] (
       ,[RESALT_ID]
       ,[RATE]
 )
+values(  
+      'BOR_dummy'
+      ,'1'
+      ,'RESALT_dummy'
+      ,'1'
+)
+
+insert into [master].[dbo].[adx_bor] (
+       [BOR_ID]
+      ,[IDX]
+      ,[RESALT_ID]
+      ,[RATE]
+)
 SELECT  
       [BOR_ID]
       ,'1'
@@ -14,7 +27,8 @@ SELECT
       else replace(BOR_ID, 'BOR' , 'RESALT') + '_Machine'
       end
       ,'1'
-  FROM [master].[dbo].[adx_bora]
+FROM [master].[dbo].[adx_bora]
+where not BOR_ID like '%dummy%'
 
 insert into [master].[dbo].[adx_bor] (
        [BOR_ID]
@@ -27,6 +41,7 @@ SELECT
       ,'2'
       ,'RESALT_Crew'
       ,'1'
-  FROM [master].[dbo].[adx_bora]
+FROM [master].[dbo].[adx_bora]
+where not BOR_ID like '%dummy%'
 GO
 

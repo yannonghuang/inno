@@ -1,4 +1,4 @@
-CREATE PROCEDURE [dbo].[write_bom_productlocation]
+CREATE PROCEDURE [dbo].[write_bom_productlocation2]
 AS
 
 begin

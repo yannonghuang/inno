@@ -7,7 +7,8 @@ EXEC Truncate_ADX_Tables
 EXEC populate_process
 EXEC populate_method_buy
 EXEC Populate_Raw_Substitutes
-
+EXEC Populate_Finished_Goods
+EXEC Populate_DP_Models
 ------------ BEGIN: static
 EXEC write_bom_bom
 EXEC write_bom_method_make

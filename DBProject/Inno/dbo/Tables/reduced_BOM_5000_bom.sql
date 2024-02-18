@@ -1,5 +1,5 @@
-CREATE TABLE [dbo].[BOM_5000_bom] (
-    [Plant]            SMALLINT      NOT NULL,
+CREATE TABLE [dbo].[reduced_BOM_5000_bom] (
+    [Plant]            NVARCHAR (50) NOT NULL,
     [FG]               NVARCHAR (50) NOT NULL,
     [旧的物料编号]           NVARCHAR (1)  NULL,
     [FGDescription]    NVARCHAR (50) NOT NULL,

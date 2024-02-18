@@ -122,7 +122,7 @@ proc Initialize {} {
 	#set path(main) "c:/Adexa/demos/NON_INTEGRATED/FABLESS/SCP";
 # vn	
 	#set path(main) "c:/Adexa/projects/innolight/SCP";	
-	set path(main) "c:/Adexa/build";		
+	set path(main) "w:";		
 	#set path(main) "c:/Adexa/Innolight/SCP";
 
 	set path(data) "$path(main)/DATA";
