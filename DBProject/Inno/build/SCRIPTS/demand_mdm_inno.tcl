@@ -55,17 +55,17 @@ proc Build_Demand {} {
 			demand set prio $prio
 	   	}
 	   	if { $reqDue != "-" } {
-			#set reqDue [split $reqDue "/"]
-			#set month [lindex $reqDue 0]
-			#if {[string length $month] == "1"} {
-			#	set month 0$month
-			#}
-			#set day [lindex $reqDue 1]
-			#if {[string length $day] == 1} {
-			#	set day 0$day
-			#}
-			#set year [lindex $reqDue 2]
-			#set reqDue $year/$month/$day
+			set reqDue [split $reqDue "/"]
+			set month [lindex $reqDue 0]
+			if {[string length $month] == "1"} {
+				set month 0$month
+			}
+			set day [lindex $reqDue 1]
+			if {[string length $day] == 1} {
+				set day 0$day
+			}
+			set year [lindex $reqDue 2]
+			set reqDue 20$year/$month/$day
 			set reqDue [cast date1 time $reqDue]
 			if {$status == 0} {
 				demand set due_com $reqDue

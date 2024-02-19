@@ -31,8 +31,8 @@ SELECT
 
       ,'1'
       ,'100'
-      ,substring(CONVERT(VARCHAR, DeliveryDate), 1, 4) + '/' + substring(CONVERT(VARCHAR, DeliveryDate), 6, 2) + '/' + substring(CONVERT(VARCHAR, DeliveryDate), 9, 2)      
-      ,substring(CONVERT(VARCHAR, DeliveryDate), 1, 4) + '/' + substring(CONVERT(VARCHAR, DeliveryDate), 6, 2) + '/' + substring(CONVERT(VARCHAR, DeliveryDate), 9, 2)    
+      ,DeliveryDate -- substring(CONVERT(VARCHAR, DeliveryDate), 1, 4) + '/' + substring(CONVERT(VARCHAR, DeliveryDate), 6, 2) + '/' + substring(CONVERT(VARCHAR, DeliveryDate), 9, 2)      
+      ,DeliveryDate --substring(CONVERT(VARCHAR, DeliveryDate), 1, 4) + '/' + substring(CONVERT(VARCHAR, DeliveryDate), 6, 2) + '/' + substring(CONVERT(VARCHAR, DeliveryDate), 9, 2)    
 
       , case 
         when abbreviate_customer_code is not null then IndustrialStandard + '@' + abbreviate_customer_code

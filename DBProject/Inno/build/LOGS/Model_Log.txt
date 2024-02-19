@@ -1,4 +1,4 @@
-Model Building starting.............................24/02/17 11:14:11
+Model Building starting.............................24/02/19 14:52:13
 Resource Alt - RESALT_Module_ASSY_Machine : Invalid Resource RESOURCE_Module_ASSY_Machine
 Resource Alt - RESALT_Module_PrePKG_Machine : Invalid Resource RESOURCE_Module_PrePKG_Machine
 Resource Alt - RESALT_CB_ASSY_Machine : Invalid Resource RESOURCE_CB_ASSY_Machine

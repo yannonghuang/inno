@@ -1,4 +1,4 @@
-CREATE TABLE [dbo].[BOM_6000_bom] (
+CREATE TABLE [dbo].[BOM_6000_BOM] (
     [Plant]            NVARCHAR (50) NULL,
     [FG]               NVARCHAR (50) NULL,
     [旧的物料编号]           NVARCHAR (1)  NULL,
@@ -59,7 +59,7 @@ CREATE TABLE [dbo].[BOM_6000_bom] (
     [产地]               NVARCHAR (1)  NULL,
     [componenttype]    NVARCHAR (50) NULL,
     [创建日期]             NVARCHAR (1)  NULL,
-    [计划交货日期]           TINYINT       NULL,
+    [计划交货日期]           NVARCHAR (50) NULL,
     [专用_通用]            NVARCHAR (1)  NULL
 );
 GO

@@ -81,19 +81,19 @@ proc Import_Supply {} {
 		}
 		#
 		if {$sup_due != "-"} {
-			#set split_dt [split $sup_due /]
-			#set month [lindex $split_dt 0]
-			#if {[string length $month] == "1"} {
-			#	set month 0$month
-			#}
-			#set day [lindex $split_dt 1]
-			#if {[string length $day] == 1} {
-			#	set day 0$day
-			#}
-			#set year [lindex $split_dt 2]
-			#set adexa_dt $year/$month/$day
-			#supply set time [cast date1 time $adexa_dt]
-			supply set time [cast date1 time $sup_due]
+			set split_dt [split $sup_due /]
+			set month [lindex $split_dt 0]
+			if {[string length $month] == "1"} {
+				set month 0$month
+			}
+			set day [lindex $split_dt 1]
+			if {[string length $day] == 1} {
+				set day 0$day
+			}
+			set year [lindex $split_dt 2]
+			set adexa_dt 20$year/$month/$day
+			supply set time [cast date1 time $adexa_dt]
+			#supply set time [cast date1 time $sup_due]
 		} else {
 			supply set time [cal horizon get start]
 		}

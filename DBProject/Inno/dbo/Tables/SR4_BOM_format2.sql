@@ -65,7 +65,3 @@ CREATE TABLE [dbo].[SR4_BOM_format2] (
 GO
 
 
-CREATE NONCLUSTERED INDEX [Index_SR4_BOM_format2_1]
-    ON [dbo].[SR4_BOM_format2]([partnumber] DESC);
-GO
-

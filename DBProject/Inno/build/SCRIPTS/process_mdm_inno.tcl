@@ -310,7 +310,7 @@ proc Build_Method_Make {} {
 			method add_manufacture $mthdId $Loc;
 			method set id $mthdId;
 			#echo "...ProdId=$ProdId,BoMId=$BoMId,Route=$Route,dmSpec=$dmSpec";
-			if [catch {method set bom $BoMId} err] {echo "$err...ProdId=$ProdId,BoMId=$BoMId,Route=$Route"}
+			if [catch {method set bom $BoMId} err] {echo "$err...ProdId=$ProdId,BoMId=$BoMId,Route=$Route, Loc=$Loc"}
         
 			echo "...ProdId=$ProdId,BoMId=$BoMId,Route=$Route"		
 			method set route $Route;

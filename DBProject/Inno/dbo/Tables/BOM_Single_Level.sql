@@ -2,7 +2,7 @@ CREATE TABLE [dbo].[BOM_Single_Level] (
     [FG]        NVARCHAR (50) NULL,
     [版次]        NVARCHAR (50) NULL,
     [物料描述]      NVARCHAR (50) NULL,
-    [工厂]        NVARCHAR (50) NULL,
+    [工厂]        SMALLINT      NULL,
     [BOM用途]     TINYINT       NULL,
     [创建日期]      DATE          NULL,
     [修改日期]      DATE          NULL,

@@ -1,6 +1,6 @@
 CREATE TABLE [dbo].[DP] (
     [Category]    NVARCHAR (50)  NULL,
-    [Plant]       NVARCHAR (50)  NULL,
+    [Plant]       SMALLINT       NULL,
     [Customer]    NVARCHAR (50)  NULL,
     [Territory]   NVARCHAR (50)  NULL,
     [Series]      NVARCHAR (50)  NULL,
@@ -8,7 +8,7 @@ CREATE TABLE [dbo].[DP] (
     [Version]     NVARCHAR (50)  NULL,
     [状态]          NVARCHAR (50)  NULL,
     [Application] NVARCHAR (50)  NULL,
-    [备注]          NVARCHAR (50)  NULL,
+    [备注]          NVARCHAR (1)   NULL,
     [_2024_01]    NVARCHAR (50)  NULL,
     [_2024_02]    NVARCHAR (50)  NULL,
     [_2024_03]    NVARCHAR (50)  NULL,

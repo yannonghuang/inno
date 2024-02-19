@@ -38,7 +38,7 @@ SELECT
     , '-'    
     ,[Plant]
     ,[PN]
-    ,REPLACE(Due_Date, '-', '/')
+    ,Due_Date --REPLACE(Due_Date, '-', '/')
     ,[Quantity_GMEIN]
     ,'f'
     ,'-'
