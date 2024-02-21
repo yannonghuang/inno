@@ -1,5 +1,5 @@
 
-CREATE PROCEDURE [dbo].[Trim_BOM_Original_Tables] 
+CREATE PROCEDURE [dbo].[Trim_BOM_Tables_Full] 
 AS
 BEGIN
 DECLARE @sSQL nvarchar(1500)
@@ -18,12 +18,11 @@ DECLARE @sSQL nvarchar(1500)
             ' select * ' +
             ' from [PackageMaterial]' +
             ' where [PackageMaterial].[MATNR] = ' + @table_name + '.[partnumber]) ' +
-/*            
             ' or not exists (' +
             ' select * ' +
             ' from [InnoLight_Forecast]' +
-            ' where [InnoLight_Forecast].[FG_PN] = ' + @table_name + '.[FG]) ' +
-*/
+            ' where [InnoLight_Forecast].[FG_PN] = ' + @table_name + '.[FG]) '
+/*
             ' or ( ' +
                 ' not exists ( ' +
                     ' select * from ' + @table_name  + ' internalR where ' + @table_name + '.partnumber = internalR.ParentPart ' +
@@ -32,6 +31,7 @@ DECLARE @sSQL nvarchar(1500)
                     ' select * from [Method_Buy] where ' + @table_name + '.partnumber = Method_Buy.PRODUCT_ID ' +
                 ' ) ' +
             ' ) '
+*/            
 /*
             + ' or ( ' +
                 ' exists ( ' +
@@ -49,6 +49,7 @@ DECLARE @sSQL nvarchar(1500)
       end
    close MyCursor 
    deallocate MyCursor 
+   EXEC Trim_BOM_Tables_Common
 END
 GO
 

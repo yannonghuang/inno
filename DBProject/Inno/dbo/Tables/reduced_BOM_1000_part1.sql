@@ -1,4 +1,4 @@
-CREATE TABLE [dbo].[BOM_1000_part1] (
+CREATE TABLE [dbo].[reduced_BOM_1000_part1] (
     [Plant]            NVARCHAR (50) NULL,
     [FG]               NVARCHAR (50) NULL,
     [旧的物料编号]           NVARCHAR (1)  NULL,

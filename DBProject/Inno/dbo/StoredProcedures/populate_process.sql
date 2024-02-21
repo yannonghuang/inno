@@ -108,6 +108,9 @@ SELECT
       ,[Process]
 FROM [Saleable_Process]
 
+delete from Process
+where Process is null
+
 DELETE T
 FROM
 (

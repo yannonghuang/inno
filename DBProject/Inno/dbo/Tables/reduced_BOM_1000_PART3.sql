@@ -1,4 +1,4 @@
-CREATE TABLE [dbo].[SR4_BOM_format2] (
+CREATE TABLE [dbo].[reduced_BOM_1000_PART3] (
     [Plant]            NVARCHAR (50) NULL,
     [FG]               NVARCHAR (50) NULL,
     [旧的物料编号]           NVARCHAR (1)  NULL,
@@ -63,5 +63,4 @@ CREATE TABLE [dbo].[SR4_BOM_format2] (
     [专用_通用]            NVARCHAR (1)  NULL
 );
 GO
-
 

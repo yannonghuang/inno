@@ -1,4 +1,4 @@
-CREATE TABLE [dbo].[AOC_part2_BOM_Format2] (
+CREATE TABLE [dbo].[dpm3_AOC_part1_bom_format] (
     [Plant]            NVARCHAR (50) NULL,
     [FG]               NVARCHAR (50) NULL,
     [旧的物料编号]           NVARCHAR (1)  NULL,
@@ -42,7 +42,7 @@ CREATE TABLE [dbo].[AOC_part2_BOM_Format2] (
     [组件采购组]            NVARCHAR (50) NULL,
     [组件采购类型]           NVARCHAR (50) NULL,
     [组件特殊采购类型]         TINYINT       NULL,
-    [调拨工厂]             NVARCHAR (50) NULL,
+    [调拨工厂]             NVARCHAR (1)  NULL,
     [标准采购信息记录]         NVARCHAR (50) NULL,
     [外协采购信息记录]         NVARCHAR (50) NULL,
     [组2]               NVARCHAR (1)  NULL,
@@ -59,7 +59,7 @@ CREATE TABLE [dbo].[AOC_part2_BOM_Format2] (
     [产地]               NVARCHAR (1)  NULL,
     [componenttype]    NVARCHAR (50) NULL,
     [创建日期]             NVARCHAR (1)  NULL,
-    [计划交货日期]           SMALLINT      NULL,
+    [计划交货日期]           NVARCHAR (50) NULL,
     [专用_通用]            NVARCHAR (1)  NULL
 );
 GO

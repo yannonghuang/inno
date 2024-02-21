@@ -1,4 +1,4 @@
-CREATE TABLE [dbo].[BOM_6000_BOM] (
+CREATE TABLE [dbo].[dpm3_SR4_BOM_format2] (
     [Plant]            NVARCHAR (50) NULL,
     [FG]               NVARCHAR (50) NULL,
     [旧的物料编号]           NVARCHAR (1)  NULL,
@@ -33,8 +33,8 @@ CREATE TABLE [dbo].[BOM_6000_BOM] (
     [中止指示符]            NVARCHAR (1)  NULL,
     [中断日期]             NVARCHAR (1)  NULL,
     [后续物料]             NVARCHAR (1)  NULL,
-    [项目文本行1]           NVARCHAR (1)  NULL,
-    [项目文本行_2]          NVARCHAR (1)  NULL,
+    [项目文本行1]           NVARCHAR (50) NULL,
+    [项目文本行_2]          NVARCHAR (50) NULL,
     [项目长文本]            NVARCHAR (1)  NULL,
     [ParentPart]       NVARCHAR (50) NULL,
     [成本核算标识相关]         NVARCHAR (50) NULL,
@@ -42,15 +42,15 @@ CREATE TABLE [dbo].[BOM_6000_BOM] (
     [组件采购组]            NVARCHAR (50) NULL,
     [组件采购类型]           NVARCHAR (50) NULL,
     [组件特殊采购类型]         TINYINT       NULL,
-    [调拨工厂]             SMALLINT      NULL,
+    [调拨工厂]             NVARCHAR (50) NULL,
     [标准采购信息记录]         NVARCHAR (50) NULL,
-    [外协采购信息记录]         NVARCHAR (1)  NULL,
+    [外协采购信息记录]         NVARCHAR (50) NULL,
     [组2]               NVARCHAR (1)  NULL,
     [操作_活动]            NVARCHAR (1)  NULL,
     [长描述]              NVARCHAR (1)  NULL,
     [插件]               NVARCHAR (1)  NULL,
     [反冲]               NVARCHAR (1)  NULL,
-    [供应商]              NVARCHAR (1)  NULL,
+    [供应商]              INT           NULL,
     [供应商名称]            NVARCHAR (1)  NULL,
     [组件库存]             FLOAT (53)    NULL,
     [未清采购订单数量]         TINYINT       NULL,
@@ -59,7 +59,7 @@ CREATE TABLE [dbo].[BOM_6000_BOM] (
     [产地]               NVARCHAR (1)  NULL,
     [componenttype]    NVARCHAR (50) NULL,
     [创建日期]             NVARCHAR (1)  NULL,
-    [计划交货日期]           NVARCHAR (50) NULL,
+    [计划交货日期]           SMALLINT      NULL,
     [专用_通用]            NVARCHAR (1)  NULL
 );
 GO
