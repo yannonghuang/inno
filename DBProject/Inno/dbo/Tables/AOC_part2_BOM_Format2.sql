@@ -1,4 +1,4 @@
-CREATE TABLE [dbo].[original_AOC_part2_BOM_Format2] (
+CREATE TABLE [dbo].[AOC_part2_BOM_Format2] (
     [Plant]            NVARCHAR (50) NOT NULL,
     [FG]               NVARCHAR (50) NOT NULL,
     [旧的物料编号]           NVARCHAR (1)  NULL,

@@ -1,4 +1,4 @@
-CREATE TABLE [dbo].[original_SR4_BOM_format2] (
+CREATE TABLE [dbo].[BOM_1000_part1] (
     [Plant]            NVARCHAR (50) NOT NULL,
     [FG]               NVARCHAR (50) NOT NULL,
     [旧的物料编号]           NVARCHAR (1)  NULL,
@@ -28,7 +28,7 @@ CREATE TABLE [dbo].[original_SR4_BOM_format2] (
     [组件尺寸]             NVARCHAR (1)  NULL,
     [projecttype]      NVARCHAR (50) NULL,
     [组件数量]             FLOAT (53)    NOT NULL,
-    [Scrap]            FLOAT (53)    NOT NULL,
+    [Scrap]            NVARCHAR (50) NOT NULL,
     [UOM]              NVARCHAR (50) NOT NULL,
     [中止指示符]            NVARCHAR (1)  NULL,
     [中断日期]             NVARCHAR (1)  NULL,

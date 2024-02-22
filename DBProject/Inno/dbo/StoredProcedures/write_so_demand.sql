@@ -54,8 +54,8 @@ SELECT
       ,'-'               
 
   FROM [master].[dbo].[SO] 
-    left OUTER JOIN customer on '0000' + [CustomerCode] = customer.Sold_to_customer
-
+    left OUTER JOIN customer on [CustomerCode] = customer.Sold_to_customer
+    --left OUTER JOIN customer on '0000' + [CustomerCode] = customer.Sold_to_customer
 END
 GO
 

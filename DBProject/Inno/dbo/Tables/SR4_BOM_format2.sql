@@ -1,4 +1,4 @@
-CREATE TABLE [dbo].[original_BOM_1000_PART2] (
+CREATE TABLE [dbo].[SR4_BOM_format2] (
     [Plant]            NVARCHAR (50) NOT NULL,
     [FG]               NVARCHAR (50) NOT NULL,
     [旧的物料编号]           NVARCHAR (1)  NULL,
@@ -42,7 +42,7 @@ CREATE TABLE [dbo].[original_BOM_1000_PART2] (
     [组件采购组]            NVARCHAR (50) NULL,
     [组件采购类型]           NVARCHAR (50) NULL,
     [组件特殊采购类型]         TINYINT       NULL,
-    [调拨工厂]             SMALLINT      NULL,
+    [调拨工厂]             NVARCHAR (50) NULL,
     [标准采购信息记录]         NVARCHAR (50) NULL,
     [外协采购信息记录]         NVARCHAR (50) NULL,
     [组2]               NVARCHAR (1)  NULL,
