@@ -37,6 +37,13 @@ SELECT
     'Customer FG Substitution'
 FROM [FG_SUBSTITUTES]  
 
+/*
+insert into Finished_Goods (PRODUCT_ID, TYPE)
+SELECT
+    concat([DPM], '@', [Customer]),   
+    'Customer-Specific DP Model'
+FROM [DPM_CustomerPN_Customer]  
+*/
 
 DELETE T
 FROM

@@ -21,7 +21,8 @@ $tables = @(
     'adx_resalt',		
     'adx_resource',
     'adx_rescapinter',
-    'adx_op_override'
+    'adx_op_override',
+    'adx_graybox'    
     )
 #$folder = "/Users/yannonghuang/Documents/personal/projects/SRI/Import prospects/Adexa/Innolight/PoC 2023/Adexa Feeds/csv_deduped/"
 $folder = "/Users/yannonghuang/Documents/personal/projects/SRI/Import prospects/Adexa/Innolight/PoC 2023/Adexa Feeds/DBProject/Inno/build/DATA/"

@@ -440,8 +440,8 @@ proc tool_generate_starts_constraints_demo { csv_filename {errorCheckOnly 0} } {
 		tool_constraints_error "bad schema in csv $csv_filename - missing CASE column";
 		return 0;	
 	} elseif { $consID_column_ix < 0 } {
-		tool_constraints_error "bad schema in csv $csv_filename - missing CONS_ID column";
-		return 0;	
+		#tool_constraints_error "bad schema in csv $csv_filename - missing CONS_ID column"; YNH
+		#return 0;	YNH
 	} elseif { $capacity_column_ix < 0 } {
 		tool_constraints_error "bad schema in csv $csv_filename - missing CAPACITY column";
 		return 0;	

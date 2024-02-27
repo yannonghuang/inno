@@ -17,16 +17,15 @@ insert into [adx_product] (
     [LATE_FORECAST],
     [LATE_SALES]
 )
-
 SELECT
     [work_order_model],   
     'Virtual Product for DP Model ',  
     'M',  
     'MODULE',
-        '-', -- 'MODULE',
+        'DP Model', -- 'MODULE',
         '-', -- 'FACTORY',
         '-', -- 'ALL',        
-        '-',
+        'DP Model',
         '-',
         '-',
         '-',

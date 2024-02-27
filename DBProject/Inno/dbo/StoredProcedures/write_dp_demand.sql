@@ -24,12 +24,12 @@ insert into [master].[dbo].[adx_demand] (
 SELECT
       concat(Customer, '_', New_Model.Code, Month)
       ,Model
-      ,SUBSTRING(customer.Sold_to_customer, 5, 6) --Customer
+      ,customer.Sold_to_customer -- SUBSTRING(customer.Sold_to_customer, 5, 6) --Customer
       ,'2'
       ,'100'
-      ,substring(Month, 2, 4) + '/' + substring(Month, 7, 2) + '/01'
-      ,substring(Month, 2, 4) + '/' + substring(Month, 7, 2) + '/01'
-      ,New_Model.Code
+      ,substring(Month, 7, 2) + '/01/' + substring(Month, 4, 2)
+      ,substring(Month, 7, 2) + '/01/' + substring(Month, 4, 2)
+      ,New_Model.Code + '@' + Customer --New_Model.Code
       ,'VIRTUAL'
       ,Forecast
 

@@ -55,6 +55,12 @@ begin
         ' ELSE ''OPTICAL'' ' +
         ' END ' +
 
+
+        ',CASE   ' +
+        ' WHEN Process.Process is not null THEN Process.Process ' +        
+        ' ELSE ''Raw'' ' +
+        ' END ' +
+/*
         ',CASE   ' +
         ' WHEN Process.Process is not null THEN ' +
             ' CASE   ' +
@@ -63,8 +69,10 @@ begin
             ' END ' +             
         ' ELSE ''OPTICAL'' ' +
         ' END ' +
+*/        
         -- HIER_LEVEL_1 -- 
 
+/*
         ',CASE   ' +
         ' WHEN Process.Process is not null THEN ' +
             ' CASE   ' +
@@ -73,18 +81,29 @@ begin
             ' END ' +             
         ' ELSE ''OPTICAL'' ' +
         ' END ' +
-        -- ',''FACTORY'' ' +
+*/        
+        ',''-'' ' +
         -- HIER_LEVEL_2 -- 
 
+/*
         ',CASE   ' +
             ' WHEN MPS_Model is not null THEN MPS_Model ' +         
             ' ELSE ''-'' ' +
-        ' END ' +     
+        ' END ' +    
+*/         
+        ',''-'' ' +
         -- HIER_LEVEL_3 -- 
                 
-        ',''-'' ' +
+
+
+        ',CASE   ' +
+        ' WHEN partnumber = FG THEN ''FG'' ' +           
+        ' ELSE ''Raw'' ' +
+        ' END ' +   
+        --',''-'' ' +
         -- FG_HIER_LEVEL_1 -- 
 
+/*
         ',CASE   ' +
         ' WHEN partnumber = FG THEN ' +
             ' CASE   ' +
@@ -92,9 +111,12 @@ begin
             ' ELSE ''-'' ' +
             ' END ' +             
         ' ELSE ''-'' ' +
-        ' END ' +        
+        ' END ' +     
+*/           
+        ',''-'' ' +
         -- FG_HIER_LEVEL_2 -- 
 
+/*
         ',CASE   ' +
         ' WHEN partnumber = FG THEN ' +
             ' CASE   ' +
@@ -102,7 +124,9 @@ begin
             ' ELSE ''-'' ' +
             ' END ' +             
         ' ELSE ''-'' ' +
-        ' END ' +        
+        ' END ' +    
+*/            
+        ',''-'' ' +
         -- FG_HIER_LEVEL_3 -- 
 
 

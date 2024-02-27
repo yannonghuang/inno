@@ -123,8 +123,19 @@ begin
         ',''-'' ' +
         ',''-'' ' +
         ',''-'' ' +
-        ',''-'' ' +
-        ',''-'' ' +   
+        
+        ',CASE   ' +
+        ' WHEN Process.Process is not null and Process.Process <> ''dummy'' THEN Process.Process ' +           
+        ' ELSE ''-'' ' +
+        ' END ' +        
+        -- [UDA_string_TECHNOLOGY]
+
+        ',CASE   ' +
+        ' WHEN POCFG.Work_order_code is not null THEN POCFG.Work_order_code ' +           
+        ' ELSE ''-'' ' +
+        ' END ' +  
+        -- UDA_string_PACKAGE
+
         ',''-'' ' +
         ',''-'' ' +
         ',''-'' ' +
@@ -138,7 +149,8 @@ begin
         ',''-'' ' +
                 
         'FROM ' + @table_name + ' left outer JOIN Process on ' + @table_name + '.partnumber = Process.P_N '  
-            + ' left outer JOIN Method_Buy on partnumber = Method_Buy.PRODUCT_ID '        
+            + ' left outer JOIN Method_Buy on partnumber = Method_Buy.PRODUCT_ID ' 
+            + ' left outer JOIN POCFG on FG = POCFG.FG_PN '                       
         -- + ' left outer JOIN process_location on Process.process = process_location.process '
         --'where componenttype is not null ' 
   

@@ -7,8 +7,9 @@ EXEC Truncate_ADX_Tables
 EXEC populate_process
 EXEC populate_method_buy
 EXEC Populate_Raw_Substitutes
-EXEC Populate_Finished_Goods
 EXEC Populate_DP_Models
+EXEC Populate_Material_DP_Model
+EXEC Populate_Finished_Goods
 ------------ BEGIN: static
 EXEC write_bom_bom
 EXEC write_bom_method_make
@@ -58,6 +59,15 @@ EXEC Trim_Unused_ProductLocation
 EXEC Unset_Obsolete_Flag
 ------------ END: static post-processing
 
+------------ BEGIN: write_saleable_per_customer
+EXEC write_saleable_per_customer
+EXEC dedup_bom
+EXEC dedup_method_make
+EXEC dedup_product
+EXEC dedup_productlocation
+------------ END: write_saleable_per_customer
+
+
 ------------ BEGIN: demand
 EXEC write_customer
 EXEC dedup_customer
@@ -76,6 +86,12 @@ EXEC dedup_supply
 ------------ BEGIN: mrp
 EXEC write_mrp
 ------------ END: mrp
+
+------------ BEGIN: graybox
+EXEC write_graybox
+EXEC dedup_graybox
+------------ END: graybox
+
 END
 GO
 

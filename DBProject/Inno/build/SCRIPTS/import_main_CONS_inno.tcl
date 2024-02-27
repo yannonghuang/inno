@@ -367,11 +367,12 @@ proc Import_MDM {} {
 	# set graybox constraints
 	#source ./tcl/java/tool_core_demo.tcl
 	#source ./tcl/java/tool_constraints.tcl
-	#source $path(script)/tool_constraints_demo.tcl
-    #echo "Before Greybox";
+	source $path(script)/tool_constraints_demo.tcl
+    echo "Before Greybox";
 	#toolGenerateStartsConstraints "$path(data)/adx_graybox.csv"; #when using tool_constraints_demo.tcl
 	#tool_generate_starts_constraints_demo "$path(data)/adx_graybox-newui.csv"; #when using tool_constraints.tcl
-	#echo "After Greybox";
+	tool_generate_starts_constraints_demo "$path(data)/adx_graybox_inno.csv"; #when using tool_constraints.tcl	
+	echo "After Greybox";
 	# can only run after aggregation model initialized
 	#echo "   Add Product Unit Cost.........................................."
 	#demo_set_product_unit_cost;
