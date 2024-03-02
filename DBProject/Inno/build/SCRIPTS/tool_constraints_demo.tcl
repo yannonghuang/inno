@@ -16,6 +16,41 @@
 #   - see comments in above proc itself for usage instructions.
 #   - this procedure should be used instead of the others below 
 #
+# DEPRECATED
+# add_starts_constraint_per_comlocation { constraint_id_prefix inv_list max_quantity {time_levels {}} 
+#   - adds method_start and workorder_start constraints for a list of com@location for a given maximum quantity.
+#     Optionally, you can provide a list of {start end} times to apply the constraint. If not provided
+#     then we will use the weekly periods defined by the time hierarchy from horizon start to horizon end.
+#   - Example:
+#     add_starts_constraint_per_comlocation "11016-001-010@MEXICO_M" {11016-001-010@MEXICO_M} 5000; 
+#     -- in this example it adds a maximum quantity fo 5000 per week for this com@location
+#
+# DEPRECATED
+# add_starts_constraint_per_method { constraint_id_prefix method_list max_quantity {time_levels {}}  } 
+#   - adds method_start and workorder_start constraints for a list of methods for a given maximum quantity.
+#     Optionally, you can provide a list of {start end} times to apply the constraint. If not provided
+#     then we will use the weekly periods defined by the time hierarchy from horizon start to horizon end.
+#   - Example:
+#     add_starts_constraint_per_method "T_M_11016-001-010@LA_FROM_MEXICO_AIR" {T_M_11016-001-010@LA_FROM_MEXICO_AIR} 5000; 
+#     -- in this example it adds a maximum quantity fo 5000 per week for this method
+#
+# DEPRECATED
+# add_starts_constraint_per_location { constraint_id_prefix location_list max_quantity {time_levels {}}}
+#   - adds method_start and workorder_start constraints for a list of locations for a given maximum quantity.
+#     Optionally, you can provide a list of {start end} times to apply the constraint. If not provided
+#     then we will use the weekly periods defined by the time hierarchy from horizon start to horizon end.
+#   - Example:
+#     add_starts_constraint_per_location "DAYTON_MAJOR" {DAYTON_MAJOR} 5000; 
+#     -- in this example it adds a maximum quantity fo 5000 per week for this location
+#
+# DEPRECATED
+# edit_starts_constraints_quantity { constraint_id_prefix time_start new_quantity } 
+#   - changes the existing maximum quantity of a starts constraint for the given constraint_id_prefix at the week that starts at the given time_start.
+#	  The time_start is in UNIX time. The closest action_elem is chosen for the given time_start. 
+#     **** WARNING: You must have defined the constraint with prefix constraint_id_prefix prior to using this procedure****
+#   - Example: 
+#     edit_starts_constraints_quantity "11016-001-010@MEXICO_M" 1309676400 2500;
+#
 # Adexa Support
 # support@adexa.com
 # Last modification: July 5 2017
@@ -61,6 +96,68 @@ proc starts_constraints_use_wildcards { answer } {
 	}
 }
 
+proc edit_starts_constraints_quantity { constraint_id_prefix time_start new_quantity } {
+	# find the ids of the effected constraints
+	set method_starts_id [format "%s_ms" $constraint_id_prefix];
+	if { [catch {constraint set id $method_starts_id} ] == 1 } {
+		echo "ERROR: a constraint of id $method_starts_id has not been defined yet!";
+		return;
+	}
+	set workorder_starts_id [format "%s_ws" $constraint_id_prefix];
+	if { [catch {constraint set id $workorder_starts_id} ] == 1 } {
+		echo "ERROR: a constraint of id $workorder_starts_id has not been defined yet!";
+		return;
+	}	
+	# for method_starts: find the action_elem associated with the time_start
+	constraint set id $method_starts_id;
+	set action_number [constraint action_elem get number];
+	set desired_action_ix -1;
+	for { set action_ix 0 } { $action_ix < $action_number } { incr action_ix } {
+		constraint action_elem set ix $action_ix;
+		if { [constraint action_elem get start] > $time_start } {
+			if { $desired_action_ix < 0 } {
+				echo "ERROR: we cannot find an action element for constraint [constraint get id] that corresponds with time $time_start (skipping)!";
+			} else {
+				constraint action_elem set ix $desired_action_ix;
+				constraint action_elem set action_one $new_quantity;
+				set desired_action_ix -1;
+				break;
+			}
+			break;
+		}
+		set desired_action_ix $action_ix;	
+	}
+	if { $desired_action_ix >= 0 } {
+		# failed to find an action element so let's just change the last one
+		constraint action_elem set ix $desired_action_ix;
+		constraint action_elem set action_one $new_quantity;		
+	}
+	# for workorder_starts: find the action_elem associated with the time_start
+	constraint set id $workorder_starts_id;
+	set action_number [constraint action_elem get number];
+	set desired_action_ix -1;
+	for { set action_ix 0 } { $action_ix < $action_number } { incr action_ix } {
+		constraint action_elem set ix $action_ix;
+		if { [constraint action_elem get start] > $time_start } {
+			if { $desired_action_ix < 0 } {
+				echo "ERROR: we cannot find an action element for constraint [constraint get id] that corresponds with time $time_start (skipping)!";
+			} else {
+				constraint action_elem set ix $desired_action_ix;
+				constraint action_elem set action_one $new_quantity;
+				set desired_action_ix -1;
+				break;
+			}
+			break;
+		}
+		set desired_action_ix $action_ix;	
+	}
+	if { $desired_action_ix >= 0 } {
+		# failed to find an action element so let's just change the last one
+		constraint action_elem set ix $desired_action_ix;
+		constraint action_elem set action_one $new_quantity;		
+	}
+}
+
 proc _collect_unique_non_purchase_method_indices { method_alt_id } {
 	set ix_list {};
 	if { $method_alt_id == "-" } {
@@ -77,6 +174,359 @@ proc _collect_unique_non_purchase_method_indices { method_alt_id } {
 		}
 	}
 	return $ix_list;
+}
+
+proc add_starts_constraint_per_comlocation { constraint_id_prefix inv_list max_quantity {time_levels {}}  } {
+	#echo "DEBUG: adding constraints for: $constraint_id_prefix";
+	global global_use_wildcards;
+	
+	if { [llength $time_levels] == 0 } {
+		set time_levels [_get_time_level_boundaries Week];
+	}
+	set time_number [llength $time_levels];
+	
+	# --- define method starts constraint (for balancing) ---
+	set method_starts_id [format "%s_ms" $constraint_id_prefix];
+	if { [catch {constraint add $method_starts_id} ] == 1 } {
+		echo "ERROR: a constraint of id $method_starts_id already exists!";
+		return;
+	}
+	constraint set property method_starts;
+	# set limits
+	for { set time_ix 0 } { $time_ix < $time_number } { incr time_ix } {
+		set time_level [lindex $time_levels $time_ix];
+		set time_start [lindex $time_level 0];
+		set time_end [lindex $time_level 1];
+		constraint action_elem add $time_start $time_end;
+		constraint action_elem set action_one $max_quantity;
+	}
+	# set target
+	if { $global_use_wildcards == 1 } {
+	
+		if { [catch {constraint_target add $method_starts_id}] == 1 } {
+			echo "ERROR: a constraint_target of id $method_starts_id already exists!";
+			return;	
+		}
+		constraint_target set property method_starts;
+		set elem_number [llength $inv_list];
+		for { set elem_ix 0 } { $elem_ix < $elem_number } { incr elem_ix } {
+			set inv_id [lindex $inv_list $elem_ix];
+			constraint_target elem add com@location $inv_id;
+			constraint_target elem set multiple disjunctive;		
+		}
+		constraint_target elem add method "*";
+		constraint_target elem set multiple disjunctive;	
+		# add target to constraint
+		constraint target_elem add $method_starts_id;
+		
+	} else {		
+		
+		set elem_number [llength $inv_list];
+		for { set elem_ix 0 } { $elem_ix < $elem_number } { incr elem_ix } {
+			set inv_id [lindex $inv_list $elem_ix];
+			inv set id $inv_id;
+			set method_list [_collect_unique_non_purchase_method_indices [inv get method_alt]];
+			if { [llength $method_list] == 0 } {
+				# skip this com@location because it has no valid methods
+				echo "WARNING: skipping $inv_id because it has no valid manufacturing or transportation methods";
+				continue;
+			}
+			set current_target_id [format "%s_%s" $method_starts_id [inv get ix]];
+			if { [catch {constraint_target add $current_target_id}] == 1 } {
+				echo "ERROR: a constraint_target of id $current_target_id already exists!";
+				return;	
+			}	
+			constraint_target set property method_starts;
+			constraint_target elem add com@location $inv_id;
+			constraint_target elem set multiple disjunctive;		
+			set alt_elem_number [llength $method_list];
+			for { set alt_elem_ix 0 } { $alt_elem_ix < $alt_elem_number } { incr alt_elem_ix } {
+				method set ix [lindex $method_list $alt_elem_ix];
+				constraint_target elem add method [method get id];
+				constraint_target elem set multiple disjunctive;			
+			}		
+			# add target to constraint
+			constraint target_elem add $current_target_id;	
+		}
+		
+	}
+	
+	# --- define workorder starts constraint (for scheduling) ---
+	set workorder_starts_id [format "%s_ws" $constraint_id_prefix];
+	if { [catch {constraint add $workorder_starts_id} ] == 1 } {
+		echo "ERROR: a constraint of id $workorder_starts_id already exists!";
+		return;
+	}
+	constraint set property workorder_starts;
+	# set limits
+	for { set time_ix 0 } { $time_ix < $time_number } { incr time_ix } {
+		set time_level [lindex $time_levels $time_ix];
+		set time_start [lindex $time_level 0];
+		set time_end [lindex $time_level 1];
+		constraint action_elem add $time_start $time_end;
+		constraint action_elem set action_one $max_quantity;
+	}
+	# set target
+	if { $global_use_wildcards == 1 } {
+	
+		if { [catch {constraint_target add $workorder_starts_id}] == 1 } {
+			echo "ERROR: a constraint_target of id $workorder_starts_id already exists!";
+			return;	
+		}
+		constraint_target set property workorder_starts;
+		constraint_target elem add workorder "*";
+		constraint_target elem set multiple disjunctive;	
+		set elem_number [llength $inv_list];
+		for { set elem_ix 0 } { $elem_ix < $elem_number } { incr elem_ix } {
+			set inv_id [lindex $inv_list $elem_ix];
+			constraint_target elem add com@location $inv_id;
+			constraint_target elem set multiple disjunctive;		
+		}
+		constraint_target elem add method "*";
+		constraint_target elem set multiple disjunctive;	
+		# add target to constraint
+		constraint target_elem add $workorder_starts_id;	
+		
+	} else {
+		
+		set elem_number [llength $inv_list];
+		for { set elem_ix 0 } { $elem_ix < $elem_number } { incr elem_ix } {
+			set inv_id [lindex $inv_list $elem_ix];
+			inv set id $inv_id;
+			set method_list [_collect_unique_non_purchase_method_indices [inv get method_alt]];
+			if { [llength $method_list] == 0 } {
+				# skip this com@location because it has no valid methods
+				# we omit the warning message here because we will have already echoed it when generating ms constraints
+				#echo "WARNING: skipping $inv_id because it has no valid manufacturing or transportation methods";
+				continue;
+			}
+			set current_target_id [format "%s_%s" $workorder_starts_id [inv get ix]];
+			if { [catch {constraint_target add $current_target_id}] == 1 } {
+				echo "ERROR: a constraint_target of id $current_target_id already exists!";
+				return;	
+			}	
+			constraint_target set property workorder_starts;
+			constraint_target elem add workorder "*";			
+			constraint_target elem set multiple disjunctive;			
+			constraint_target elem add com@location $inv_id;
+			constraint_target elem set multiple disjunctive;		
+			set alt_elem_number [llength $method_list];
+			for { set alt_elem_ix 0 } { $alt_elem_ix < $alt_elem_number } { incr alt_elem_ix } {
+				method set ix [lindex $method_list $alt_elem_ix];
+				constraint_target elem add method [method get id];
+				constraint_target elem set multiple disjunctive;			
+			}			
+			# add target to constraint
+			constraint target_elem add $current_target_id;				
+		}	
+		
+	}
+	
+
+}
+
+proc add_starts_constraint_per_method { constraint_id_prefix method_list max_quantity {time_levels {}}  } {
+	#echo "DEBUG: adding constraints for: $method_list";
+	global global_use_wildcards;
+	
+	if { [llength $time_levels] == 0 } {
+		set time_levels [_get_time_level_boundaries Week];
+	}
+	set time_number [llength $time_levels];
+	
+	# --- define method starts constraint (for balancing) ---
+	set method_starts_id [format "%s_ms" $constraint_id_prefix];
+	if { [catch {constraint add $method_starts_id} ] == 1 } {
+		echo "ERROR: a constraint of id $method_starts_id already exists!";
+		return;
+	}
+	constraint set property method_starts;
+	# set limits
+	for { set time_ix 0 } { $time_ix < $time_number } { incr time_ix } {
+		set time_level [lindex $time_levels $time_ix];
+		set time_start [lindex $time_level 0];
+		set time_end [lindex $time_level 1];
+		constraint action_elem add $time_start $time_end;
+		constraint action_elem set action_one $max_quantity;
+	}
+	# set target
+	if { [catch {constraint_target add $method_starts_id}] == 1 } {
+		echo "ERROR: a constraint_target of id $method_starts_id already exists!";
+		return;	
+	}
+	constraint_target set property method_starts;
+	set inv_list {};
+	set elem_number [llength $method_list];
+	for { set elem_ix 0 } { $elem_ix < $elem_number } { incr elem_ix } {
+		constraint_target elem add method [lindex $method_list $elem_ix];
+		constraint_target elem set multiple disjunctive;
+		method set id [lindex $method_list $elem_ix];
+		if { $global_use_wildcards == 1 } {
+			set ref_number 0;
+		} else {
+			set ref_number [method ref method_alt get number];
+		}
+		for { set ref_ix 0 } { $ref_ix < $ref_number } { incr ref_ix } {
+			method ref method_alt set ix $ref_ix;
+			method_alt set id [method ref method_alt get id];
+			set inv_number [method_alt ref com@location get number];
+			for { set inv_ix 0 } { $inv_ix < $inv_number } { incr inv_ix } {
+				method_alt ref com@location set ix $inv_ix;
+				inv set id [method_alt ref com@location get id];
+				if { [lsearch $inv_list [inv get ix]] < 0 } {
+					constraint_target elem add com@location [inv get id];
+					constraint_target elem set multiple disjunctive;				
+					lappend inv_list [inv get ix];
+				}
+			}
+		}		
+	}
+	if { $global_use_wildcards == 1 } {
+		constraint_target elem add com@location "*";
+		constraint_target elem set multiple disjunctive;	
+	}
+	# add target to constraint
+	constraint target_elem add $method_starts_id;
+	
+	# --- define workorder starts constraint (for scheduling) ---
+	set workorder_starts_id [format "%s_ws" $constraint_id_prefix];
+	if { [catch {constraint add $workorder_starts_id} ] == 1 } {
+		echo "ERROR: a constraint of id $workorder_starts_id already exists!";
+		return;
+	}
+	constraint set property workorder_starts;
+	# set limits
+	for { set time_ix 0 } { $time_ix < $time_number } { incr time_ix } {
+		set time_level [lindex $time_levels $time_ix];
+		set time_start [lindex $time_level 0];
+		set time_end [lindex $time_level 1];
+		constraint action_elem add $time_start $time_end;
+		constraint action_elem set action_one $max_quantity;
+	}
+	# set target
+	if { [catch {constraint_target add $workorder_starts_id}] == 1 } {
+		echo "ERROR: a constraint_target of id $workorder_starts_id already exists!";
+		return;	
+	}
+	constraint_target set property workorder_starts;
+	constraint_target elem add workorder "*";
+	constraint_target elem set multiple disjunctive;
+	set inv_list {};
+	set elem_number [llength $method_list];
+	for { set elem_ix 0 } { $elem_ix < $elem_number } { incr elem_ix } {
+		constraint_target elem add method [lindex $method_list $elem_ix];
+		constraint_target elem set multiple disjunctive;
+		method set id [lindex $method_list $elem_ix];
+		if { $global_use_wildcards == 1 } {
+			set ref_number 0;
+		} else {
+			set ref_number [method ref method_alt get number];
+		}
+		for { set ref_ix 0 } { $ref_ix < $ref_number } { incr ref_ix } {
+			method ref method_alt set ix $ref_ix;
+			method_alt set id [method ref method_alt get id];
+			set inv_number [method_alt ref com@location get number];
+			for { set inv_ix 0 } { $inv_ix < $inv_number } { incr inv_ix } {
+				method_alt ref com@location set ix $inv_ix;
+				inv set id [method_alt ref com@location get id];
+				if { [lsearch $inv_list [inv get ix]] < 0 } {
+					constraint_target elem add com@location [inv get id];
+					constraint_target elem set multiple disjunctive;				
+					lappend inv_list [inv get ix];
+				}
+			}
+		}		
+	}
+	if { $global_use_wildcards == 1 } {
+		constraint_target elem add com@location "*";
+		constraint_target elem set multiple disjunctive;	
+	}
+	# add target to constraint
+	constraint target_elem add $workorder_starts_id;
+}
+
+proc add_starts_constraint_per_location { constraint_id_prefix location_list max_quantity {time_levels {}}  } {
+	#echo "DEBUG: adding constraints for: $location_list";
+	global global_use_wildcards;
+	
+	if { [llength $time_levels] == 0 } {
+		set time_levels [_get_time_level_boundaries Week];
+	}
+	set time_number [llength $time_levels];
+	
+	# --- define method starts constraint (for balancing) ---
+	set method_starts_id [format "%s_ms" $constraint_id_prefix];
+	if { [catch {constraint add $method_starts_id} ] == 1 } {
+		echo "ERROR: a constraint of id $method_starts_id already exists!";
+		return;
+	}
+	constraint set property method_starts;
+	# set limits
+	for { set time_ix 0 } { $time_ix < $time_number } { incr time_ix } {
+		set time_level [lindex $time_levels $time_ix];
+		set time_start [lindex $time_level 0];
+		set time_end [lindex $time_level 1];
+		constraint action_elem add $time_start $time_end;
+		constraint action_elem set action_one $max_quantity;
+	}
+	# set target
+	if { [catch {constraint_target add $method_starts_id}] == 1 } {
+		echo "ERROR: a constraint_target of id $method_starts_id already exists!";
+		return;	
+	}
+	constraint_target set property method_starts;
+	set elem_number [llength $location_list];
+	for { set elem_ix 0 } { $elem_ix < $elem_number } { incr elem_ix } {
+		constraint_target elem add location [lindex $location_list $elem_ix];
+		constraint_target elem set multiple disjunctive;	
+	}
+	# any com@location as long as the corresponding location matches
+	constraint_target elem add com@location "*";
+	constraint_target elem set multiple disjunctive;	
+	# any method
+	constraint_target elem add method "*";
+	constraint_target elem set multiple disjunctive;	
+
+	# add target to constraint
+	constraint target_elem add $method_starts_id;
+	
+	# --- define workorder starts constraint (for scheduling) ---
+	set workorder_starts_id [format "%s_ws" $constraint_id_prefix];
+	if { [catch {constraint add $workorder_starts_id} ] == 1 } {
+		echo "ERROR: a constraint of id $workorder_starts_id already exists!";
+		return;
+	}
+	constraint set property workorder_starts;
+	# set limits
+	for { set time_ix 0 } { $time_ix < $time_number } { incr time_ix } {
+		set time_level [lindex $time_levels $time_ix];
+		set time_start [lindex $time_level 0];
+		set time_end [lindex $time_level 1];
+		constraint action_elem add $time_start $time_end;
+		constraint action_elem set action_one $max_quantity;
+	}
+	# set target
+	if { [catch {constraint_target add $workorder_starts_id}] == 1 } {
+		echo "ERROR: a constraint_target of id $workorder_starts_id already exists!";
+		return;	
+	}
+	constraint_target set property workorder_starts;
+	constraint_target elem add workorder "*";
+	constraint_target elem set multiple disjunctive;
+	set elem_number [llength $location_list];
+	for { set elem_ix 0 } { $elem_ix < $elem_number } { incr elem_ix } {
+		constraint_target elem add location [lindex $location_list $elem_ix];
+		constraint_target elem set multiple disjunctive;	
+	}
+	# any com@location as long as the corresponding location matches
+	constraint_target elem add com@location "*";
+	constraint_target elem set multiple disjunctive;	
+	# any method
+	constraint_target elem add method "*";
+	constraint_target elem set multiple disjunctive;	
+	
+	# add target to constraint
+	constraint target_elem add $workorder_starts_id;
 }
 
 #purpose context querying functions
@@ -211,32 +661,23 @@ proc tool_constraints_warning {msg} {
 #   Version 1.4 - July 18 2017
 # -------------------------------------------------------------------------------------
 # for new UI
-proc addStdUDA {record correspondsId relPostfix} {
+proc addStdUDA {record correspondsId} {
 	global hl1_column_ix;
 	global hl2_column_ix;
 	global hl3_column_ix;
-	global uCom_column_ix;
 	global VENDOR_column_ix;
 	global CATEGORY_column_ix;
 	global RELATION_column_ix;
-	global uLoc_column_ix;
 	global PLANNER_column_ix;
 	global TIME_LEVEL_column_ix;
 	#
-	#echo ">>>addStdUDA: record=$record";
+	echo ">>>addStdUDA: record=$record";
 	constraint attribute_value set HIER_LEVEL_1 [lindex $record $hl1_column_ix];
 	constraint attribute_value set HIER_LEVEL_2 [lindex $record $hl2_column_ix];
 	constraint attribute_value set HIER_LEVEL_3 [lindex $record $hl3_column_ix];
-	constraint attribute_value set COMMODITY [lindex $record $uCom_column_ix];
 	constraint attribute_value set VENDOR [lindex $record $VENDOR_column_ix];
 	constraint attribute_value set CATEGORY [lindex $record $CATEGORY_column_ix];
-	if {[lindex $record $RELATION_column_ix] == "-"} {
-		set udaRel -;
-	} else {
-		set udaRel [format "%s_%s" [lindex $record $RELATION_column_ix] $relPostfix];
-	}
-	constraint attribute_value set RELATION $udaRel;
-	constraint attribute_value set LOCATION [lindex $record $uLoc_column_ix];
+	constraint attribute_value set RELATION [lindex $record $RELATION_column_ix];
 	constraint attribute_value set PLANNER [lindex $record $PLANNER_column_ix];
 	constraint attribute_value set TIME_LEVEL [lindex $record $TIME_LEVEL_column_ix];
 	constraint attribute_value set CORRESPONDS $correspondsId;
@@ -246,17 +687,14 @@ proc tool_generate_starts_constraints_demo { csv_filename {errorCheckOnly 0} } {
 	global hl1_column_ix;
 	global hl2_column_ix;
 	global hl3_column_ix;
-	global uCom_column_ix;
 	global VENDOR_column_ix;
 	global CATEGORY_column_ix;
 	global RELATION_column_ix;
-	global uLoc_column_ix;
 	global PLANNER_column_ix;
 	global TIME_LEVEL_column_ix;
 	set dontCare "-"; # this is the character to indicate we don't care about the value of the associated column for a record
 	
-    catch {constraint attribute add_string CORRESPONDS};
-	# ensure that the time level is correctly defined
+    # ensure that the time level is correctly defined
     tk_cube_model_init_no_measure_fill;
 	
 	set raw_list [core_io_readCSV $csv_filename];
@@ -279,7 +717,6 @@ proc tool_generate_starts_constraints_demo { csv_filename {errorCheckOnly 0} } {
 	set method_uda_list {};
 	set method_uda_list_column_ix {};
 	set case_column_ix -1;
-	set consID_column_ix -1;
 	set location_column_ix -1;
 	set commodity_column_ix -1;
 	set comlocation_column_ix -1;
@@ -290,8 +727,6 @@ proc tool_generate_starts_constraints_demo { csv_filename {errorCheckOnly 0} } {
 	set end_column_ix -1;
 	set buildpolicy_column_ix -1;
 	set buildearlylimit_column_ix -1;
-	set buildAhead_column_ix -1;
-	set capViolation_column_ix -1;
 	set enabled_column_ix -1;
 	# for new UI
 	set hl1_column_ix -1;
@@ -300,28 +735,22 @@ proc tool_generate_starts_constraints_demo { csv_filename {errorCheckOnly 0} } {
 	set VENDOR_column_ix -1;
 	set CATEGORY_column_ix -1;
 	set RELATION_column_ix -1;
-	set uCom_column_ix -1;
-	set uLoc_column_ix -1;
 	set PLANNER_column_ix -1;
 	set TIME_LEVEL_column_ix -1;
-	catch {constraint attribute add_string HIER_LEVEL_1};
-	catch {constraint attribute add_string HIER_LEVEL_2};
-	catch {constraint attribute add_string HIER_LEVEL_3};
-	catch {constraint attribute add_string COMMODITY};
-	catch {constraint attribute add_string VENDOR};
-	catch {constraint attribute add_string CATEGORY};
-	catch {constraint attribute add_string RELATION};
-	catch {constraint attribute add_string LOCATION};
-	catch {constraint attribute add_string PLANNER};
-	catch {constraint attribute add_string TIME_LEVEL};
+	#catch {constraint attribute add_string HIER_LEVEL_1};
+	#catch {constraint attribute add_string HIER_LEVEL_2};
+	#catch {constraint attribute add_string HIER_LEVEL_3};
+	#catch {constraint attribute add_string VENDOR};
+	#catch {constraint attribute add_string CATEGORY};
+	#catch {constraint attribute add_string RELATION};
+	#catch {constraint attribute add_string PLANNER};
+	#catch {constraint attribute add_string TIME_LEVEL};
+	#catch {constraint attribute add_string CORRESPONDS};
 	for { set schema_ix 0 } { $schema_ix < $schema_number } { incr schema_ix } {
 		set schema_column [lindex $raw_schema $schema_ix];
 		switch $schema_column {
 			CASE {
 				set case_column_ix $schema_ix;			
-			}
-			CONS_ID {
-				set consID_column_ix $schema_ix;			
 			}
 			LOCATION {
 				set location_column_ix $schema_ix;		
@@ -353,12 +782,6 @@ proc tool_generate_starts_constraints_demo { csv_filename {errorCheckOnly 0} } {
 			BUILDEARLYLIMIT {
 				set buildearlylimit_column_ix $schema_ix;
 			}
-			BUILDAHEAD {
-				set buildAhead_column_ix $schema_ix;
-			}
-			CAPVIOLATION {
-				set capViolation_column_ix $schema_ix;
-			}
 			ENABLED {
 				set enabled_column_ix $schema_ix;
 			}
@@ -372,20 +795,14 @@ proc tool_generate_starts_constraints_demo { csv_filename {errorCheckOnly 0} } {
 			HIER_LEVEL_3 {
 				set hl3_column_ix $schema_ix;
 			}
-			UDA_COMMODITY {
-				set uCom_column_ix $schema_ix;
-			}
-			UDA_VENDOR {
+			VENDOR {
 				set VENDOR_column_ix $schema_ix;
 			}
-			UDA_CATEGORY {
+			CATEGORY {
 				set CATEGORY_column_ix $schema_ix;
 			}
 			RELATION {
 				set RELATION_column_ix $schema_ix;
-			}
-			UDA_LOCATION {
-				set uLoc_column_ix $schema_ix;
 			}
 			PLANNER {
 				set PLANNER_column_ix $schema_ix;
@@ -439,9 +856,6 @@ proc tool_generate_starts_constraints_demo { csv_filename {errorCheckOnly 0} } {
 	if { $case_column_ix < 0 } {
 		tool_constraints_error "bad schema in csv $csv_filename - missing CASE column";
 		return 0;	
-	} elseif { $consID_column_ix < 0 } {
-		#tool_constraints_error "bad schema in csv $csv_filename - missing CONS_ID column"; YNH
-		#return 0;	YNH
 	} elseif { $capacity_column_ix < 0 } {
 		tool_constraints_error "bad schema in csv $csv_filename - missing CAPACITY column";
 		return 0;	
@@ -501,23 +915,18 @@ proc tool_generate_starts_constraints_demo { csv_filename {errorCheckOnly 0} } {
 	set last_record_ix -1;
 	set current_constraint {};
 	set is_a_new_constraint 1;
-	#set homogeneous_enabled_flag -1;
+	set homogeneous_enabled_flag -1;
 	for { set record_ix 0 } { $record_ix < $record_number } {incr record_ix} {
 		set record [lindex $raw_data $record_ix];
 		#echo "DEBUG: record";
-		echo "DEBUG: record=$record";
+		#echo "DEBUG: $record";
+	
 		# 2 a) collect the essential attributes of the record
 		set case [lindex $record $case_column_ix];
 		if { $case != "" } {
 			# case should be ignored according to consultant
 			#echo "WARNING: record $record_ix has a non-empty case value - skipping it!";
 			#continue;
-		}		
-		set consID [lindex $record $consID_column_ix];
-		if { $consID == "NA" || $consID == "" || $consID == $dontCare } {
-			# case should be ignored according to consultant
-			echo "WARNING: record $record_ix has an invalid CONS_ID";
-			continue;
 		}		
 		set capacity [lindex $record $capacity_column_ix];
 		if { $capacity == "NA" || $capacity == "" || $capacity == $dontCare } {
@@ -555,11 +964,9 @@ proc tool_generate_starts_constraints_demo { csv_filename {errorCheckOnly 0} } {
 		}
 		set enabled 1;
 		if { $enabled_column_ix >= 0 } {
-			set enabledWord [string toupper [lindex $record $enabled_column_ix]];
-			if { $enabledWord == 1 || $enabledWord == "Y" || $enabledWord == "YES" || $enabledWord == "ON" || $enabledWord == "NA" || $enabledWord == "" || $enabledWord == $dontCare } {
+			set enabled [string toupper [lindex $record $enabled_column_ix]];
+			if { $enabled == 1 || $enabled == "Y" || $enabled == "YES" || $enabled == "ON" || $enabled == "NA" || $enabled == "" || $enabled == $dontCare } {
 				set enabled 1;
-			} elseif { $enabledWord == "REPORT" } {
-				set enabled 2;
 			} else {
 				set enabled 0;
 			}
@@ -577,82 +984,55 @@ proc tool_generate_starts_constraints_demo { csv_filename {errorCheckOnly 0} } {
 		} else {
 			set build_early_limit -1;
 		}	
-		if { $buildAhead_column_ix >= 0 } {
-			set buildAhead [lindex $record $buildAhead_column_ix];
-			if { $buildAhead == "NA" || $buildAhead == "" || $buildAhead == $dontCare } {
-				set buildAhead -1; #default
-			} else {
-				if { [string is integer -strict $buildAhead] == 0 } {
-					tool_constraints_error "record $record_ix has an invalid BUILDAHEAD it must be an integer number - skipping it!";
-					continue;				
-				}
-			}
-		} else {
-			set buildAhead -1;
-		}	
-		if { $capViolation_column_ix >= 0 } {
-			set capViolation [lindex $record $capViolation_column_ix];
-			#if { $capViolation == "NA" || $capViolation == "" || $capViolation == $dontCare } {
-			#	set capViolation -1; #default
-			#} else {
-			#	if { [string is integer -strict $capViolation] == 0 } {
-			#		tool_constraints_error "record $record_ix has an invalid CAPVIOLATION.";
-			#		continue;				
-			#	}
-			#}
-		} else {
-			set capViolation "";
-		}
 		
 		# 2 b) check if the record is representing a new constraint or it is a continuation of the previous constraint
 		#echo "DEBUG: checking if new constraint";
 		set is_a_new_constraint 1;
-		# was to check duplicate constraints but no longer applicable with the new UI design
-		#if { $last_record_ix >= 0 } {
-		#	set last_record [lindex $raw_data $last_record_ix];
-		#	# are these for the same constraint? Presume no.
-		#	set is_a_new_constraint 0;
-		#	if { $case_column_ix >= 0 && !([lindex $last_record $case_column_ix] eq [lindex $record $case_column_ix]) } {
-		#		set is_a_new_constraint 1;
-		#	} elseif { $location_column_ix >= 0 && !([lindex $last_record $location_column_ix] eq [lindex $record $location_column_ix]) } {
-		#		set is_a_new_constraint 1;
-		#	} elseif { $commodity_column_ix >= 0 && !([lindex $last_record $commodity_column_ix] eq [lindex $record $commodity_column_ix]) } {
-		#		set is_a_new_constraint 1;
-		#	} elseif { $comlocation_column_ix >= 0 && !([lindex $last_record $comlocation_column_ix] eq [lindex $record $comlocation_column_ix]) } {
-		#		set is_a_new_constraint 1;
-		#	} elseif { $method_column_ix >= 0 && !([lindex $last_record $method_column_ix] eq [lindex $record $method_column_ix]) } {
-		#		set is_a_new_constraint 1;
-		#	} else {
-		#		# check the udas
-		#		set uda_number [llength $location_uda_list];
-		#		for { set uda_ix 0 } { $uda_ix < $uda_number && $is_a_new_constraint == 0 } { incr uda_ix } {
-		#			if { !( [lindex $last_record [lindex $location_uda_list_column_ix $uda_ix]] eq [lindex $record [lindex $location_uda_list_column_ix $uda_ix]]) } {
-		#				set is_a_new_constraint 1;
-		#			}
-		#		}
-		#		set uda_number [llength $commodity_uda_list];
-		#		for { set uda_ix 0 } { $uda_ix < $uda_number && $is_a_new_constraint == 0 } { incr uda_ix } {
-		#			if { !( [lindex $last_record [lindex $commodity_uda_list_column_ix $uda_ix]] eq [lindex $record [lindex $commodity_uda_list_column_ix $uda_ix]]) } {
-		#				set is_a_new_constraint 1;
-		#			}
-		#		}
-		#		set uda_number [llength $comlocation_uda_list];
-		#		for { set uda_ix 0 } { $uda_ix < $uda_number && $is_a_new_constraint == 0 } { incr uda_ix } {
-		#			if { !( [lindex $last_record [lindex $comlocation_uda_list_column_ix $uda_ix]] eq [lindex $record [lindex $comlocation_uda_list_column_ix $uda_ix]]) } {
-		#				set is_a_new_constraint 1;
-		#			}
-		#		}	
-		#		set uda_number [llength $method_uda_list];
-		#		for { set uda_ix 0 } { $uda_ix < $uda_number && $is_a_new_constraint == 0 } { incr uda_ix } {
-		#			if { !( [lindex $last_record [lindex $method_uda_list_column_ix $uda_ix]] eq [lindex $record [lindex $method_uda_list_column_ix $uda_ix]]) } {
-		#				set is_a_new_constraint 1;
-		#			}
-		#		}				
-		#	}
-		#}
+		if { $last_record_ix >= 0 } {
+			set last_record [lindex $raw_data $last_record_ix];
+			# are these for the same constraint? Presume no.
+			set is_a_new_constraint 0;
+			if { $case_column_ix >= 0 && !([lindex $last_record $case_column_ix] eq [lindex $record $case_column_ix]) } {
+				set is_a_new_constraint 1;
+			} elseif { $location_column_ix >= 0 && !([lindex $last_record $location_column_ix] eq [lindex $record $location_column_ix]) } {
+				set is_a_new_constraint 1;
+			} elseif { $commodity_column_ix >= 0 && !([lindex $last_record $commodity_column_ix] eq [lindex $record $commodity_column_ix]) } {
+				set is_a_new_constraint 1;
+			} elseif { $comlocation_column_ix >= 0 && !([lindex $last_record $comlocation_column_ix] eq [lindex $record $comlocation_column_ix]) } {
+				set is_a_new_constraint 1;
+			} elseif { $method_column_ix >= 0 && !([lindex $last_record $method_column_ix] eq [lindex $record $method_column_ix]) } {
+				set is_a_new_constraint 1;
+			} else {
+				# check the udas
+				set uda_number [llength $location_uda_list];
+				for { set uda_ix 0 } { $uda_ix < $uda_number && $is_a_new_constraint == 0 } { incr uda_ix } {
+					if { !( [lindex $last_record [lindex $location_uda_list_column_ix $uda_ix]] eq [lindex $record [lindex $location_uda_list_column_ix $uda_ix]]) } {
+						set is_a_new_constraint 1;
+					}
+				}
+				set uda_number [llength $commodity_uda_list];
+				for { set uda_ix 0 } { $uda_ix < $uda_number && $is_a_new_constraint == 0 } { incr uda_ix } {
+					if { !( [lindex $last_record [lindex $commodity_uda_list_column_ix $uda_ix]] eq [lindex $record [lindex $commodity_uda_list_column_ix $uda_ix]]) } {
+						set is_a_new_constraint 1;
+					}
+				}
+				set uda_number [llength $comlocation_uda_list];
+				for { set uda_ix 0 } { $uda_ix < $uda_number && $is_a_new_constraint == 0 } { incr uda_ix } {
+					if { !( [lindex $last_record [lindex $comlocation_uda_list_column_ix $uda_ix]] eq [lindex $record [lindex $comlocation_uda_list_column_ix $uda_ix]]) } {
+						set is_a_new_constraint 1;
+					}
+				}	
+				set uda_number [llength $method_uda_list];
+				for { set uda_ix 0 } { $uda_ix < $uda_number && $is_a_new_constraint == 0 } { incr uda_ix } {
+					if { !( [lindex $last_record [lindex $method_uda_list_column_ix $uda_ix]] eq [lindex $record [lindex $method_uda_list_column_ix $uda_ix]]) } {
+						set is_a_new_constraint 1;
+					}
+				}				
+			}
+		}
 		set last_record_ix $record_ix;
 		
-		echo "DEBUG: is_a_new_constraint=$is_a_new_constraint";
+		#echo "DEBUG: is_a_new_constraint = $is_a_new_constraint";
 		
 		# 2 c) add the constraint or append this record to an existing constraint		
 		# add the constraint item
@@ -661,45 +1041,36 @@ proc tool_generate_starts_constraints_demo { csv_filename {errorCheckOnly 0} } {
 		lappend constraint_item $end;	
 		lappend constraint_item $capacity;	
 		lappend constraint_item $build_policy;
-		lappend constraint_item $buildAhead; #build_early_limit
-		lappend constraint_item [expr $enabled == 1? 1 : 0]; #$enabled;
+		lappend constraint_item $build_early_limit;
+		lappend constraint_item $enabled;
 		lappend constraint_item $uom;
-		lappend constraint_item $capViolation;
 		if { $is_a_new_constraint == 1 } {
 			if { [llength $current_constraint] > 0 } {
-				echo ">>>> append constraint_items to current_constraint=$current_constraint";
 				lappend current_constraint $constraint_items;
-				#lappend current_constraint $homogeneous_enabled_flag;
-				#lappend current_constraint $enabled;
-				#lappend current_constraint $consID;
+				lappend current_constraint $homogeneous_enabled_flag;
 				lappend constraints $current_constraint;		
 			}
 			# we use the record itself to hold on to the attributes (we will ignore the CAPACITY START END columns since these will be appended in a list)
 			set current_constraint $record;
-			lappend current_constraint $enabled;
 			set constraint_items {};
-			echo ">>>> reset to new constraint record:$record";
 			# reset flag
-			#set homogeneous_enabled_flag -1;
+			set homogeneous_enabled_flag -1;
 		}	
-		lappend constraint_items $constraint_item;
-		echo ">>>> append constraint_item=$constraint_item";
-		#if { $homogeneous_enabled_flag == -1 } {
-		#	# has not been set yet
-		#	set homogeneous_enabled_flag $enabled;
-		#} else {
-		#	if { $homogeneous_enabled_flag != $enabled } {
-		#		# heterogeneous values detected
-		#		set homogeneous_enabled_flag -2;
-		#	}
-		#}
+		lappend constraint_items $constraint_item;	
+		if { $homogeneous_enabled_flag == -1 } {
+			# has not been set yet
+			set homogeneous_enabled_flag $enabled;
+		} else {
+			if { $homogeneous_enabled_flag != $enabled } {
+				# heterogeneous values detected
+				set homogeneous_enabled_flag -2;
+			}
+		}
 	}
 	# 2 d) don't forget to finish off the last constraint
 	if { [llength $current_constraint] > 0} {
-		echo ">>>> append constraint_items to current_constraint=$current_constraint -->last constraint";
 		lappend current_constraint $constraint_items;
-		#lappend current_constraint $homogeneous_enabled_flag;
-		#lappend current_constraint $enabled;
+		lappend current_constraint $homogeneous_enabled_flag;
 		lappend constraints $current_constraint;	
 	}	
 	
@@ -715,37 +1086,106 @@ proc tool_generate_starts_constraints_demo { csv_filename {errorCheckOnly 0} } {
 	set permitted_time_levels [_get_time_levels_defined];
 	for { set constraint_ix 0 } { $constraint_ix < $constraint_number } { incr constraint_ix } {
 		set current_constraint [lindex $constraints $constraint_ix];
-		echo ">>>>> current_constraint=$current_constraint";
-		set record [lrange $current_constraint 0 [expr [llength $current_constraint] - 2]];
-		set constraint_items [lindex $current_constraint [expr [llength $current_constraint] - 1]];
-		#set homogeneous_enabled_flag [lindex $current_constraint [expr [llength $current_constraint] - 2]];
-		#set enabled [lindex $current_constraint [expr [llength $current_constraint] - 1]];
-		set enabled [lindex $record [expr [llength $record] - 1]]; #converted enabled flag
-		#set consID [lindex $current_constraint [expr [llength $current_constraint] - 1]];
-		set consID [lindex $current_constraint 1];
+		set record [lrange $current_constraint 0 [expr [llength $current_constraint] - 3]];
+		set constraint_items [lindex $current_constraint [expr [llength $current_constraint] - 2]];
+		set homogeneous_enabled_flag [lindex $current_constraint [expr [llength $current_constraint] - 1]];
 	
 		# 4 a) get the time_levels to use
 		# (we will postpone this since it may be specified per capacity line in the constraint)	
-		set time_levels [_get_time_level_boundaries [lindex $record $TIME_LEVEL_column_ix]];
 
 		# 4 b) create the constraint id to use
 		# location-commodity-comlocation-method ordering with blanks/dont cares skipped
-		#set constraint_id "";
-		#set spacer "_";
-		#set appending 0;
-		#set uda_number [llength $location_uda_list];
-		#for { set uda_ix 0 } { $uda_ix < $uda_number } { incr uda_ix } {
-		#	set substring_id [lindex $record [lindex $location_uda_list_column_ix $uda_ix]];
-		#	if { !($substring_id == "" || $substring_id == $dontCare) } {
-		#		if { $appending } {
-		#			append constraint_id $spacer;
-		#		}
-		#		set appending 1;
-		#		append constraint_id $substring_id;
-		#	}
-		#}		
-		#if { $location_column_ix >= 0 } {
-		#	set substring_id [lindex $record $location_column_ix];
+		set constraint_id "";
+		set spacer "_";
+		set appending 0;
+		set uda_number [llength $location_uda_list];
+		for { set uda_ix 0 } { $uda_ix < $uda_number } { incr uda_ix } {
+			set substring_id [lindex $record [lindex $location_uda_list_column_ix $uda_ix]];
+			if { !($substring_id == "" || $substring_id == $dontCare) } {
+				if { $appending } {
+					append constraint_id $spacer;
+				}
+				set appending 1;
+				append constraint_id $substring_id;
+			}
+		}		
+		if { $location_column_ix >= 0 } {
+			set substring_id [lindex $record $location_column_ix];
+			if { !($substring_id == "" || $substring_id == $dontCare) } {
+				if { $appending } {
+					append constraint_id $spacer;
+				}
+				set appending 1;			
+				append constraint_id $substring_id;
+			}
+		}
+		set uda_number [llength $commodity_uda_list];
+		for { set uda_ix 0 } { $uda_ix < $uda_number } { incr uda_ix } {
+			set substring_id [lindex $record [lindex $commodity_uda_list_column_ix $uda_ix]];
+			if { !($substring_id == "" || $substring_id == $dontCare) } {
+				if { $appending } {
+					append constraint_id $spacer;
+				}
+				set appending 1;
+				append constraint_id $substring_id;
+			}
+		}			
+		if { $commodity_column_ix >= 0 } {
+			set substring_id [lindex $record $commodity_column_ix];
+			if { !($substring_id == "" || $substring_id == $dontCare) } {
+				if { $appending } {
+					append constraint_id $spacer;
+				}
+				set appending 1;			
+				append constraint_id $substring_id;
+			}
+		}	
+		set uda_number [llength $comlocation_uda_list];
+		for { set uda_ix 0 } { $uda_ix < $uda_number } { incr uda_ix } {
+			set substring_id [lindex $record [lindex $comlocation_uda_list_column_ix $uda_ix]];
+			if { !($substring_id == "" || $substring_id == $dontCare) } {
+				if { $appending } {
+					append constraint_id $spacer;
+				}
+				set appending 1;
+				append constraint_id $substring_id;
+			}
+		}		
+		if { $comlocation_column_ix >= 0 } {
+			set substring_id [lindex $record $comlocation_column_ix];
+			if { !($substring_id == "" || $substring_id == $dontCare) } {
+				if { $appending } {
+					append constraint_id $spacer;
+				}
+				set appending 1;			
+				append constraint_id $substring_id;
+			}
+		}
+		set uda_number [llength $method_uda_list];
+		for { set uda_ix 0 } { $uda_ix < $uda_number } { incr uda_ix } {
+			set substring_id [lindex $record [lindex $method_uda_list_column_ix $uda_ix]];
+			if { !($substring_id == "" || $substring_id == $dontCare) } {
+				if { $appending } {
+					append constraint_id $spacer;
+				}
+				set appending 1;
+				append constraint_id $substring_id;
+			}
+		}		
+		if { $method_column_ix >= 0 } {
+			set substring_id [lindex $record $method_column_ix];
+			if { !($substring_id == "" || $substring_id == $dontCare) } {
+				if { $appending } {
+					append constraint_id $spacer;
+				}
+				set appending 1;			
+				append constraint_id $substring_id;
+			}
+		}
+		
+		# append uom to constraint id to divide into week-intervals, month-intervals, to accomodate > 17 time intervals: YNH
+		#if { $uom_column_ix >= 0 } {
+		#	set substring_id [lindex $record $uom_column_ix];
 		#	if { !($substring_id == "" || $substring_id == $dontCare) } {
 		#		if { $appending } {
 		#			append constraint_id $spacer;
@@ -754,71 +1194,12 @@ proc tool_generate_starts_constraints_demo { csv_filename {errorCheckOnly 0} } {
 		#		append constraint_id $substring_id;
 		#	}
 		#}
-		#set uda_number [llength $commodity_uda_list];
-		#for { set uda_ix 0 } { $uda_ix < $uda_number } { incr uda_ix } {
-		#	set substring_id [lindex $record [lindex $commodity_uda_list_column_ix $uda_ix]];
-		#	if { !($substring_id == "" || $substring_id == $dontCare) } {
-		#		if { $appending } {
-		#			append constraint_id $spacer;
-		#		}
-		#		set appending 1;
-		#		append constraint_id $substring_id;
-		#	}
-		#}			
-		#if { $commodity_column_ix >= 0 } {
-		#	set substring_id [lindex $record $commodity_column_ix];
-		#	if { !($substring_id == "" || $substring_id == $dontCare) } {
-		#		if { $appending } {
-		#			append constraint_id $spacer;
-		#		}
-		#		set appending 1;			
-		#		append constraint_id $substring_id;
-		#	}
-		#}	
-		#set uda_number [llength $comlocation_uda_list];
-		#for { set uda_ix 0 } { $uda_ix < $uda_number } { incr uda_ix } {
-		#	set substring_id [lindex $record [lindex $comlocation_uda_list_column_ix $uda_ix]];
-		#	if { !($substring_id == "" || $substring_id == $dontCare) } {
-		#		if { $appending } {
-		#			append constraint_id $spacer;
-		#		}
-		#		set appending 1;
-		#		append constraint_id $substring_id;
-		#	}
-		#}		
-		#if { $comlocation_column_ix >= 0 } {
-		#	set substring_id [lindex $record $comlocation_column_ix];
-		#	if { !($substring_id == "" || $substring_id == $dontCare) } {
-		#		if { $appending } {
-		#			append constraint_id $spacer;
-		#		}
-		#		set appending 1;			
-		#		append constraint_id $substring_id;
-		#	}
-		#}
-		#set uda_number [llength $method_uda_list];
-		#for { set uda_ix 0 } { $uda_ix < $uda_number } { incr uda_ix } {
-		#	set substring_id [lindex $record [lindex $method_uda_list_column_ix $uda_ix]];
-		#	if { !($substring_id == "" || $substring_id == $dontCare) } {
-		#		if { $appending } {
-		#			append constraint_id $spacer;
-		#		}
-		#		set appending 1;
-		#		append constraint_id $substring_id;
-		#	}
-		#}		
-		#if { $method_column_ix >= 0 } {
-		#	set substring_id [lindex $record $method_column_ix];
-		#	if { !($substring_id == "" || $substring_id == $dontCare) } {
-		#		if { $appending } {
-		#			append constraint_id $spacer;
-		#		}
-		#		set appending 1;			
-		#		append constraint_id $substring_id;
-		#	}
-		#}
-		set method_starts_id [format "%s_ms" $consID]; #constraint_id
-		set method_starts_ct_id [format "%s_ms_ct" $consID]; #constraint_id
+		
+		#append constraint_id [format "_%s" $uom] ; YNH
+		#append constraint_id [format "_%s" $end] ; YNH		
+		
+		set method_starts_id [format "%s_ms" $constraint_id];
+		set method_starts_ct_id [format "%s_ms_ct" $constraint_id];
 		if { [catch {constraint set id $method_starts_id} ] == 0 } {
 			tool_constraints_error "a constraint of id $method_starts_id already exists. skipping this!";
 			continue;
@@ -827,8 +1208,8 @@ proc tool_generate_starts_constraints_demo { csv_filename {errorCheckOnly 0} } {
 			tool_constraints_error "a constraint_target of id $method_starts_ct_id already exists. skipping this!";
 			continue;
 		}		
-		set workorder_starts_id [format "%s_ws" $consID]; #constraint_id
-		set workorder_starts_ct_id [format "%s_ws_ct" $consID]; #constraint_id
+		set workorder_starts_id [format "%s_ws" $constraint_id];
+		set workorder_starts_ct_id [format "%s_ws_ct" $constraint_id];
 		if { [catch {constraint set id $method_starts_id} ] == 0 } {
 			tool_constraints_error "a constraint of id $workorder_starts_id already exists. skipping this!";
 			continue;
@@ -843,22 +1224,20 @@ proc tool_generate_starts_constraints_demo { csv_filename {errorCheckOnly 0} } {
 			constraint_target add $method_starts_ct_id;
 			constraint_target set property method_starts;
 			constraint add $method_starts_id;
-			echo ">>>>> DEBUG: adding constraint $method_starts_id";
+			#echo "DEBUG: adding constraint $method_starts_id";
 			constraint set property method_starts;	
-			addStdUDA $record $workorder_starts_id "ms";
-			#if { $homogeneous_enabled_flag == 0 || $homogeneous_enabled_flag == 1 } {
-			#	constraint set enabled $homogeneous_enabled_flag;
-			#}
-			constraint set enabled $enabled;
+			addStdUDA $record $workorder_starts_ct_id;
+			if { $homogeneous_enabled_flag == 0 || $homogeneous_enabled_flag == 1 } {
+				constraint set enabled $homogeneous_enabled_flag;
+			}
 			constraint_target add $workorder_starts_ct_id;
 			constraint_target set property workorder_starts;
 			constraint add $workorder_starts_id;
 			constraint set property workorder_starts;	
-			addStdUDA $record $method_starts_id "ws";
-			#if { $homogeneous_enabled_flag == 0 || $homogeneous_enabled_flag == 1 } {
-			#	constraint set enabled $homogeneous_enabled_flag;
-			#}
-			constraint set enabled $enabled;
+			addStdUDA $record $method_starts_ct_id;
+			if { $homogeneous_enabled_flag == 0 || $homogeneous_enabled_flag == 1 } {
+				constraint set enabled $homogeneous_enabled_flag;
+			}			
 		}
 
 		# 4 d) add the elements for the constraint targets
@@ -1019,15 +1398,14 @@ proc tool_generate_starts_constraints_demo { csv_filename {errorCheckOnly 0} } {
 		
 		for { set capacity_ix 0 } { $capacity_ix < $capacity_number } { incr capacity_ix } {
 			set current_capacity [lindex $capacities $capacity_ix];
-			set capViolation [lindex $current_capacity 7];
 			set uom [lindex $current_capacity 6];
-			set enabledChild [lindex $current_capacity 5];
-			set buildAhead [lindex $current_capacity 4]; #build_early_limit
+			set enabled [lindex $current_capacity 5];
+			set build_early_limit [lindex $current_capacity 4];
 			set build_policy [lindex $current_capacity 3];
-			if { $buildAhead < 0 } {; #build_early_limit
+			if { $build_early_limit < 0 } {
 				set action_three $build_policy;
 			} else {
-				set action_three [format "%s %s %s" $build_policy $buildAhead $capViolation]; #build_early_limit
+				set action_three [format "%s %s" $build_policy $build_early_limit];
 			}
 			set max_quantity [lindex $current_capacity 2];
 			# the start and end of the capacity is expressed in UNIX time (not indicies of the time_levels)
@@ -1037,18 +1415,47 @@ proc tool_generate_starts_constraints_demo { csv_filename {errorCheckOnly 0} } {
 			# (actually not necessary)
 			#incr raw_end_time -1;
 			
-			# get the time_levels to use -> changed to use csv input instead
+			
+			###### Begin: convert to Adexa date format YNH
+			set raw_start_time [split $raw_start_time "/"]
+			set month [lindex $raw_start_time 0]
+			if {[string length $month] == "1"} {
+				set month 0$month
+			}
+			set day [lindex $raw_start_time 1]
+			if {[string length $day] == 1} {
+				set day 0$day
+			}
+			set year [lindex $raw_start_time 2]
+			set raw_start_time 20$year/$month/$day
+			set raw_start_time [cast date1 time $raw_start_time]
+
+			set raw_end_time [split $raw_end_time "/"]
+			set month [lindex $raw_end_time 0]
+			if {[string length $month] == "1"} {
+				set month 0$month
+			}
+			set day [lindex $raw_end_time 1]
+			if {[string length $day] == 1} {
+				set day 0$day
+			}
+			set year [lindex $raw_end_time 2]
+			set raw_end_time 20$year/$month/$day
+			set raw_end_time [cast date1 time $raw_end_time]
+			###### End: convert to Adexa date format YNH
+			
+			# get the time_levels to use
 			#if { [lsearch $permitted_time_levels $uom] >= 0 } {
 			#	set time_levels [_get_time_level_boundaries $uom];
 			#} else {
-			#	if { $uom == "WEEK" } {
-			#		set time_levels $week_time_levels;
-			#	} elseif { $uom == "MONTH" } {
-			#		set time_levels $month_time_levels;
-			#	} elseif { $uom == "DAY" } {
-			#		set time_levels $day_time_levels;
-			#	}
-			#}				
+				if { $uom == "WEEK" } {
+					set time_levels $week_time_levels;
+				} elseif { $uom == "MONTH" } {
+					set time_levels $month_time_levels;
+				} elseif { $uom == "DAY" } {
+					set time_levels $day_time_levels;
+				}
+			#}	YNH			
 			set index_number [llength $time_levels];
 			set restricted_time_levels {};
 			
@@ -1091,18 +1498,16 @@ proc tool_generate_starts_constraints_demo { csv_filename {errorCheckOnly 0} } {
 					constraint action_elem add $time_start $time_end;
 					constraint action_elem set action_one $max_quantity;	
 					constraint action_elem set action_three $action_three;	
-					#if { $homogeneous_enabled_flag < 0 } {
-					#	constraint action_elem set enabled $enabled;
-					#}
-					constraint action_elem set enabled $enabledChild;
+					if { $homogeneous_enabled_flag < 0 } {
+						constraint action_elem set enabled $enabled;
+					}
 					constraint set id $workorder_starts_id;
 					constraint action_elem add $time_start $time_end;
 					constraint action_elem set action_one $max_quantity;
 					constraint action_elem set action_three $action_three;	
-					#if { $homogeneous_enabled_flag < 0 } {
-					#	constraint action_elem set enabled $enabled;
-					#}
-					constraint action_elem set enabled $enabledChild;
+					if { $homogeneous_enabled_flag < 0 } {
+						constraint action_elem set enabled $enabled;
+					}
 				}
 			}			
 		}

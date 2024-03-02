@@ -49,52 +49,60 @@ begin
         ' ELSE ''OPTICAL'' ' +
         ' END ' +
 
-
+/*
         ',CASE   ' +
         ' WHEN Process.Process is not null THEN Process.Process ' +          
-        ' ELSE ''Raw'' ' +
+        ' ELSE ''NA'' ' +
         ' END ' +
-/*
+
         ',CASE   ' +
             ' WHEN adx_product.HIER_LEVEL_1 is not null THEN adx_product.HIER_LEVEL_1 ' +         
             ' ELSE ''-'' ' +
         ' END ' +     
 */              
+        ',''NA'' ' +
         -- HIER_LEVEL_1 --   
 
+/*
         ',CASE   ' +
             ' WHEN adx_product.HIER_LEVEL_2 is not null THEN adx_product.HIER_LEVEL_2 ' +         
-            ' ELSE ''-'' ' +
+            ' ELSE ''NA'' ' +
         ' END ' +   
+*/        
+        ',''NA'' ' +
         -- ',adx_product.HIER_LEVEL_2 ' +
         -- HIER_LEVEL_2 --   
         -- ',''FACTORY'' ' +
-        
+
+/*        
         ',CASE   ' +
             ' WHEN adx_product.HIER_LEVEL_3 is not null THEN adx_product.HIER_LEVEL_3 ' +         
-            ' ELSE ''-'' ' +
+            ' ELSE ''NA'' ' +
         ' END ' +     
+*/
+        ',''NA'' ' +
         --',adx_product.HIER_LEVEL_3 ' +
         -- HIER_LEVEL_3 --         
         -- ',''ALL'' ' +
-        
+
+/*        
         ',CASE   ' +
         ' WHEN Process.Process is not null THEN Process.Process ' +          
         ' ELSE ''Raw'' ' +
         ' END ' +
-/*                
+               
         ',CASE   ' +
             ' WHEN adx_product.FG_HIER_LEVEL_1 is not null THEN adx_product.FG_HIER_LEVEL_1 ' +         
             ' ELSE ''-'' ' +
         ' END ' +     
 */                 
-        --',''-'' ' +
+        ',''NA'' ' +
         -- FG_HIER_LEVEL_1 --  
 
-        ',''-'' ' +
+        ',''NA'' ' +
         -- FG_HIER_LEVEL_2 --         
 
-        ',''-'' ' +
+        ',''NA'' ' +
         -- FG_HIER_LEVEL_3 -- 
 
         ',''-'' ' +

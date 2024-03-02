@@ -39,5 +39,21 @@ SELECT
   FROM [Method_Buy], adx_product
   where Method_Buy.PRODUCT_ID = adx_product.PRODUCT_ID
   order by [PRODUCT_ID], [VENDOR_ID]
+
+------------------------------------------------------
+  update [adx_method_buy] 
+  SET [LEAD_DAYS_SUPPLY] = (
+    case 
+    when exists (SELECT * 
+        FROM old_Method_buy
+        where adx_method_buy.PRODUCT_ID = old_Method_Buy.PRODUCT_ID) 
+    then (
+        SELECT top 1  LEAD_DAYS_SUPPLY 
+        FROM old_Method_buy
+        where adx_method_buy.PRODUCT_ID = old_Method_Buy.PRODUCT_ID
+    )
+    else '100'
+    end
+  )
 GO
 

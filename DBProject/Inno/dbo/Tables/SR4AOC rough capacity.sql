@@ -3,7 +3,8 @@ CREATE TABLE [dbo].[SR4AOC rough capacity] (
     [process]  NVARCHAR (50) NULL,
     [start]    NVARCHAR (50) NULL,
     [end]      NVARCHAR (50) NULL,
-    [capacity] BIGINT        NULL
+    [capacity] SMALLINT      NULL,
+    [uom]      NVARCHAR (50) NULL
 );
 GO
 

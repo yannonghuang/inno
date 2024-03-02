@@ -29,10 +29,14 @@ $folder = "/Users/yannonghuang/Documents/personal/projects/SRI/Import prospects/
 
 $ConnectionString = "Server=$serverDN;Database=$dbName;User Id=$userId;Password=$passwd;TrustServerCertificate=True"
 
-
-
 for ($i = 0; $i -lt $tables.Length; $i++) {
     $query = "SELECT * FROM " + $tables[$i]
+    if ($tables[$i] -eq "adx_graybox") {
+        $query += ' order by [LOCATION], COMLOCATION_UDA_PROD_AREA
+        ,[COMLOCATION_UDA_PACKAGE]
+        ,[COMLOCATION_UDA_TECHNOLOGY]      
+        ,CAST(START as date)'
+    }
     $file = $folder + $tables[$i] + "_inno.csv"
 
     Invoke-Sqlcmd  -ConnectionString $ConnectionString -Query $query  | 

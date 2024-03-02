@@ -20,18 +20,20 @@ insert into [adx_product] (
 SELECT
     [work_order_model],   
     'Virtual Product for DP Model ',  
-    'M',  
+    'F',  
     'MODULE',
-        'DP Model', -- 'MODULE',
-        '-', -- 'FACTORY',
-        '-', -- 'ALL',        
-        'DP Model',
-        '-',
-        '-',
+        'Model', -- DP_Models.MPS_Model, -- 'DP Model', -- 'MODULE',
+        'Model', -- DP_Models.MPS_Model, -- '-', -- 'FACTORY',
+        'Model', -- 'ALL',        
+        DP_Models.MPS_Model, --'DP Model',
+        DP_Models.MPS_Model, --'-',
+        DP_Models.MPS_Model, --'-',
+
         '-',
         '-',
         '-',
         '-'  
-FROM [POCModel]
+FROM [POCModel], DP_Models
+where POCModel.work_order_model = DP_Models.Code
 GO
 

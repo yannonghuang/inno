@@ -46,7 +46,7 @@ begin
     ) 
     SELECT 
         Method_Buy.PRODUCT_ID
-        ,'Raw material from VMI' 
+        ,adx_product.[DESCRIPTION] 'Raw material from VMI' 
 
         ,process.[Plant]
         --,process_location.[location]
@@ -188,7 +188,7 @@ begin
     ) 
     SELECT 
         Method_Buy.PRODUCT_ID
-        ,'Raw material from VMI' 
+        ,adx_product.[DESCRIPTION] --'Raw material from VMI' 
 
         ,Method_Buy.[LOCATION]
         

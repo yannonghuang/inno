@@ -145,7 +145,7 @@ values
 
       ,'1' -- [MULTI_RES_FACTOR]
       
-      ,'2' --[CARE]
+      ,'0' --[CARE]
 
       ,'-' -- [DELAY_ALLOWED]
       ,'SCP' -- [PERIOD_MGR_ID]

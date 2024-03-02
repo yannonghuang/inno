@@ -55,12 +55,12 @@ begin
         ' ELSE ''OPTICAL'' ' +
         ' END ' +
 
-
+/*
         ',CASE   ' +
         ' WHEN Process.Process is not null THEN Process.Process ' +        
         ' ELSE ''Raw'' ' +
         ' END ' +
-/*
+
         ',CASE   ' +
         ' WHEN Process.Process is not null THEN ' +
             ' CASE   ' +
@@ -70,6 +70,18 @@ begin
         ' ELSE ''OPTICAL'' ' +
         ' END ' +
 */        
+        ',CASE   ' +
+        ' WHEN partnumber = FG THEN ' +
+            ' CASE   ' +
+            ' WHEN DP_Models.Code is not null THEN DP_Models.Code ' + 
+            ' ELSE ''NA'' ' +
+            ' END ' +               
+        ' ELSE ' +
+            ' CASE   ' +
+            ' WHEN Process.Process is not null THEN Process.Process ' +        
+            ' ELSE ''Raw'' ' +
+            ' END ' +        
+        ' END ' +   
         -- HIER_LEVEL_1 -- 
 
 /*
@@ -82,7 +94,19 @@ begin
         ' ELSE ''OPTICAL'' ' +
         ' END ' +
 */        
-        ',''-'' ' +
+        ',CASE   ' +
+        ' WHEN partnumber = FG THEN ' +
+            ' CASE   ' +
+            ' WHEN MPS_Model is not null THEN MPS_Model ' +         
+            ' ELSE ''NA'' ' +
+            ' END ' +               
+        ' ELSE ' +
+            ' CASE   ' +
+            ' WHEN Process.Process is not null THEN Process.Process ' +        
+            ' ELSE ''Raw'' ' +
+            ' END ' +        
+        ' END ' +       
+        --',''-'' ' +
         -- HIER_LEVEL_2 -- 
 
 /*
@@ -91,16 +115,21 @@ begin
             ' ELSE ''-'' ' +
         ' END ' +    
 */         
-        ',''-'' ' +
+        ',CASE   ' +
+        ' WHEN partnumber = FG THEN ''Module'' ' +           
+        ' ELSE ''Optical'' ' +
+        ' END ' +   
+        --',''-'' ' +
         -- HIER_LEVEL_3 -- 
                 
 
-
+/*
         ',CASE   ' +
         ' WHEN partnumber = FG THEN ''FG'' ' +           
         ' ELSE ''Raw'' ' +
         ' END ' +   
-        --',''-'' ' +
+*/        
+        ',''NA'' ' +
         -- FG_HIER_LEVEL_1 -- 
 
 /*
@@ -113,7 +142,7 @@ begin
         ' ELSE ''-'' ' +
         ' END ' +     
 */           
-        ',''-'' ' +
+        ',''NA'' ' +
         -- FG_HIER_LEVEL_2 -- 
 
 /*
@@ -126,7 +155,7 @@ begin
         ' ELSE ''-'' ' +
         ' END ' +    
 */            
-        ',''-'' ' +
+        ',''NA'' ' +
         -- FG_HIER_LEVEL_3 -- 
 
 

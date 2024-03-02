@@ -23,6 +23,7 @@ WHERE DupRank > 1
 
 insert into [master].[dbo].[adx_graybox] (
        [CASE]
+      ,[CONS_ID]
       ,[LOCATION]
       ,[COMLOCATION]
       ,[COMLOCATION_UDA_PROD_AREA]
@@ -49,6 +50,13 @@ insert into [master].[dbo].[adx_graybox] (
 )
 SELECT 
        '-' -- [CASE]
+      ,concat(
+            process.plant, '_'
+            ,[SR4AOC rough capacity].process, '_'
+            ,POCModel.work_order_model, '_'
+            ,[START], '_'
+            ,[END]         
+      ) 
       ,process.plant --[LOCATION]      
       ,'-' --[COMLOCATION]
 
@@ -70,7 +78,7 @@ SELECT
 
       ,[SR4AOC rough capacity].CAPACITY -- [CAPACITY]   
 
-      ,'WEEK' --[UOM]
+      ,[UOM] --'WEEK' --[UOM]
       ,'-' -- [BUILDPOLICY]
       ,'-' -- [BUILDEARLYLIMIT]
       ,'-' -- [BUILD_AHEAD]
@@ -78,9 +86,9 @@ SELECT
       ,[SR4AOC rough capacity].[START]
       ,[SR4AOC rough capacity].[END]
 
-      ,'HIER_LEVEL_1'
-      ,'HIER_LEVEL_2'
-      ,'HIER_LEVEL_3'
+      ,'NA' -- 'HIER_LEVEL_1'
+      ,'NA' -- 'HIER_LEVEL_2'
+      ,'NA' -- 'HIER_LEVEL_3'
 
       ,'-' -- [COMMODITY]
       ,'-' -- [VENDOR]
