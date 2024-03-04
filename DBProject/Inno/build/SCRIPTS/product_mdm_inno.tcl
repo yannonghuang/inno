@@ -150,6 +150,13 @@ proc Build_Material {} {
 proc Build_Product {} {
 	global path
 	#
+	catch {com attribute add_string DP_COMP};
+	catch {com attribute add_string FG_COMP};
+	catch {com attribute add_string VIRTUAL};
+	catch {com attribute add_string DP_COMP_KEY};
+	catch {com attribute add_string FG_COMP_KEY};
+	catch {com attribute add_string VIRTUAL_KEY};
+	#
 	set fp [open "$path(data)/adx_product_inno.csv" r]
 	gets $fp
 	while {[gets $fp linestring] > 0} {
@@ -170,35 +177,59 @@ proc Build_Product {} {
 		set fg_hier2 [lindex $linestring 8];
 		set fg_hier3 [lindex $linestring 9];
 		set endItem [lindex $linestring 10];
-		set mat_status [lindex $linestring 11];
-		set late_forecast [lindex $linestring 12];
-		set late_sales [lindex $linestring 13];
+		set dpComp [lindex $linestring 11];
+		set fgComp [lindex $linestring 12];
+		set virtual [lindex $linestring 13];
+		set dpCompKey [lindex $linestring 14];
+		set fgCompKey [lindex $linestring 15];
+		set virtualKey [lindex $linestring 16];
+		#set mat_status [lindex $linestring 11];
+		#set late_forecast [lindex $linestring 12];
+		#set late_sales [lindex $linestring 13];
 		#
 		catch {com add $ProdId}
 		com set type $Type;
 		com set id $ProdId;
-		com set desc $Desc;
+		com set desc $Desc;		
 		com attribute_value set HIER_LEVEL_1 $hier1;
 		com attribute_value set HIER_LEVEL_2 $hier2;
-		com attribute_value set HIER_LEVEL_3 $hier3;
+		com attribute_value set HIER_LEVEL_3 $hier3;		
 		com attribute_value set FG_HIER_LEVEL_1 $fg_hier1;
 		com attribute_value set FG_HIER_LEVEL_2 $fg_hier2;
 		com attribute_value set FG_HIER_LEVEL_3 $fg_hier3;
 		if { $pArea != "-" } {
 			com attribute_value set PRODAREA $pArea;
-		}
+		}		
 		if { $endItem != "-" } {
 			com attribute_value set END_ITEM $endItem;
 		}
-		if { $mat_status != "-" } {
-			com attribute_value set A_MAT_STATUS $mat_status;
+		if { $dpComp != "-" } {
+			com attribute_value set DP_COMP $dpComp;
 		}
-		if { $late_forecast != "-" } {
-			com attribute_value set LATE_FORECAST $late_forecast;
+		if { $fgComp != "-" } {
+			com attribute_value set FG_COMP $fgComp;
 		}
-		if { $late_sales != "-" } {
-			com attribute_value set LATE_SALES $late_sales;
+		if { $virtual != "-" } {
+			com attribute_value set VIRTUAL $virtual;
 		}
+		if { $dpCompKey != "-" } {
+			com attribute_value set DP_COMP_KEY $dpCompKey;
+		}
+		if { $fgCompKey != "-" } {
+			com attribute_value set FG_COMP_KEY $fgCompKey;
+		}
+		if { $virtualKey != "-" } {
+			com attribute_value set VIRTUAL_KEY $virtualKey;
+		}
+		#if { $mat_status != "-" } {
+		#	com attribute_value set A_MAT_STATUS $mat_status;
+		#}
+		#if { $late_forecast != "-" } {
+		#	com attribute_value set LATE_FORECAST $late_forecast;
+		#}
+		#if { $late_sales != "-" } {
+		#	com attribute_value set LATE_SALES $late_sales;
+		#}
 	}
 	close $fp
 }
@@ -257,6 +288,7 @@ proc Build_ComLoc {} {
 		#set late_forecast [lindex $linestring 26];
 		#set late_sales [lindex $linestring 27];
 		#
+	
 		if {[catch {com@location add $ProdId@$Loc $ProdId $Loc}]} {
 			if {[catch {com@location set id $ProdId@$Loc}]} {
 				echo "Prod - $ProdId@$Loc : Product cannot be added!"
@@ -323,22 +355,30 @@ proc Build_ComLoc {} {
 			if { $prod_group != "-"} {
 				com@location attribute_value set PRODUCT_GROUP $prod_group
 			}
-			if { $hier1 != "-"} {
-				com@location attribute_value set HIER_LEVEL_1 $hier1
+			if {[catch {com set id $ProdId} err]} {
+				echo "...$err: $ProdId";
+			} else {
+				com@location attribute_value set HIER_LEVEL_1 [com attribute_value get HIER_LEVEL_1];
+				com@location attribute_value set HIER_LEVEL_2 [com attribute_value get HIER_LEVEL_2];
+				com@location attribute_value set HIER_LEVEL_3 [com attribute_value get HIER_LEVEL_3];
 			}
-			if { $hier2 != "-"} {
-				com@location attribute_value set HIER_LEVEL_2 $hier2
-			}
-			if { $hier3 != "-"} {
-				com@location attribute_value set HIER_LEVEL_3 $hier3
-			}
+			#if { $hier1 != "-"} {
+			#	com@location attribute_value set HIER_LEVEL_1 $hier1
+			#}
+			#if { $hier2 != "-"} {
+			#	com@location attribute_value set HIER_LEVEL_2 $hier2
+			#}
+			#if { $hier3 != "-"} {
+			#	com@location attribute_value set HIER_LEVEL_3 $hier3
+			#}	
 			if { $UnitCost != "-" } {
 				#echo "[com@location get id] cost=[com@location attribute_value get product_unit_cost] to be $UnitCost";
-				#com@location attribute_value set product_unit_cost $UnitCost;
-				set prodUnitCost($ProdId@$Loc) $UnitCost;
+				com@location attribute_value set product_unit_cost $UnitCost;
+				#set prodUnitCost($ProdId@$Loc) $UnitCost;
 			} else {
-				set prodUnitCost($ProdId@$Loc) 0;
-			}
+				#set prodUnitCost($ProdId@$Loc) 0;
+				com@location attribute_value set product_unit_cost 1;
+			}				
 			if { $hold_cost != "-"} {
 				com@location attribute_value set HOLD_COST $hold_cost
 			}
@@ -367,6 +407,7 @@ proc Build_ComLoc {} {
 			#	com@location attribute_value set A_MAT_STATUS $mat_status;
 			#} [lindex $linestring 27];
 		}
+
 		for {set i 0} {$i < [llength $udarange]} {incr i} {
 			set utmp [split [lindex $udarange $i] :]
 			set u_ix [lindex $utmp 0]
@@ -380,35 +421,6 @@ proc Build_ComLoc {} {
 	}
 	close $fp
 }
-
-proc demo_set_product_unit_cost {} {
-	global path
-	global prodUnitCost;
-
-	for {set c_ix 0} {$c_ix < [com@location get number]} {incr c_ix} {
-		com@location set ix $c_ix;
-		com@location attribute_value set product_unit_cost $prodUnitCost([com@location get id]);
-	}
-	return;
-	set fp [open "$path(data)/adx_productlocation_inno.csv" r]
-	gets $fp
-	while {[gets $fp linestring] > 0} {
-		if {$linestring eq {}} {
-			continue; #blank line
-		}
-		set linestring [split $linestring ,]
-		set ProdId [lindex $linestring 0];
-		set Loc [lindex $linestring 2];
-		set UnitCost [lindex $linestring 22];
-		com@location set id $ProdId@$Loc;
-		if { $UnitCost != "-" } {
-			#echo "[com@location get id] cost=[com@location attribute_value get product_unit_cost] to be $UnitCost";
-			com@location attribute_value set product_unit_cost $UnitCost;
-		}
-	}
-	close $fp
-}
-
 #
 proc demo_set_PSIGroup {} {
 	global model;

@@ -50,3 +50,12 @@ com@location attribute set UDA_string_TEST_LOC propagate_default_value LOC
 Adding com@location attribute called STATUS of type string
 com@location attribute set STATUS propagation_direction A
 com@location attribute set STATUS propagate_default_value MAT
+Adding method attribute called UDA_string_DMDSPEC of type string
+method attribute set UDA_string_DMDSPEC propagation_direction DMDSPEC
+method attribute set UDA_string_DMDSPEC propagate_default_value 
+Adding method attribute called ASSY_LOC of type string
+method attribute set ASSY_LOC propagation_direction to_workorder
+method attribute set ASSY_LOC propagate_default_value no
+Adding method attribute called FAB_LOC of type string
+method attribute set FAB_LOC propagation_direction to_workorder
+method attribute set FAB_LOC propagate_default_value no
