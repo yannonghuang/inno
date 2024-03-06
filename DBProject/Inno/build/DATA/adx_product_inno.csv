@@ -200,12 +200,12 @@ PRODUCT_ID,DESCRIPTION,PRODUCT_TYPE,PRODAREA,HIER_LEVEL_1,HIER_LEVEL_2,HIER_LEVE
 220-0129,Auto alignment MT Jumper,M,OPTICAL,subcon,subcon,Optical,NA,NA,NA,-,,,,,,,-,-,-
 220-0134-001,Cable;OFNP;1m,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 220-0134-002,Cable;OFNP;2m,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
-220-0134-003,Cable;OFNP;3m,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
+220-0134-003,Cable;OFNP;3m,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 220-0134-005,Cable;OFNP;5m,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 220-0134-007,Cable;OFNP;7m,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 220-0134-010,Cable;OFNP;10m,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 220-0134-015,Cable;OFNP;15m,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
-220-0134-020,Cable;OFNP;20m,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
+220-0134-020,Cable;OFNP;20m,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 220-0134-025,Cable;OFNP;25m,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 220-0152-003,Cable MT Ferrule;3m;PT107U,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 220-0152-005,Cable MT Ferrule;5m;PT107U,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
@@ -216,7 +216,7 @@ PRODUCT_ID,DESCRIPTION,PRODUCT_TYPE,PRODAREA,HIER_LEVEL_1,HIER_LEVEL_2,HIER_LEVE
 220-0211-007,Cable;7m;LSZH Aqua,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 220-0211-010,Cable;10m;LSZH Aqua,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 220-0211-020,Cable;20m;LSZH Aqua,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
-220-0227,MT Ferrule Conn/MM(OM3),P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
+220-0227,MT Ferrule Conn/MM(OM3),M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 220-0230-001,Fiber;OM2;1m,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 220-0230-002,Fiber;OM2;2m,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 220-0230-003,Fiber;OM2;3m,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
@@ -225,7 +225,7 @@ PRODUCT_ID,DESCRIPTION,PRODUCT_TYPE,PRODAREA,HIER_LEVEL_1,HIER_LEVEL_2,HIER_LEVE
 220-0230-006,Fiber;OM2;6m,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 220-0230-007,Fiber;OM2;7m,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 220-0230-008,Fiber;OM2;8m,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
-220-0230-010,Fiber;OM2;10m,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
+220-0230-010,Fiber;OM2;10m,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 220-0230-012,Fiber;OM2;12m,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 220-0230-013,Fiber;OM2;13m,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 220-0230-015,Fiber;OM2;15m,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
@@ -401,7 +401,7 @@ PRODUCT_ID,DESCRIPTION,PRODUCT_TYPE,PRODAREA,HIER_LEVEL_1,HIER_LEVEL_2,HIER_LEVE
 280-0609,silicon submount;Size:2.0mmX1.6mmX0.3mm,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 280-0636,PEI Lens array,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 280-0650,TX receptacle,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
-280-0654,Avago;1x4 25G VCSEL(150um;rms<0.65nm),P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
+280-0654,Avago;1x4 25G VCSEL(150um;rms<0.65nm),M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 280-0654-CN,Vcsel for other NRZ Version,P,OPTICAL,LENS,LENS,Optical,NA,NA,NA,-,,,,,,,-,-,-
 280-0655,1x4 25G PIN(150um thickness),P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 280-0695,TX Devide Side C-Lens Holder 2.2*1.8*3,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
@@ -807,7 +807,7 @@ PRODUCT_ID,DESCRIPTION,PRODUCT_TYPE,PRODAREA,HIER_LEVEL_1,HIER_LEVEL_2,HIER_LEVE
 283-0212-31-CD,YJ-DFB;YJC-D1310-25-C-MH;1310nm,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 283-0212-33-CD,YJ-DFB;YJC-D1330-25-C-MH;1330nm,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 283-0226,PD;DO297_45um_E1;45um,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
-283-0261-CD,VCSEL;Lumentum;22177804-034;25G;850nm,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
+283-0261-CD,VCSEL;Lumentum;22177804-034;25G;850nm,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 284-0001-20,lens array(2.0dB),P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 284-0001-35,lens array(3.5dB),P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 284-0001-40,lens array(4.0dB),M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
@@ -823,7 +823,7 @@ PRODUCT_ID,DESCRIPTION,PRODUCT_TYPE,PRODAREA,HIER_LEVEL_1,HIER_LEVEL_2,HIER_LEVE
 284-0085-40,CM PEI Lens;4.0dB absorb attenuation coa,M,OPTICAL,subcon,subcon,Optical,NA,NA,NA,-,,,,,,,-,-,-
 284-0089-20,PEI Lens;2.0dB absorbing coating,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 284-0089-40,PEI Lens;4.0dB absorbing coating,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
-284-0089-50,PEI Lens;5.0dB absorbing coating,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
+284-0089-50,PEI Lens;5.0dB absorbing coating,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 284-0118,Silicon Field Lens Array1.75x0.34x0.275,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 285-0012,LD submount;for all,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 285-0015,LD submount;Materialm:ALN,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
@@ -862,16 +862,16 @@ PRODUCT_ID,DESCRIPTION,PRODUCT_TYPE,PRODAREA,HIER_LEVEL_1,HIER_LEVEL_2,HIER_LEVE
 300-0311,Housing body,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 300-0312,Housing lid,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 300-0313,Housing adapter,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
-300-0316,Housing Body;COST DOWN,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
+300-0316,Housing Body;COST DOWN,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 300-0317,Housing LID;COST DOWN,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 300-0355,Housing lid,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 300-0504-CD,Housing adapter;RX,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 301-0016,RX Lens Cover,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 301-0022,RX LENS COVER;ZN3,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 301-0046-CD,Narrowed RX Lens Cover;AL6063,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
-302-0004,TSLG Nylok Screw M1.4x0.3x5.45,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
+302-0004,TSLG Nylok Screw M1.4x0.3x5.45,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 302-0006,TSLG Nylok Screw M1.7x0.35x4.5x6,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
-302-0007,TSLG Nylok Screw M1.4x0.3x4.63,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
+302-0007,TSLG Nylok Screw M1.4x0.3x4.63,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 302-0008,Nylok Flat head screw;SUS304;M1.7x8,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 310-0014,Screw;FDD-101154-M 1.4X4.5,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 310-0063,Epoxy;Innolight;P-001;454g/套,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
@@ -879,14 +879,14 @@ PRODUCT_ID,DESCRIPTION,PRODUCT_TYPE,PRODAREA,HIER_LEVEL_1,HIER_LEVEL_2,HIER_LEVE
 310-0104,Epoxy;Innolight;T-002;10ml/支,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 310-0109,Acrylate;Innolight;UV-003;5g/支,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 310-0147,Epoxy;Innolight;T-16;30ml/支,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
-310-0166,advanced thermal pad;5*5*1.0mm,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
+310-0166,advanced thermal pad;5*5*1.0mm,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 310-0167,advanced thermal pad;4*4*1.0mm,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 310-0178,Thermal Pad;4*4*0.50mm(L*W*H);11W/m∙K,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 310-0228,Pull tab;BLACK,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 310-0229,Press plate,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 310-0234,Epoxy;Innolight;UV-T21;30ml/支,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 310-0238,Acrylate;Innolight;UV-002;30ml/支,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
-310-0241,protection cover,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
+310-0241,protection cover,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 310-0251,EMI shielding ring,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 310-0272,Epoxy;Innolight;T-58;3ml/支,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 310-0282,Acrylate;Innolight;UV-61;3ml/支,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
@@ -906,7 +906,7 @@ PRODUCT_ID,DESCRIPTION,PRODUCT_TYPE,PRODAREA,HIER_LEVEL_1,HIER_LEVEL_2,HIER_LEVE
 310-0395,Epoxy;Innolight;T-004;3ml/支,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 310-0401,Dust cover EPDM;Duplex LC;Black,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 310-0407,Pull tab;Green,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
-310-0407-RW,Pull tab;Green;for WXZX,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
+310-0407-RW,Pull tab;Green;for WXZX,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 310-0414-01,Epoxy;Innolight;UV-T53;3ml/支,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 310-0417,Dust cover;EPDM;single LC;halogen free,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 310-0418,Silicon;Innolight;S-10;100g/支,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
@@ -926,21 +926,21 @@ PRODUCT_ID,DESCRIPTION,PRODUCT_TYPE,PRODAREA,HIER_LEVEL_1,HIER_LEVEL_2,HIER_LEVE
 310-0504,Pull tab+Latch;Yellow;Pantone color135C,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 310-0505,Pull tab;beige;for HT,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 310-0521,Thermal Pad;5*6*0.50mm(L*W*H);11W/m∙K,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
-310-0560,Pull tab;Green;for Juniper,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
+310-0560,Pull tab;Green;for Juniper,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 310-0571,Clamp,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 310-0572,Pull tab+latch;Green;pantone code:362U,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 310-0573,Pull tab;green;for Cisco,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 310-0574,Pull tab;light green;Cisco,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 310-0577,PULL TAB;GREEN;2292U;Facebook,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
-310-0584,Pull tab+latch;Juniper,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
+310-0584,Pull tab+latch;Juniper,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 310-0585,PULL TAB;Beige;Cisco,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
-310-0590,pull tab+latch;YELLOW,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
+310-0590,pull tab+latch;YELLOW,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 310-0591,pull tab+latch;BLUE 3015C,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 310-0591-R,pull tab+latch;BLUE 3015C;RC,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 310-0647,Pull tab+latch;Black;Intel,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 310-0724,Pull tab;Purple;pantone Medium Purple C,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 310-0734,Pull tab;CISCO Grape Blue color,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
-311-0005,EMI Pad;10.4X2.0X1.5,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
+311-0005,EMI Pad;10.4X2.0X1.5,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 311-0057,Thermal pad;6.00*6.00*0.40mm,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 311-0058,Thermal pad;5.50*5.00*1.00mm,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 311-0102,Thermal pad;4x4x0.5,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
@@ -963,7 +963,7 @@ PRODUCT_ID,DESCRIPTION,PRODUCT_TYPE,PRODAREA,HIER_LEVEL_1,HIER_LEVEL_2,HIER_LEVE
 313-0039,Silicon;Innolight;SN-611;30ml/支,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 313-0041,Epoxy;Innolight;UV-T403;3ml/支,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 313-0043,Epoxy;Innolight;UV-114;3ml/支,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
-313-0048,Silicon;Innolight;S-180;30ml/支,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
+313-0048,Silicon;Innolight;S-180;30ml/支,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 313-0054,Epoxy;Innolight;UV-T34;3ml/支,M,OPTICAL,SUP,SUP,Optical,NA,NA,NA,-,,,,,,,-,-,-
 313-0059,Epoxy;Innolight;UV-T23;3ml/支,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 313-0062,Silicon;Innolight;S-92;30ml/支,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
@@ -972,7 +972,7 @@ PRODUCT_ID,DESCRIPTION,PRODUCT_TYPE,PRODAREA,HIER_LEVEL_1,HIER_LEVEL_2,HIER_LEVE
 313-0083,Epoxy;Innolight;UV-T23MOD;3ml/支,M,OPTICAL,SUP,SUP,Optical,NA,NA,NA,-,,,,,,,-,-,-
 320-0109,MPO adapter,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 320-0128,EMI Finger;SUS301,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
-320-0248,Spring;SUS304;Ø1.5x0.2x4.5,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
+320-0248,Spring;SUS304;Ø1.5x0.2x4.5,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 320-0284,Spring OD 1.5mm;l:7.3mm; W-D:0.2mm,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 320-0328,Guide Pin MM;SUS420J2F;M0.698*6.5L;多模,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 320-0367,Hermetic box for TOSA,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
@@ -1021,7 +1021,7 @@ PRODUCT_ID,DESCRIPTION,PRODUCT_TYPE,PRODAREA,HIER_LEVEL_1,HIER_LEVEL_2,HIER_LEVE
 321-0173,LC Metal Plug b;SUS304,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 340-0056,Pull tab;Green,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 340-0062,Pull tab;Blue;pantone 300U;AWS,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
-340-0063,Pull tab;Green;362U;2km;AWS,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
+340-0063,Pull tab;Green;362U;2km;AWS,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 340-0063-R,Pull tab;Green;362U;2km;AWS;WXZX,P,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 340-0071,Pull tab;Blue 317U,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-
 341-0027,OE BOX Cover,M,OPTICAL,Raw,Raw,Optical,NA,NA,NA,-,,,,,,,-,-,-

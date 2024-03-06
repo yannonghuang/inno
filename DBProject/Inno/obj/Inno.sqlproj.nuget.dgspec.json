@@ -1,0 +1,50 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/yannonghuang/Documents/personal/projects/SRI/Import prospects/Adexa/Innolight/PoC 2023/Adexa Feeds/DBProject/Inno/Inno.sqlproj": {}
+  },
+  "projects": {
+    "/Users/yannonghuang/Documents/personal/projects/SRI/Import prospects/Adexa/Innolight/PoC 2023/Adexa Feeds/DBProject/Inno/Inno.sqlproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/yannonghuang/Documents/personal/projects/SRI/Import prospects/Adexa/Innolight/PoC 2023/Adexa Feeds/DBProject/Inno/Inno.sqlproj",
+        "projectName": "Inno",
+        "projectPath": "/Users/yannonghuang/Documents/personal/projects/SRI/Import prospects/Adexa/Innolight/PoC 2023/Adexa Feeds/DBProject/Inno/Inno.sqlproj",
+        "packagesPath": "/Users/yannonghuang/.nuget/packages/",
+        "outputPath": "/Users/yannonghuang/Documents/personal/projects/SRI/Import prospects/Adexa/Innolight/PoC 2023/Adexa Feeds/DBProject/Inno/obj/",
+        "projectStyle": "PackageReference",
+        "skipContentFileWrite": true,
+        "configFilePaths": [
+          "/Users/yannonghuang/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net46"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net46": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "noWarn": [
+            "NU5128"
+          ]
+        }
+      },
+      "frameworks": {
+        "net46": {
+          "dependencies": {
+            "Microsoft.NETFramework.ReferenceAssemblies": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.0.0, )"
+            }
+          }
+        }
+      }
+    }
+  }
+}

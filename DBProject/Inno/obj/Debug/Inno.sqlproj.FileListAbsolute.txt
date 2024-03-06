@@ -1,0 +1,7 @@
+/Users/yannonghuang/Documents/personal/projects/SRI/Import prospects/Adexa/Innolight/PoC 2023/Adexa Feeds/DBProject/Inno/bin/Debug/Inno.dacpac
+/Users/yannonghuang/Documents/personal/projects/SRI/Import prospects/Adexa/Innolight/PoC 2023/Adexa Feeds/DBProject/Inno/obj/Debug/Model.xml
+/Users/yannonghuang/Documents/personal/projects/SRI/Import prospects/Adexa/Innolight/PoC 2023/Adexa Feeds/DBProject/Inno/obj/Debug/refactor.xml
+/Users/yannonghuang/Documents/personal/projects/SRI/Import prospects/Adexa/Innolight/PoC 2023/Adexa Feeds/DBProject/Inno/obj/Debug/postdeploy.sql
+/Users/yannonghuang/Documents/personal/projects/SRI/Import prospects/Adexa/Innolight/PoC 2023/Adexa Feeds/DBProject/Inno/obj/Debug/predeploy.sql
+/Users/yannonghuang/Documents/personal/projects/SRI/Import prospects/Adexa/Innolight/PoC 2023/Adexa Feeds/DBProject/Inno/obj/Debug/Inno.dll
+/Users/yannonghuang/Documents/personal/projects/SRI/Import prospects/Adexa/Innolight/PoC 2023/Adexa Feeds/DBProject/Inno/obj/Debug/Inno.pdb

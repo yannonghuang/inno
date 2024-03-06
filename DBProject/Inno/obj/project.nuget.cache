@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "fpXXFetxUTJtWmyN9kbzWss1GPvlAp91XJnln4fhwnyh/4oFOpjucZy7Iv8G3oDqhfQrxWC9GBJ+ibORwvA+IA==",
+  "success": true,
+  "projectFilePath": "/Users/yannonghuang/Documents/personal/projects/SRI/Import prospects/Adexa/Innolight/PoC 2023/Adexa Feeds/DBProject/Inno/Inno.sqlproj",
+  "expectedPackageFiles": [
+    "/Users/yannonghuang/.nuget/packages/microsoft.netframework.referenceassemblies/1.0.0/microsoft.netframework.referenceassemblies.1.0.0.nupkg.sha512",
+    "/Users/yannonghuang/.nuget/packages/microsoft.netframework.referenceassemblies.net46/1.0.0/microsoft.netframework.referenceassemblies.net46.1.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

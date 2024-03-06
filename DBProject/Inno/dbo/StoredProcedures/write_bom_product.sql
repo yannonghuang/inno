@@ -116,48 +116,49 @@ begin
         ' END ' +    
 */         
         ',CASE   ' +
-        ' WHEN partnumber = FG THEN ''Module'' ' +           
+        ' WHEN partnumber = FG THEN ' +         
+            ' CASE   ' +
+            ' WHEN MPS_Model is not null THEN ''Module'' ' +         
+            ' ELSE ''NA'' ' +
+            ' END ' +  
         ' ELSE ''Optical'' ' +
         ' END ' +   
         --',''-'' ' +
         -- HIER_LEVEL_3 -- 
                 
 
-/*
-        ',CASE   ' +
-        ' WHEN partnumber = FG THEN ''FG'' ' +           
-        ' ELSE ''Raw'' ' +
-        ' END ' +   
-*/        
-        ',''NA'' ' +
-        -- FG_HIER_LEVEL_1 -- 
-
-/*
         ',CASE   ' +
         ' WHEN partnumber = FG THEN ' +
             ' CASE   ' +
             ' WHEN DP_Models.Code is not null THEN DP_Models.Code ' +
-            ' ELSE ''-'' ' +
+            ' ELSE ''NA'' ' +
             ' END ' +             
-        ' ELSE ''-'' ' +
-        ' END ' +     
-*/           
-        ',''NA'' ' +
-        -- FG_HIER_LEVEL_2 -- 
+        ' ELSE ''NA'' ' +
+        ' END ' +               
+        -- ',''NA'' ' +
+        -- FG_HIER_LEVEL_1 -- 
 
-/*
         ',CASE   ' +
         ' WHEN partnumber = FG THEN ' +
             ' CASE   ' +
             ' WHEN MPS_Model is not null THEN MPS_Model ' +
-            ' ELSE ''-'' ' +
+            ' ELSE ''NA'' ' +
             ' END ' +             
-        ' ELSE ''-'' ' +
-        ' END ' +    
-*/            
-        ',''NA'' ' +
-        -- FG_HIER_LEVEL_3 -- 
+        ' ELSE ''NA'' ' +
+        ' END ' +               
+        -- ',''NA'' ' +
+        -- FG_HIER_LEVEL_2 -- 
 
+        ',CASE   ' +
+        ' WHEN partnumber = FG THEN ' +
+            ' CASE   ' +
+            ' WHEN MPS_Model is not null THEN MPS_Model ' +
+            ' ELSE ''NA'' ' +
+            ' END ' +             
+        ' ELSE ''NA'' ' +
+        ' END ' +               
+        -- ',''NA'' ' +
+        -- FG_HIER_LEVEL_3 -- 
 
         ',''-'' ' +
         ',''-'' ' +
