@@ -277,7 +277,7 @@ proc Build_BoR_Alternatives {} {
 			continue; #blank line
 		}
 		set linestring [split $linestring ,]
-		#echo "bora: $linestring";
+		echo "bora: $linestring";
 		set BoRAltId [lindex $linestring 0]
 		set BoRId [lindex $linestring 1]
 		set Pref [lindex $linestring 2]

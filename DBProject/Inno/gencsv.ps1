@@ -1,7 +1,7 @@
 $Server = "localhost" 
 $userId = "sa" 
 $passwd = "sunset@919325"
-$dbName = "master"
+$dbName = "Inno"
 
 $tables = @(
     'adx_bom',
