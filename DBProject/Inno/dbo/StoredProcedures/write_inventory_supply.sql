@@ -1,6 +1,6 @@
 CREATE PROCEDURE [dbo].[write_inventory_supply]
 AS
-insert into [master].[dbo].[adx_supply] (
+insert into [dbo].[adx_supply] (
       [SUPPLY_ID]
       ,[DESCRIPTION]
       ,[VENDOR_ID]
@@ -64,7 +64,7 @@ SELECT
     ,'-'
     ,'-'
     ,'-'               
-  FROM [master].[dbo].[Stock_all], adx_productlocation
+  FROM [dbo].[Stock_all], adx_productlocation
   where SN is not NULL
     and PN = adx_productlocation.PRODUCT_ID and plant = adx_productlocation.[LOCATION]
 GO

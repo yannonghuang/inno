@@ -1,6 +1,6 @@
 CREATE PROCEDURE [dbo].[write_route]
 AS
-insert into [master].[dbo].[adx_route] (
+insert into [dbo].[adx_route] (
        [PRODAREA]
       ,[ROUTE_ID]
       ,[SEGMENT_ID]
@@ -16,6 +16,6 @@ SELECT
       ,[STEP_IX]
       ,[OPERATION_ID]
  
-  FROM [master].[dbo].[new_route]
+  FROM [dbo].[new_route]
 GO
 

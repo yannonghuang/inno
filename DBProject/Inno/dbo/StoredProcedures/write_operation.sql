@@ -1,6 +1,6 @@
 CREATE PROCEDURE [dbo].[write_operation]
 AS
-insert into [master].[dbo].[adx_operation] (
+insert into [dbo].[adx_operation] (
        [OPERATION_ID]
       ,[DESCRIPTION]
       ,[MIN_WAIT_TIME]
@@ -39,7 +39,7 @@ VALUES(
       ,'-' 
 )
 
-insert into [master].[dbo].[adx_operation] (
+insert into [dbo].[adx_operation] (
        [OPERATION_ID]
       ,[DESCRIPTION]
       ,[MIN_WAIT_TIME]
@@ -76,6 +76,6 @@ SELECT
       ,'-'
       ,'-'
       ,'-' 
-  FROM [master].[dbo].[adx_route]
+  FROM [dbo].[adx_route]
 GO
 

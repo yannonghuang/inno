@@ -8,7 +8,7 @@ SELECT *
               PARTITION BY DEMAND_ID
               ORDER BY (SELECT NULL)
             )
-FROM [master].[dbo].[adx_demand]
+FROM [dbo].[adx_demand]
 ) AS T
 WHERE DupRank > 1
 GO

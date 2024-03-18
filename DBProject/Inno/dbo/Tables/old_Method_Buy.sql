@@ -1,12 +1,12 @@
 CREATE TABLE [dbo].[old_Method_Buy] (
-    [PRODUCT_ID]        NVARCHAR (50) NOT NULL,
-    [Revesion_level]    NVARCHAR (50) NOT NULL,
-    [VENDOR_ID]         INT           NOT NULL,
-    [LOCATION]          SMALLINT      NOT NULL,
-    [PREFERENCE_Quota]  TINYINT       NOT NULL,
-    [EFFECTIVE_START]   DATE          NOT NULL,
-    [EFFECTIVE_END]     DATE          NOT NULL,
-    [LEAD_DAYS_SUPPLY]  SMALLINT      NOT NULL,
+    [PRODUCT_ID]        NVARCHAR (50) NULL,
+    [Revesion_level]    NVARCHAR (50) NULL,
+    [VENDOR_ID]         INT           NULL,
+    [LOCATION]          NVARCHAR (50) NULL,
+    [PREFERENCE_Quota]  TINYINT       NULL,
+    [EFFECTIVE_START]   DATE          NULL,
+    [EFFECTIVE_END]     DATE          NULL,
+    [LEAD_DAYS_SUPPLY]  SMALLINT      NULL,
     [CYCLE_DAYS_SUPPLY] NVARCHAR (1)  NULL
 );
 GO

@@ -9,7 +9,7 @@ SELECT *
               PARTITION BY BORA_ID
               ORDER BY (SELECT NULL)
             )
-FROM [master].[dbo].[adx_bora]
+FROM [dbo].[adx_bora]
 ) AS T
 WHERE DupRank > 1
 GO

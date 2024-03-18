@@ -9,7 +9,7 @@ SELECT *
               PARTITION BY RESOURCE_ID, LOCATION
               ORDER BY (SELECT NULL)
             )
-FROM [master].[dbo].[adx_resource]
+FROM [dbo].[adx_resource]
 ) AS T
 WHERE DupRank > 1
 GO

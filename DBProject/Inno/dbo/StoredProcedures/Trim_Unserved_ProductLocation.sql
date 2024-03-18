@@ -13,6 +13,7 @@ BEGIN
     select * from adx_transportation where adx_transportation.PRODUCT = adx_productlocation.PRODUCT_ID and adx_transportation.TO_LOCATION = adx_productlocation.LOCATION
     ) 
 
+/*
     declare @productlocation_count int = 1;
     while @productlocation_count > 0
     BEGIN
@@ -23,7 +24,7 @@ BEGIN
         )
         set @productlocation_count = @@rowcount;
     END
-
+*/
 END
 GO
 

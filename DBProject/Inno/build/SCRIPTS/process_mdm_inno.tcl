@@ -79,7 +79,7 @@ proc Build_Purchase_Method {} {
 			continue; #blank line
 		}
 		set linestring [split $linestring ,];
-		#echo "p-mthd:$linestring"
+		echo "p-mthd:$linestring"
 		set MatId [lindex $linestring 0];
 		set Loc [lindex $linestring 1];
 		set Pref [lindex $linestring 2];
@@ -204,7 +204,7 @@ proc Build_Method_Make {} {
 			continue; #blank line
 		}
 		set linestring [split $linestring ,]
-		#echo "method: $linestring";
+		# "method: $linestring";
 		lappend mLine $linestring;
 		lappend lProdId [lindex $linestring 0];
 		lappend lLoc [lindex $linestring 1];
@@ -255,7 +255,10 @@ proc Build_Method_Make {} {
 			#set lAltBom [lindex $altBomParent $idx];
 		    #echo "lsearch -all $altBomParent $ProdId = $lAltBom"
 		
+			set prefereceList [split $Pref |]; #YNH
+			echo "...prefereceList=$prefereceList"; #YNH
 			for {set b_ix 0} {$b_ix < [llength $lAltBom]} {incr b_ix} {
+				set myPreference [lindex $prefereceList $b_ix]; #YNH
 				set altBomId [lindex $lAltBom $b_ix];
 				set mthdId [format "M_%s_%s_%s_%s" $ProdId $Route $altBomId $Loc];
 				#set mthdId [format "M_%s_%s_%s" $ProdId $Route $altBomId];	YNH			
@@ -293,7 +296,10 @@ proc Build_Method_Make {} {
 					method_alt set id $ProdId@$Loc;
 				}
 				method_alt elem add $mthdId;
-				method_alt elem set pref $Pref;
+				
+				if [catch {method_alt elem set pref $myPreference} err] {echo "$err...myPreference=$myPreference"}; #YNH				
+				#method_alt elem set pref $Pref; YNH
+				
 				# TBA: effectivity dates in date1 format
 				if { $effstart != "-" } {
 					method_alt elem set eff_start [e2d_date $effstart];

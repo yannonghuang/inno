@@ -1,6 +1,6 @@
 CREATE TABLE [dbo].[DP] (
     [Category]    NVARCHAR (50)  NULL,
-    [Plant]       SMALLINT       NULL,
+    [Plant]       NVARCHAR (50)  NULL,
     [Customer]    NVARCHAR (50)  NULL,
     [Territory]   NVARCHAR (50)  NULL,
     [Series]      NVARCHAR (50)  NULL,
@@ -20,12 +20,7 @@ CREATE TABLE [dbo].[DP] (
     [_2024_09]    NVARCHAR (50)  NULL,
     [_2024_10]    NVARCHAR (50)  NULL,
     [_2024_11]    NVARCHAR (50)  NULL,
-    [_2024_12]    NVARCHAR (50)  NULL,
-    [_2024_Q1]    NVARCHAR (50)  NULL,
-    [_2024_Q2]    NVARCHAR (50)  NULL,
-    [_2024_Q3]    NVARCHAR (50)  NULL,
-    [_2024_Q4]    NVARCHAR (50)  NULL,
-    [_2024_TOTAL] NVARCHAR (50)  NULL
+    [_2024_12]    NVARCHAR (50)  NULL
 );
 GO
 

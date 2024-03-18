@@ -19,7 +19,7 @@ insert into [adx_product] (
 )
 SELECT
     [work_order_model],   
-    'Virtual Product for DP Model ',  
+    [DP_model], -- 'Virtual Product for DP Model ',  
     'F',  
     'MODULE',
         'Model', -- DP_Models.MPS_Model, -- 'DP Model', -- 'MODULE',

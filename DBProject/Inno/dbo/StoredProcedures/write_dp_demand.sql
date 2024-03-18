@@ -1,6 +1,6 @@
 CREATE PROCEDURE [dbo].[write_dp_demand]
 AS
-insert into [master].[dbo].[adx_demand] (
+insert into [dbo].[adx_demand] (
        [DEMAND_ID]
       ,[DESCRIPTION]
       ,[CUSTOMER_ID]

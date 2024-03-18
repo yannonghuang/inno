@@ -9,7 +9,7 @@ SELECT *
               PARTITION BY ROUTE_ID, OPERATION_ID
               ORDER BY (SELECT NULL)
             )
-FROM [master].[dbo].[adx_route]
+FROM [dbo].[adx_route]
 ) AS T
 WHERE DupRank > 1
 GO

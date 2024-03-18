@@ -1,6 +1,6 @@
 CREATE PROCEDURE [dbo].[write_customer]
 AS
-insert into [master].[dbo].[adx_customer] (
+insert into [dbo].[adx_customer] (
 [CUSTOMER_ID]
       ,[CUSTOMER_DESCRIPTION]
       ,[CustomerPref]
@@ -16,6 +16,6 @@ SELECT
     ,'HIER_LEVEL_2'
     ,'HIER_LEVEL_3'
  
-  FROM [master].[dbo].[SO]
+  FROM [dbo].[SO]
 GO
 

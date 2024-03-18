@@ -9,7 +9,7 @@ SELECT *
               PARTITION BY OPERATION_ID
               ORDER BY (SELECT NULL)
             )
-FROM [master].[dbo].[adx_operation]
+FROM [dbo].[adx_operation]
 ) AS T
 WHERE DupRank > 1
 GO

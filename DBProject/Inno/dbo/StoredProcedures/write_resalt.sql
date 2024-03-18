@@ -1,7 +1,7 @@
 CREATE PROCEDURE [dbo].[write_resalt]
 AS
 
-insert into [master].[dbo].[adx_resalt] (
+insert into [dbo].[adx_resalt] (
        [OPERATION_ID]
       ,[RESALT_ID]
       ,[PREFERENCE]
@@ -16,7 +16,7 @@ values (
       ,'1'
 )
 
-insert into [master].[dbo].[adx_resalt] (
+insert into [dbo].[adx_resalt] (
        [OPERATION_ID]
       ,[RESALT_ID]
       ,[PREFERENCE]
@@ -29,11 +29,11 @@ SELECT
       ,'1'
       ,replace(RESALT_ID, 'RESALT' , 'RESOURCE')
       ,'1'
-FROM [master].[dbo].[adx_bor] 
+FROM [dbo].[adx_bor] 
 where not RESALT_ID like '%dummy%'
 
 
-insert into [master].[dbo].[adx_resalt] (
+insert into [dbo].[adx_resalt] (
        [OPERATION_ID]
       ,[RESALT_ID]
       ,[PREFERENCE]
@@ -46,7 +46,7 @@ SELECT
       ,'1'
       ,replace(replace(RESALT_ID, 'RESALT' , 'RESOURCE'), '_Machine', '_s_Machine')
       ,'2'
-FROM [master].[dbo].[adx_bor]
+FROM [dbo].[adx_bor]
 where RESALT_ID like '%_Machine' and not RESALT_ID like '%dummy%'
 GO
 

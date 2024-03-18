@@ -1,7 +1,7 @@
 CREATE PROCEDURE [dbo].[write_graybox]
 AS
 
-delete FROM [master].[dbo].[SR4AOC rough capacity] 
+delete FROM [dbo].[SR4AOC rough capacity] 
 where [SR4AOC rough capacity].capacity is null or [SR4AOC rough capacity].capacity = 0
 
 DELETE T
@@ -21,7 +21,7 @@ FROM [SR4AOC rough capacity]
 WHERE DupRank > 1
 
 
-insert into [master].[dbo].[adx_graybox] (
+insert into [dbo].[adx_graybox] (
        [CASE]
       ,[CONS_ID]
       ,[LOCATION]
@@ -98,7 +98,7 @@ SELECT
       ,'-' -- [TIME_LEVEL]
       ,'-' -- [CORRESPONDS]
 
-FROM [master].[dbo].[SR4AOC rough capacity] left outer join process on process.Process = [SR4AOC rough capacity].process
+FROM [dbo].[SR4AOC rough capacity] left outer join process on process.Process = [SR4AOC rough capacity].process
     left outer join POCModel on POCModel.[DP_model] = [SR4AOC rough capacity].model
 where [SR4AOC rough capacity].capacity <> 0
 GO

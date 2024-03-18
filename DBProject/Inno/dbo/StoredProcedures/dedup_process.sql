@@ -8,7 +8,7 @@ SELECT *
               PARTITION BY P_N
               ORDER BY (SELECT NULL)
             )
-FROM [master].[dbo].[process]
+FROM [dbo].[process]
 ) AS T
 WHERE DupRank > 1
 GO

@@ -8,7 +8,7 @@ SELECT *
               PARTITION BY PN, Plant
               ORDER BY (SELECT NULL)
             )
-FROM [master].[dbo].[FG_Location_Scrap]
+FROM [dbo].[FG_Location_Scrap]
 ) AS T
 WHERE DupRank > 1
 GO

@@ -8,7 +8,7 @@ SELECT *
               PARTITION BY Product, FROM_LOCATION, TO_LOCATION, Mode 
               ORDER BY (SELECT NULL)
             )
-FROM [master].[dbo].[adx_transportation]
+FROM [dbo].[adx_transportation]
 ) AS T
 WHERE DupRank > 1
 GO

@@ -34,6 +34,6 @@ SELECT
         ,'-'
         ,'-'  
         ,'-'
-  FROM [master].[dbo].[DPM_CustomerPN_Customer]
+  FROM [dbo].[DPM_CustomerPN_Customer]
 GO
 

@@ -1,6 +1,6 @@
 CREATE PROCEDURE [dbo].[write_vendor]
 AS
-insert into [master].[dbo].[adx_vendor] (
+insert into [dbo].[adx_vendor] (
 [VENDOR_ID]
       ,[VENDOR_DESCRIPTION]
       ,[VENDOR_HIER_LEVEL_1]

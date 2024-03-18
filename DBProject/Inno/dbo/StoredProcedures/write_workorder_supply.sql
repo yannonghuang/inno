@@ -1,6 +1,6 @@
 CREATE PROCEDURE [dbo].[write_workorder_supply]
 AS
-insert into [master].[dbo].[adx_supply] (
+insert into [dbo].[adx_supply] (
       [SUPPLY_ID]
       ,[DESCRIPTION]
       ,[VENDOR_ID]
@@ -63,7 +63,7 @@ SELECT
     ,'-'
     ,'-'
     ,'-'               
-  FROM [master].[dbo].[production_order], adx_productlocation
+  FROM [dbo].[production_order], adx_productlocation
   where WO is not NULL
   and PN = adx_productlocation.PRODUCT_ID and Plant = adx_productlocation.[LOCATION]
 GO

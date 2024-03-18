@@ -1,6 +1,6 @@
 CREATE PROCEDURE [dbo].[write_op_override]
 AS
-insert into [master].[dbo].[adx_op_override] (
+insert into [dbo].[adx_op_override] (
        [OPERATION_ID]
       ,[PRODUCT_ID]
       ,[RESOURCE_ID]

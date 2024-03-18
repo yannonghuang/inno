@@ -12,8 +12,8 @@ DECLARE @sSQL nvarchar(1500)
       begin
         fetch MyCursor into @table_name
         print @table_name
-        SET @sSQL = 'insert into reduced_'+ @table_name + 
-            ' select * from ' + @table_name
+        SET @sSQL = 'insert into '+ @table_name + 
+            ' select * from original_' + @table_name
                       
         print @sSQL
         EXEC(@sSQL)

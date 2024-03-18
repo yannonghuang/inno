@@ -14,7 +14,7 @@ SELECT *
                 ,[FG_HIER_LEVEL_3]
               ORDER BY (SELECT NULL)
             )
-FROM [master].[dbo].[adx_product]
+FROM [dbo].[adx_product]
 ) AS T
 WHERE DupRank > 1 
 
@@ -52,7 +52,7 @@ SELECT [PRODUCT_ID]
       ,[A_MAT_STATUS]
       ,[LATE_FORECAST]
       ,[LATE_SALES]
-FROM [master].[dbo].[adx_product]
+FROM [dbo].[adx_product]
 group by 
        [PRODUCT_ID]
       ,[DESCRIPTION]
@@ -102,6 +102,6 @@ SELECT [PRODUCT_ID]
       ,[A_MAT_STATUS]
       ,[LATE_FORECAST]
       ,[LATE_SALES]
-  FROM [master].[dbo].[adx_product_mirror]
+  FROM [dbo].[adx_product_mirror]
 GO
 

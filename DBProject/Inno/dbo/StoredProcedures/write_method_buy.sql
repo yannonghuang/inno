@@ -1,6 +1,6 @@
 CREATE PROCEDURE [dbo].[write_method_buy]
 AS
-insert into [master].[dbo].[adx_method_buy] (
+insert into [dbo].[adx_method_buy] (
         [PRODUCT_ID]
       ,[LOCATION]
       ,[PREFERENCE]

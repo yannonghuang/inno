@@ -2,7 +2,7 @@ CREATE PROCEDURE [dbo].[Trim_Demand]
 AS
 BEGIN
 
-delete from [master].[dbo].[adx_demand]
+delete from [dbo].[adx_demand]
 where not exists (
     select * from adx_productlocation
     where adx_demand.PRODUCT_ID = adx_productlocation.PRODUCT_ID and adx_demand.LOCATION_ID = adx_productlocation.[LOCATION] 

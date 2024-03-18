@@ -37,13 +37,17 @@ for ($i = 0; $i -lt $tables.Length; $i++) {
         ,[COMLOCATION_UDA_TECHNOLOGY]      
         ,CAST(START as date)'
     }
+
+    if ($tables[$i] -eq "adx_bom") {
+        $query += ' order by PARENT_ID, CHILD_ID '
+    }
+
     $file = $folder + $tables[$i] + "_inno.csv"
 
     Invoke-Sqlcmd  -ConnectionString $ConnectionString -Query $query  | 
     Export-Csv -UseQuotes Never -NoTypeInformation -Encoding UTF8 -Path $file ","
 
 }
-
 
 
 #adx_cappattern	

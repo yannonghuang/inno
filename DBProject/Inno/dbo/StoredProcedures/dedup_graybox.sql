@@ -14,7 +14,7 @@ SELECT *
                 ,[END]                
               ORDER BY (SELECT NULL)
             )
-FROM [master].[dbo].[adx_graybox]
+FROM [dbo].[adx_graybox]
 ) AS T
 WHERE DupRank > 1
 GO

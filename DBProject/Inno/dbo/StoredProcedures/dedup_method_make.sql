@@ -8,7 +8,7 @@ SELECT *
               PARTITION BY BOM_ID, ROUTE_ID, LOCATION
               ORDER BY (SELECT NULL)
             )
-FROM [master].[dbo].[adx_method_make]
+FROM [dbo].[adx_method_make]
 ) AS T
 WHERE DupRank > 1
 GO

@@ -8,7 +8,7 @@ SELECT *
               PARTITION BY VENDOR_ID
               ORDER BY (SELECT NULL)
             )
-FROM [master].[dbo].[adx_vendor]
+FROM [dbo].[adx_vendor]
 ) AS T
 WHERE DupRank > 1
 GO

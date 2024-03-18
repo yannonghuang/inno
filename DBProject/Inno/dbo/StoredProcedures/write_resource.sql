@@ -1,6 +1,6 @@
 CREATE PROCEDURE [dbo].[write_resource]
 AS
-insert into [master].[dbo].[adx_resource] (
+insert into [dbo].[adx_resource] (
        [RESOURCE_ID]
       ,[DESCRIPTION]
       ,[LOCATION]
@@ -69,11 +69,11 @@ SELECT
       ,'-' -- [HIER_LEVEL_3_bak]
       ,'-' -- [HIER_LEVEL_1_bak]
 
-FROM [master].[dbo].[adx_resalt], COP_resource
+FROM [dbo].[adx_resalt], COP_resource
 where RES_ID = 'RESOURCE_' + COP_resource.RESOURCE_ID + '_Machine' and COP_resource.Number_of_station <> 0
 
 
-insert into [master].[dbo].[adx_resource] (
+insert into [dbo].[adx_resource] (
        [RESOURCE_ID]
       ,[DESCRIPTION]
       ,[LOCATION]

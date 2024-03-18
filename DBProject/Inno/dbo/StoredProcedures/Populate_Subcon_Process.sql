@@ -18,7 +18,7 @@ DECLARE @sSQL nvarchar(500)
 
         SET @sSQL = 'insert into Subcon_Process (P_N, Plant, Process) ' +
             'SELECT [partnumber], ''SUB_PCBA'', ''subcon'' ' +
-            'FROM [master].[dbo].' + @table_name + 
+            'FROM [dbo].' + @table_name + 
             ' where componenttype = ''SUBCON'' '
         print @sSQL
         EXEC(@sSQL)

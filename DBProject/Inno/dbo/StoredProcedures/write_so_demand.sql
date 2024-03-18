@@ -2,7 +2,7 @@ CREATE PROCEDURE [dbo].[write_so_demand]
 AS
 BEGIN
 
-insert into [master].[dbo].[adx_demand] (
+insert into [dbo].[adx_demand] (
        [DEMAND_ID]
       ,[DESCRIPTION]
       ,[CUSTOMER_ID]
@@ -53,7 +53,7 @@ SELECT
       ,'-'
       ,'-'               
 
-  FROM [master].[dbo].[SO] 
+  FROM [dbo].[SO] 
     left OUTER JOIN customer on [CustomerCode] = customer.Sold_to_customer
     --left OUTER JOIN customer on '0000' + [CustomerCode] = customer.Sold_to_customer
 END

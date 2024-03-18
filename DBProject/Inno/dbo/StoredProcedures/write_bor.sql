@@ -1,6 +1,6 @@
 CREATE PROCEDURE [dbo].[write_bor]
 AS
-insert into [master].[dbo].[adx_bor] (
+insert into [dbo].[adx_bor] (
        [BOR_ID]
       ,[IDX]
       ,[RESALT_ID]
@@ -13,7 +13,7 @@ values(
       ,'1'
 )
 
-insert into [master].[dbo].[adx_bor] (
+insert into [dbo].[adx_bor] (
        [BOR_ID]
       ,[IDX]
       ,[RESALT_ID]
@@ -27,10 +27,10 @@ SELECT
       else replace(BOR_ID, 'BOR' , 'RESALT') + '_Machine'
       end
       ,'1'
-FROM [master].[dbo].[adx_bora]
+FROM [dbo].[adx_bora]
 where not BOR_ID like '%dummy%'
 
-insert into [master].[dbo].[adx_bor] (
+insert into [dbo].[adx_bor] (
        [BOR_ID]
       ,[IDX]
       ,[RESALT_ID]
@@ -41,7 +41,7 @@ SELECT
       ,'2'
       ,'RESALT_Crew'
       ,'1'
-FROM [master].[dbo].[adx_bora]
+FROM [dbo].[adx_bora]
 where not BOR_ID like '%dummy%'
 GO
 

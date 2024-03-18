@@ -34,7 +34,7 @@ SELECT
         ,'-'
         ,'-'  
         ,'-'
-  FROM [master].[dbo].[FG_SUBSTITUTES], adx_product, Process
+  FROM [dbo].[FG_SUBSTITUTES], adx_product, Process
   where FG_PN = adx_product.PRODUCT_ID and FG_PN = Process.P_N and Process.Process = 'Module'
 GO
 

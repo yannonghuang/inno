@@ -8,7 +8,7 @@ SELECT *
               PARTITION BY component, FG
               ORDER BY (SELECT NULL)
             )
-FROM [master].[dbo].[BOM_Single_Level]
+FROM [dbo].[BOM_Single_Level]
 ) AS T
 WHERE DupRank > 1
 GO

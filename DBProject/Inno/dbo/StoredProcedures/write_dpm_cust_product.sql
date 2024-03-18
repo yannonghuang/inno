@@ -20,7 +20,7 @@ insert into [adx_product] (
 )
 SELECT
     [DPM] + '@' + Customer,   
-    'Virtual Product for Customer-Specific DP Model ',  
+    [DP_model], -- 'Virtual Product for Customer-Specific DP Model ',  
     'M',  
     'MODULE',
         'NA', -- 'MODULE',
@@ -33,6 +33,7 @@ SELECT
         '-',
         '-',
         '-'  
-  FROM [DPM_CustomerPN_Customer]
+FROM [DPM_CustomerPN_Customer], [dbo].[POCModel]
+where [DPM] = [work_order_model]
 GO
 

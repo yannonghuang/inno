@@ -17,7 +17,7 @@ DECLARE @sSQL nvarchar(500)
 
         SET @sSQL = 'insert into virtual_parent_process (part_number, parent_process, location) ' +
             'SELECT [partnumber], FG_Location_Scrap.Process, FG_Location_Scrap.Plant ' +
-            'FROM [master].[dbo].' + @table_name + ', FG_Location_Scrap ' +
+            'FROM [dbo].' + @table_name + ', FG_Location_Scrap ' +
             'where componenttype = ''virtual'' and ParentPart = FG_Location_Scrap.PN'
 
         EXEC(@sSQL)

@@ -11,7 +11,7 @@ insert into [method_buy] (
 SELECT  [PN]
       ,[Plant]
       ,[Vendor]
-  FROM [master].[dbo].[RAW_Material_Method_Buy]
+  FROM [dbo].[RAW_Material_Method_Buy]
 
 
 DELETE T

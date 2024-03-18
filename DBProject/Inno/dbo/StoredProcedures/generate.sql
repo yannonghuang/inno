@@ -54,7 +54,7 @@ EXEC dedup_transportation
 
 ------------ BEGIN: static post-processing
 EXEC Trim_Unserved_Method_Make
-EXEC Trim_Unserved_ProductLocation
+--EXEC Trim_Unserved_ProductLocation
 EXEC Trim_Unused_ProductLocation
 EXEC Unset_Obsolete_Flag
 ------------ END: static post-processing

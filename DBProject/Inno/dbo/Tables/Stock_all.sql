@@ -1,6 +1,6 @@
 CREATE TABLE [dbo].[Stock_all] (
     [版次]                    NVARCHAR (50) NULL,
-    [MES质检库存]               NVARCHAR (50) NULL,
+    [MES质检库存]               TINYINT       NULL,
     [PN]                    NVARCHAR (50) NULL,
     [Description]           NVARCHAR (50) NULL,
     [Plant]                 NVARCHAR (50) NULL,
