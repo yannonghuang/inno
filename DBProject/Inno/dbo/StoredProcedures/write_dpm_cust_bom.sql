@@ -23,10 +23,10 @@ SELECT
         'BOM_' + [DPM] + '@' + Customer
         ,'-'
         , [DPM] + '@' + Customer
-        , [CustomerPN] + '@' + Customer
+        , FG_SUBSTITUTES.FG_PN -- [CustomerPN] + '@' + Customer
         ,'1'
         ,'1'        
-        , [CustomerPN] + '@' + Customer
+        , FG_SUBSTITUTES.FG_PN -- [CustomerPN] + '@' + Customer
         ,'-'
         ,'-'   
         ,'1'   
@@ -35,5 +35,10 @@ SELECT
         ,'-'  
         ,'-'
   FROM [dbo].[DPM_CustomerPN_Customer]
+  ,[FG_SUBSTITUTES]
+  ,[DP_Models]
+  where DPM_CustomerPN_Customer.Customer = FG_SUBSTITUTES.Customer_abbreviate and DPM_CustomerPN_Customer.CustomerPN = FG_SUBSTITUTES.PN_for_customer
+  and DP_Models.Code = DPM_CustomerPN_Customer.DPM
+  and DP_Models.PN = FG_SUBSTITUTES.FG_PN
 GO
 

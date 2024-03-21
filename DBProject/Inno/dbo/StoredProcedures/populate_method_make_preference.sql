@@ -28,15 +28,21 @@ set @Total =
  @Overhead_Weight
 
 -------------
+CREATE TABLE [dbo].[tmp_table0] (
+	PRODUCT_ID [nvarchar](100) NOT NULL,
+	[LOCATION_ID] [nvarchar](50) NOT NULL,
+	[CHILD_ID] [nvarchar](50) NOT NULL,
+    preference decimal  NULL,
+) 
+
 CREATE TABLE [dbo].[tmp_table] (
 	PRODUCT_ID [nvarchar](100) NOT NULL,
 	[LOCATION_ID] [nvarchar](50) NOT NULL,
 	[CHILD_ID] [nvarchar](50) NOT NULL,
-    preference decimal not NULL
+    preference decimal  NULL,
 ) 
-
 ------------
-insert into [dbo].[tmp_table] (
+insert into [dbo].[tmp_table0] (
 	PRODUCT_ID ,
 	[LOCATION_ID],
 	[CHILD_ID],
@@ -47,7 +53,8 @@ select
         ,adx_method_make.[LOCATION]
         ,adx_bom.CHILD_ID
 
-        ,PREFERENCE = 
+        ,preference = 
+
         CASE
         when exists (
          select *
@@ -62,7 +69,7 @@ select
         end 
 
         +
-        
+
         CASE
         when exists (
          select *
@@ -75,7 +82,9 @@ select
          group by adx_supply.product_id, adx_supply.LOCATION_ID) * (@Planned_Delivery_Weight / @Total)
         else 1
         end    
+
         +
+        
         CASE
         when exists (
          select *
@@ -93,12 +102,22 @@ from adx_method_make, adx_bom
 where adx_method_make.PRODUCT_ID = adx_bom.PARENT_ID and adx_bom.ALT_GROUP <> '-' 
 
 ---------------
+/*
 update tmp_table
 set preference = round( 
     (select max(preference) from tmp_table internalR 
     where internalR.PRODUCT_ID = tmp_table.PRODUCT_ID and internalR.LOCATION_ID = tmp_table.LOCATION_ID
     ) / preference, 0)
-
+*/    
+---------------
+insert into tmp_table(
+	PRODUCT_ID ,
+	[LOCATION_ID],
+	[CHILD_ID] ,
+    preference
+)    
+select product_id, location_id, preference, 10 * ROW_NUMBER() over (partition by product_id, location_id order by preference DESC)
+from tmp_table0
 ---------------
 update adx_method_make
 set PREFERENCE = case 
@@ -117,10 +136,12 @@ then
     where adx_method_make.PRODUCT_ID = tmp_table.PRODUCT_ID and adx_method_make.LOCATION = tmp_table.LOCATION_ID
     group by [tmp_table].[PRODUCT_ID], [tmp_table].[LOCATION_ID]
 )
-else '1000000'
+else '5000'
+--PREFERENCE
 end
 
 -------------
+DROP TABLE [dbo].[tmp_table0]
 DROP TABLE [dbo].[tmp_table]
 GO
 

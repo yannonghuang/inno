@@ -54,10 +54,11 @@ EXEC dedup_transportation
 
 ------------ BEGIN: static post-processing
 EXEC Trim_Unserved_Method_Make
---EXEC Trim_Unserved_ProductLocation
+EXEC Trim_Unserved_ProductLocation
 EXEC Trim_Unused_ProductLocation
 EXEC Unset_Obsolete_Flag
 ------------ END: static post-processing
+
 
 ------------ BEGIN: write_saleable_per_customer
 EXEC write_saleable_per_customer
@@ -67,6 +68,9 @@ EXEC dedup_product
 EXEC dedup_productlocation
 ------------ END: write_saleable_per_customer
 
+------------ BEGIN: populate preference
+EXEC populate_method_make_preference
+------------ END: populate preference
 
 ------------ BEGIN: demand
 EXEC write_customer

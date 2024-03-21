@@ -52,7 +52,7 @@ DECLARE @sSQL nvarchar(1500)
     end
     close MyCursor 
     deallocate MyCursor 
-    --EXEC Trim_BOM_Tables_Common
+    EXEC Trim_BOM_Tables_Common
 END
 GO
 
