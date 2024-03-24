@@ -6,7 +6,7 @@ CREATE TABLE [dbo].[DP] (
     [Series]      NVARCHAR (50)  NULL,
     [Model]       NVARCHAR (100) NULL,
     [Version]     NVARCHAR (50)  NULL,
-    [状态]          NVARCHAR (50)  NULL,
+    [状态]          NVARCHAR (1)   NULL,
     [Application] NVARCHAR (50)  NULL,
     [备注]          NVARCHAR (1)   NULL,
     [_2024_01]    NVARCHAR (50)  NULL,

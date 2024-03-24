@@ -70,6 +70,8 @@ EXEC dedup_productlocation
 
 ------------ BEGIN: populate preference
 EXEC populate_method_make_preference
+EXEC populate_method_move_preference
+EXEC populate_method_buy_preference
 ------------ END: populate preference
 
 ------------ BEGIN: demand
@@ -84,6 +86,8 @@ EXEC Trim_Demand
 ------------ BEGIN: supply
 EXEC write_inventory_supply
 EXEC write_workorder_supply
+EXEC write_jit_supply
+EXEC write_opr_supply
 EXEC dedup_supply
 ------------ END: supply
 

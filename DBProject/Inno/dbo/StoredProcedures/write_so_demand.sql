@@ -41,10 +41,15 @@ SELECT
       end
 
       ,'VIRTUAL'
-      ,[Quantity]
+      ,UnmetQuantity -- [Quantity]
       ,'-'
-      ,'-'      
-      ,[REVENUE]
+      ,'-'
+
+      ,CASE
+      when [REVENUE] is not null then [REVENUE]
+      else '-'
+      END      
+      -- [REVENUE]
 
       ,'-'
       ,'-'   

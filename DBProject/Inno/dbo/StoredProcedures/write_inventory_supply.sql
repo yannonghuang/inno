@@ -33,7 +33,7 @@ insert into [dbo].[adx_supply] (
       ,[ALLOCATION]
 )
 SELECT
-    concat([SN], '_', Plant, '_', Storage, '_', PN)
+    concat(PN, '_', Plant, '_', Storage, '_', UnconstrainedQuantity)
     , REPLACE(Stock_all.Description, ',', ';') -- [Description]         
     , '-'
     ,[Plant]
@@ -65,7 +65,7 @@ SELECT
     ,'-'
     ,'-'               
   FROM [dbo].[Stock_all], adx_productlocation
-  where SN is not NULL
-    and PN = adx_productlocation.PRODUCT_ID and plant = adx_productlocation.[LOCATION]
+  where -- SN is not NULL and
+     PN = adx_productlocation.PRODUCT_ID and plant = adx_productlocation.[LOCATION]
 GO
 

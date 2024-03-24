@@ -53,7 +53,7 @@ proc Build_Demand {} {
 	   	if { $prio != "-" } {
 		    #echo "demand set prio $prio"
 			demand set prio $prio
-	   	}
+	   	}	
 	   	if { $reqDue != "-" } {
 			set reqDue [split $reqDue "/"]
 			set month [lindex $reqDue 0]
@@ -72,11 +72,11 @@ proc Build_Demand {} {
 			} else {
 		   		demand set due_req $reqDue
 			}
-	   	}
+	   	}		
 		if {$rev != "-"} {
 			demand set revenue $rev
 	   	}
-		# temporary for lacking customer csv
+		# temporary for lacking customer csv		
 		if {$cust != "-"} {
 			#if {[catch {customer set id $cust}]} {
 			#	customer add $cust;
@@ -120,15 +120,17 @@ proc Build_Demand {} {
 			demand attribute_value set WIRE_COLOR_S $wireColor;
 	   	}
 		#
+			
  		demand elem set ix 0
 		#echo "!!...$prod\@$loc"
 		demand elem set com@location $prod\@$loc
+		
 	  	#if {$grade != "-" && $grade > 1} {
 	   	   	demand elem set grade 1
 		#}
 		if { $qty != "-" } {
-		   	demand elem set qty $qty
-		}
+			demand elem set qty $qty
+		}			
    	}
    	close $fp;
 }

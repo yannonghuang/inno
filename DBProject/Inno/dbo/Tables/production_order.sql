@@ -6,7 +6,7 @@ CREATE TABLE [dbo].[production_order] (
     [Description]              NVARCHAR (50) NULL,
     [Plant]                    NVARCHAR (50) NULL,
     [Quantity_GMEIN]           NVARCHAR (50) NULL,
-    [Delivered_Quantity_GMEIN] FLOAT (53)    NULL,
+    [Delivered_Quantity_GMEIN] NVARCHAR (50) NULL,
     [UOM_GMEIN]                NVARCHAR (50) NULL,
     [Start_Date]               NVARCHAR (50) NULL,
     [Due_Date]                 NVARCHAR (50) NULL,
@@ -18,7 +18,7 @@ CREATE TABLE [dbo].[production_order] (
     [Storage]                  NVARCHAR (50) NULL,
     [Actual_Assigned_Date]     NVARCHAR (50) NULL,
     [Actual_Finished_Date]     NVARCHAR (50) NULL,
-    [Scrap_GMEIN]              FLOAT (53)    NULL,
+    [Scrap_GMEIN]              NVARCHAR (50) NULL,
     [Actual_Start_Date]        NVARCHAR (50) NULL
 );
 GO

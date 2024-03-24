@@ -90,8 +90,11 @@ proc Import_Supply {} {
 			if {[string length $day] == 1} {
 				set day 0$day
 			}
-			set year [lindex $split_dt 2]
-			set adexa_dt 20$year/$month/$day
+			set year [lindex $split_dt 2]			
+			if {[string length $year] == 2} {
+				set year 20$year
+			}			
+			set adexa_dt $year/$month/$day
 			supply set time [cast date1 time $adexa_dt]
 			#supply set time [cast date1 time $sup_due]
 		} else {

@@ -60,8 +60,8 @@ FROM
       ,[_2024_10]
       ,[_2024_11]
       ,[_2024_12]
-
-   FROM DP) p  
+   FROM DP
+   where Category = 'forecast') p  
 UNPIVOT  
    (Forecast FOR Month IN (
        [_2024_01]
