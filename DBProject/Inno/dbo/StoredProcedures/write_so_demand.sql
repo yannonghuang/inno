@@ -27,7 +27,11 @@ SELECT
       concat([SONumber], '_', [ItemId])
       ,[Description]
 
-      ,[CustomerCode]
+      , case 
+        when customer.Sold_to_customer is not null then customer.Sold_to_customer 
+        else [CustomerCode] 
+      end
+      --,customer.Sold_to_customer -- [CustomerCode]
 
       ,'1'
       ,'100'
@@ -36,8 +40,8 @@ SELECT
 
       , case 
         when abbreviate_customer_code is not null then IndustrialStandard + '@' + abbreviate_customer_code
-        else IndustrialStandard + '@domestic_others' -- ???   
-        -- else [PN]           
+        -- else IndustrialStandard + '@domestic_others' -- ???   
+        else [PN]           
       end
 
       ,'VIRTUAL'
@@ -58,9 +62,11 @@ SELECT
       ,'-'
       ,'-'               
 
-  FROM [dbo].[SO] 
-    left OUTER JOIN customer on [CustomerCode] = customer.Sold_to_customer
+  FROM [dbo].[SO] left OUTER JOIN customer on
+   [CustomerCode] = customer.Sold_to_customer or ('0000' + [CustomerCode] = customer.Sold_to_customer)
+    -- left OUTER JOIN customer on [CustomerCode] = customer.Sold_to_customer
     --left OUTER JOIN customer on '0000' + [CustomerCode] = customer.Sold_to_customer
+  where UnmetQuantity <> '0'
 END
 GO
 

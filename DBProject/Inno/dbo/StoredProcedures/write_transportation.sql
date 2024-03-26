@@ -92,11 +92,84 @@ FROM [Method_Buy], adx_product, [VMI], [process], [process_location] -- adx_prod
 where Method_Buy.PRODUCT_ID = adx_product.PRODUCT_ID and (
     exists (select * from [adx_bom] where Method_Buy.PRODUCT_ID = adx_bom.CHILD_ID and adx_bom.PARENT_ID = process.P_N)
     or exists (select * from [RAW_SUBSTITUTES] where Method_Buy.PRODUCT_ID = RAW_SUBSTITUTES.component and RAW_SUBSTITUTES.Assemble_P_N = process.P_N)
-) and (process.Plant = 'SUB_PCBA' 
+) 
+/*
+and (process.Plant = 'SUB_PCBA' 
     or (process.Plant <> 'SUB_PCBA' and not exists (select * from Method_Buy internalR where internalR.[LOCATION] = process.Plant and internalR.PRODUCT_ID = Method_Buy.PRODUCT_ID))
 )
+*/
 and process.Plant = VMI.Plant 
 and process.Process = process_location.process and process.Plant = process_location.location and process_location.Manufacture = 'M'  
+    --and adx_bom.PARENT_ID = adx_productlocation.PRODUCT_ID and adx_productlocation.location = VMI.Plant
+  
+  -- process.P_N  and process.process = process_location.process and process_location.location = VMI.Plant                    
+  --FROM [Method_Buy], VMI, adx_product
+  --where Method_Buy.PRODUCT_ID = adx_product.PRODUCT_ID  
+    --and adx_bom.PARENT_ID = adx_productlocation.PRODUCT_ID and adx_productlocation.location = VMI.Plant
+  
+  -- process.P_N  and process.process = process_location.process and process_location.location = VMI.Plant                    
+  --FROM [Method_Buy], VMI, adx_product
+  --where Method_Buy.PRODUCT_ID = adx_product.PRODUCT_ID  
+    --and adx_bom.PARENT_ID = adx_productlocation.PRODUCT_ID and adx_productlocation.location = VMI.Plant
+  
+  -- process.P_N  and process.process = process_location.process and process_location.location = VMI.Plant                    
+  --FROM [Method_Buy], VMI, adx_product
+  --where Method_Buy.PRODUCT_ID = adx_product.PRODUCT_ID  
+    --and adx_bom.PARENT_ID = adx_productlocation.PRODUCT_ID and adx_productlocation.location = VMI.Plant
+  
+  -- process.P_N  and process.process = process_location.process and process_location.location = VMI.Plant                    
+  --FROM [Method_Buy], VMI, adx_product
+  --where Method_Buy.PRODUCT_ID = adx_product.PRODUCT_ID  
+    --and adx_bom.PARENT_ID = adx_productlocation.PRODUCT_ID and adx_productlocation.location = VMI.Plant
+  
+  -- process.P_N  and process.process = process_location.process and process_location.location = VMI.Plant                    
+  --FROM [Method_Buy], VMI, adx_product
+  --where Method_Buy.PRODUCT_ID = adx_product.PRODUCT_ID  
+    --and adx_bom.PARENT_ID = adx_productlocation.PRODUCT_ID and adx_productlocation.location = VMI.Plant
+  
+  -- process.P_N  and process.process = process_location.process and process_location.location = VMI.Plant                    
+  --FROM [Method_Buy], VMI, adx_product
+  --where Method_Buy.PRODUCT_ID = adx_product.PRODUCT_ID  
+    --and adx_bom.PARENT_ID = adx_productlocation.PRODUCT_ID and adx_productlocation.location = VMI.Plant
+  
+  -- process.P_N  and process.process = process_location.process and process_location.location = VMI.Plant                    
+  --FROM [Method_Buy], VMI, adx_product
+  --where Method_Buy.PRODUCT_ID = adx_product.PRODUCT_ID  
+    --and adx_bom.PARENT_ID = adx_productlocation.PRODUCT_ID and adx_productlocation.location = VMI.Plant
+  
+  -- process.P_N  and process.process = process_location.process and process_location.location = VMI.Plant                    
+  --FROM [Method_Buy], VMI, adx_product
+  --where Method_Buy.PRODUCT_ID = adx_product.PRODUCT_ID  
+    --and adx_bom.PARENT_ID = adx_productlocation.PRODUCT_ID and adx_productlocation.location = VMI.Plant
+  
+  -- process.P_N  and process.process = process_location.process and process_location.location = VMI.Plant                    
+  --FROM [Method_Buy], VMI, adx_product
+  --where Method_Buy.PRODUCT_ID = adx_product.PRODUCT_ID  
+    --and adx_bom.PARENT_ID = adx_productlocation.PRODUCT_ID and adx_productlocation.location = VMI.Plant
+  
+  -- process.P_N  and process.process = process_location.process and process_location.location = VMI.Plant                    
+  --FROM [Method_Buy], VMI, adx_product
+  --where Method_Buy.PRODUCT_ID = adx_product.PRODUCT_ID  
+    --and adx_bom.PARENT_ID = adx_productlocation.PRODUCT_ID and adx_productlocation.location = VMI.Plant
+  
+  -- process.P_N  and process.process = process_location.process and process_location.location = VMI.Plant                    
+  --FROM [Method_Buy], VMI, adx_product
+  --where Method_Buy.PRODUCT_ID = adx_product.PRODUCT_ID  
+    --and adx_bom.PARENT_ID = adx_productlocation.PRODUCT_ID and adx_productlocation.location = VMI.Plant
+  
+  -- process.P_N  and process.process = process_location.process and process_location.location = VMI.Plant                    
+  --FROM [Method_Buy], VMI, adx_product
+  --where Method_Buy.PRODUCT_ID = adx_product.PRODUCT_ID  
+    --and adx_bom.PARENT_ID = adx_productlocation.PRODUCT_ID and adx_productlocation.location = VMI.Plant
+  
+  -- process.P_N  and process.process = process_location.process and process_location.location = VMI.Plant                    
+  --FROM [Method_Buy], VMI, adx_product
+  --where Method_Buy.PRODUCT_ID = adx_product.PRODUCT_ID  
+    --and adx_bom.PARENT_ID = adx_productlocation.PRODUCT_ID and adx_productlocation.location = VMI.Plant
+  
+  -- process.P_N  and process.process = process_location.process and process_location.location = VMI.Plant                    
+  --FROM [Method_Buy], VMI, adx_product
+  --where Method_Buy.PRODUCT_ID = adx_product.PRODUCT_ID  
     --and adx_bom.PARENT_ID = adx_productlocation.PRODUCT_ID and adx_productlocation.location = VMI.Plant
   
   -- process.P_N  and process.process = process_location.process and process_location.location = VMI.Plant                    

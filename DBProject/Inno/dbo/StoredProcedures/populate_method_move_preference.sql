@@ -20,6 +20,14 @@ declare @Planned_Purchase_Weight FLOAT
 declare @Purchase_History_Weight FLOAT
 declare @Overhead_Weight FLOAT
 
+declare @Buy_Planned_Purchase_Weight FLOAT
+
+SELECT
+    @Buy_Planned_Purchase_Weight = Planned_Purchase
+FROM [preference_weight]
+where [Area] = 'Buy'
+
+
 SELECT
       @FG_Inventory_Weight = [Inventory],
       @FG_Scheduled_Delivery_Weight = [Scheduled_Delivery],
@@ -30,8 +38,8 @@ SELECT
       @FG_Scheduled_Supply_Weight = Scheduled_Supply,
       @FG_Planned_Purchase_Weight = Planned_Purchase,
       @FG_Purchase_History_Weight = Purchase_History 
-  FROM [preference_weight]
-  where [Area] = 'Make_FG'
+FROM [preference_weight]
+where [Area] = 'Make_FG'
 
 SELECT
       @Inventory_Weight = [Inventory],
@@ -43,13 +51,13 @@ SELECT
       @Scheduled_Supply_Weight = Scheduled_Supply,
       @Planned_Purchase_Weight = Planned_Purchase,
       @Purchase_History_Weight = Purchase_History
-  FROM [preference_weight]
-  where [Area] = 'Make_Raw'
+FROM [preference_weight]
+where [Area] = 'Make_Raw'
 
 SELECT
       @Overhead_Weight = [Overhead]    
-  FROM [preference_weight]
-  where [Area] = 'Move'
+FROM [preference_weight]
+where [Area] = 'Move'
 
 -------------
 CREATE TABLE [dbo].[tmp_table0] (
@@ -191,6 +199,23 @@ select
 
         +
         
+        -- planned purchase
+        (CASE
+        when exists (
+         select *
+         FROM  opo 
+         where adx_transportation.PRODUCT = opo.PN and adx_transportation.[FROM_LOCATION] = opo.Plant
+        ) then
+        (select SUM(TRY_CAST(opo.Quantity as decimal))
+         FROM  opo 
+         where adx_transportation.PRODUCT = opo.PN and adx_transportation.[FROM_LOCATION] = opo.Plant
+         group by opo.PN, opo.Plant)  
+        else 0
+        end) *
+        @Buy_Planned_Purchase_Weight
+
+        +
+
         -- overhead
         (adx_transportation.COST * adx_transportation.TRANSIT_TIME) * @Overhead_Weight               
         --,[PREFERENCE]   
