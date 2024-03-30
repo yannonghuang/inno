@@ -59,23 +59,43 @@ insert into [dbo].[adx_operation] (
       ,[TRANSFER_LOT_SIZE]
 )
 SELECT  
-       OPERATION_ID
+       adx_route.OPERATION_ID
       ,'-'
       ,'-'
       ,'-'
+      
+      ,case 
+      when preprocessing is not null then preprocessing
+      else '-'
+      end
+      -- [DEFAULT_SETUP_TIME]      
+      --,'-'
+      
       ,'-'
       ,'-'
-      ,'-'
-      ,'-'
-      ,'-'
+      
+      ,case 
+      when Machine_UPH <> '0' and Machine_UPH is not null then Machine_UPH
+      else Labor_UPH
+      end      
+      --,[UPH] --[UPH]
+
+      ,case 
+      when postprocessing is not null then postprocessing
+      else '-'
+      end
+      -- [POST_PROCESSING_TIME]      
+      --,'-'
+
       ,'-'
       ,'1'
       ,'-'
-      ,REPLACE(OPERATION_ID, 'OP', 'BORA') --'BORA_dummy'
+      ,REPLACE(adx_route.OPERATION_ID, 'OP', 'BORA') --'BORA_dummy'
       ,'-'
       ,'-'
       ,'-'
       ,'-' 
-  FROM [dbo].[adx_route]
+  FROM [dbo].[adx_route], [Operation_Override_COP]
+  where Operation_Override_COP.OPERATION_ID = adx_route.OPERATION_ID
 GO
 

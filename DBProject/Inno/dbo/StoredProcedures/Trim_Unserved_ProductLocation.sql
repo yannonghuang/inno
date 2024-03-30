@@ -3,14 +3,17 @@ CREATE PROCEDURE [dbo].[Trim_Unserved_ProductLocation]
 AS
 BEGIN
 
-    declare @productlocation_served_count int = 1;
-    declare @productlocation_completed_count int = 1;    
-    declare @productlocation_sound_count int = 1;        
+    -- init
+    update adx_productlocation
+    set c = 1
+
+    declare @productlocation_count int = 1;     
     declare @transportation_count int = 1;    
-    while @productlocation_served_count > 0 and @transportation_count > 0 and @productlocation_completed_count > 0 -- and @productlocation_sound_count > 0
+    while @productlocation_count > 0 and @transportation_count > 0 
     BEGIN
 
-        delete from adx_productlocation
+        update adx_productlocation
+        set c = 0
         where 
         not exists (select * from adx_bom where adx_bom.CHILD_ID = adx_productlocation.PRODUCT_ID and adx_bom.ALT_GROUP <> '-')
 
@@ -22,20 +25,36 @@ BEGIN
         and not exists (
         select * from adx_transportation where adx_transportation.PRODUCT = adx_productlocation.PRODUCT_ID and adx_transportation.TO_LOCATION = adx_productlocation.LOCATION
         ) 
-        set @productlocation_served_count = @@rowcount;
+
 -----------------------------------------------
-        delete from adx_productlocation    
-        where  
-        not exists (select * from adx_bom where adx_bom.CHILD_ID = adx_productlocation.PRODUCT_ID and adx_bom.ALT_GROUP <> '-')
-        
-        and exists (
-        select * from adx_method_make, adx_bom where 
+        update adx_productlocation    
+        set c = (
+            select min(internalR.c) from adx_method_make, adx_bom, adx_productlocation internalR where 
             adx_bom.ALT_GROUP = '-'
             and adx_bom.PARENT_ID = adx_method_make.PRODUCT_ID and adx_method_make.PRODUCT_ID = adx_productlocation.PRODUCT_ID 
             and adx_method_make.[LOCATION] = adx_productlocation.[LOCATION]
-            and not exists (select * from adx_productlocation internalR where adx_bom.CHILD_ID = internalR.PRODUCT_ID and adx_method_make.[LOCATION] = internalR.[LOCATION])            
+            and adx_bom.CHILD_ID = internalR.PRODUCT_ID and adx_method_make.[LOCATION] = internalR.[LOCATION] 
         )
-        set @productlocation_completed_count = @@rowcount;
+        where  
+            not exists (select * from adx_bom where adx_bom.CHILD_ID = adx_productlocation.PRODUCT_ID and adx_bom.ALT_GROUP <> '-')        
+
+-----------------------------------------------
+        update adx_productlocation    
+        set c = (
+            select sum(internalR.c) from adx_method_make, adx_bom, adx_productlocation internalR where 
+            adx_bom.ALT_GROUP = '-'
+            and adx_bom.PARENT_ID = adx_method_make.PRODUCT_ID and adx_method_make.PRODUCT_ID = adx_productlocation.PRODUCT_ID 
+            and adx_method_make.[LOCATION] = adx_productlocation.[LOCATION]
+            and adx_bom.CHILD_ID = internalR.PRODUCT_ID and adx_method_make.[LOCATION] = internalR.[LOCATION] 
+        )
+        where  
+            exists (select * from adx_bom where adx_bom.CHILD_ID = adx_productlocation.PRODUCT_ID and adx_bom.ALT_GROUP <> '-')        
+
+-----------------------------------------------
+        delete from adx_productlocation    
+        where c = 0 and
+            not exists (select * from adx_bom where adx_bom.CHILD_ID = adx_productlocation.PRODUCT_ID and adx_bom.ALT_GROUP <> '-')        
+        set @productlocation_count = @@rowcount;        
 -----------------------------------------------
 /*
         delete from adx_productlocation    

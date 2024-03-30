@@ -1,5 +1,5 @@
 CREATE TABLE [dbo].[OPO] (
-    [Plant]       SMALLINT      NULL,
+    [Plant]       NVARCHAR (50) NULL,
     [删除标识]        NVARCHAR (1)  NULL,
     [凭证日期]        NVARCHAR (50) NULL,
     [采购凭证]        NVARCHAR (50) NULL,

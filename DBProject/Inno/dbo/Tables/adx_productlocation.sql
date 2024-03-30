@@ -38,7 +38,13 @@ CREATE TABLE [dbo].[adx_productlocation] (
     [UDA_string_PACKAGE_FAMILY] NVARCHAR (50)  NOT NULL,
     [UDA_string_ASSY_LOC]       NVARCHAR (50)  NOT NULL,
     [UDA_string_TEST_LOC]       NVARCHAR (50)  NOT NULL,
-    [UDA_string_A_MAT_STATUS]   NVARCHAR (50)  NOT NULL
+    [UDA_string_A_MAT_STATUS]   NVARCHAR (50)  NOT NULL,
+    [c]                         INT            CONSTRAINT [DEFAULT_adx_productlocation_c] DEFAULT ((1)) NULL
 );
+GO
+
+
+ALTER TABLE [dbo].[adx_productlocation]
+    ADD CONSTRAINT [DEFAULT_adx_productlocation_c] DEFAULT ((1)) FOR [c];
 GO
 

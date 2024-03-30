@@ -27,8 +27,9 @@ SELECT
       else replace(BOR_ID, 'BOR' , 'RESALT') + '_Machine'
       end
       ,'1'
-FROM [dbo].[adx_bora]
-where not BOR_ID like '%dummy%'
+FROM [dbo].[adx_bora], [Operation_Override_COP]
+where not BOR_ID like '%dummy%' 
+and replace(BOR_ID, 'BOR' , 'OP') = Operation_Override_COP.OPERATION_ID and Operation_Override_COP.Machine_UPH <> '0'
 
 insert into [dbo].[adx_bor] (
        [BOR_ID]
@@ -40,8 +41,14 @@ SELECT
       [BOR_ID]
       ,'2'
       ,'RESALT_Crew'
-      ,'1'
-FROM [dbo].[adx_bora]
+
+      ,case
+      when Machine_UPH = '0' then '1'
+      else TRY_CAST(Machine_UPH AS decimal(5, 2)) / TRY_CAST(Labor_UPH AS decimal(5, 2))
+      end
+      --,'1' rate
+FROM [dbo].[adx_bora], [Operation_Override_COP]
 where not BOR_ID like '%dummy%'
+and replace(BOR_ID, 'BOR' , 'OP') = Operation_Override_COP.OPERATION_ID
 GO
 

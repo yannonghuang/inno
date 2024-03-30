@@ -738,7 +738,7 @@ proc Build_Operation {} {
 #
 proc Build_Op_Overrides {} {
    	global path errfp
-   	#echo "started Build_Op_Overrides"
+   	echo "started Build_Op_Overrides"
 
    	set fp [open "$path(data)/adx_op_override_inno.csv" r]
    	gets $fp
@@ -747,7 +747,7 @@ proc Build_Op_Overrides {} {
 			continue; #blank line
 		}
 		set linestring [split $linestring ,]
-		#echo "opoverride: $linestring";
+		echo "opoverride: $linestring";
 		set op [lindex $linestring 0];
 		set com [lindex $linestring 1];
 		set res [lindex $linestring 2];
