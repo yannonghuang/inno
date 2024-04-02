@@ -1,4 +1,4 @@
-$Server = "localhost" 
+$serverDN = "localhost" 
 $userId = "sa" 
 $passwd = "sunset@919325"
 $dbName = "Inno"
