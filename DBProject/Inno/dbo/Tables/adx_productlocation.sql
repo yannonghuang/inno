@@ -44,7 +44,3 @@ CREATE TABLE [dbo].[adx_productlocation] (
 GO
 
 
-ALTER TABLE [dbo].[adx_productlocation]
-    ADD CONSTRAINT [DEFAULT_adx_productlocation_c] DEFAULT ((1)) FOR [c];
-GO
-
