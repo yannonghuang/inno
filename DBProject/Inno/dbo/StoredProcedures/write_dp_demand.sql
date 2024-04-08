@@ -31,7 +31,7 @@ SELECT
       ,substring(Month, 7, 2) + '/01/' + substring(Month, 4, 2)
       ,New_Model.Code + '@' + Customer --New_Model.Code
       ,'VIRTUAL'
-      ,Forecast
+      ,replace(Forecast, ',', '')
 
       ,'-'
       ,'-'      
@@ -60,6 +60,10 @@ FROM
       ,[_2024_10]
       ,[_2024_11]
       ,[_2024_12]
+      ,[_2025_01]
+      ,[_2025_02]
+      ,[_2025_03]
+      ,[_2025_04]      
    FROM DP
    where Category = 'forecast') p  
 UNPIVOT  
@@ -76,6 +80,10 @@ UNPIVOT
       ,[_2024_10]
       ,[_2024_11]
       ,[_2024_12]  
+      ,[_2025_01]
+      ,[_2025_02]
+      ,[_2025_03]
+      ,[_2025_04]        
     )  
 ) AS unpvt
 ) TranposedDP

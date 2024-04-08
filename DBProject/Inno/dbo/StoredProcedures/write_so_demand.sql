@@ -45,7 +45,7 @@ SELECT
       end
 
       ,'VIRTUAL'
-      ,UnmetQuantity -- [Quantity]
+      ,replace(UnmetQuantity, ',', '') -- [Quantity]
       ,'-'
       ,'-'
 

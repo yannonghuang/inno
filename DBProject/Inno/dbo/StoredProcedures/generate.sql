@@ -68,12 +68,6 @@ EXEC dedup_product
 EXEC dedup_productlocation
 ------------ END: write_saleable_per_customer
 
------------- BEGIN: populate preference
-EXEC populate_method_make_preference
-EXEC populate_method_move_preference
-EXEC populate_method_buy_preference
------------- END: populate preference
-
 ------------ BEGIN: demand
 EXEC write_customer
 EXEC dedup_customer
@@ -90,6 +84,13 @@ EXEC write_jit_supply
 EXEC write_opr_supply
 EXEC dedup_supply
 ------------ END: supply
+
+------------ BEGIN: populate preference
+EXEC populate_preference_method_make
+EXEC populate_preference_method_move
+EXEC populate_preference_method_buy
+EXEC populate_preference_demand
+------------ END: populate preference
 
 ------------ BEGIN: mrp
 EXEC write_mrp
