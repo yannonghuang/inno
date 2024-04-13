@@ -280,7 +280,15 @@ else '5000'
 --PREFERENCE
 end
 
--------------
+/*-------------
+update adx_method_make
+set PREFERENCE = 0
+where not exists (
+    select * from adx_productlocation
+    where adx_method_make.PRODUCT_ID = adx_productlocation.PRODUCT_ID and adx_method_make.[LOCATION] = adx_productlocation.[LOCATION] 
+    -- and adx_productlocation.c = 0
+)
+-------------*/
 DROP TABLE [dbo].[tmp_table0]
 DROP TABLE [dbo].[tmp_table]
 GO

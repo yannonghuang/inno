@@ -58,10 +58,10 @@ insert into [adx_productlocation]  (
 
         ,'1'
         ,'D'
-        ,'10'
+        ,'1' --  min_lot
         ,'1000'
         ,'1000'
-        ,'10'
+        ,'1' --  incr_lot
         ,'-'
         ,'-'
         ,'-'
@@ -157,10 +157,10 @@ insert into [adx_productlocation]  (
 
         ,'1'
         ,'D'
-        ,'10'
+        ,'1'
         ,'1000'
         ,'1000'
-        ,'10'
+        ,'1'
         ,'-'
         ,'-'
         ,'-'

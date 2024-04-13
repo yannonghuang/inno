@@ -31,10 +31,12 @@ EXEC write_dpm_method_make
 EXEC write_dpm_product
 EXEC write_dpm_productlocation
 
+/*
 EXEC write_fgs_bom
 EXEC write_fgs_method_make
 EXEC write_fgs_product
 EXEC write_fgs_productlocation
+*/
 
 EXEC dedup_bom
 EXEC dedup_method_make
@@ -54,7 +56,7 @@ EXEC dedup_transportation
 
 ------------ BEGIN: static post-processing
 EXEC Trim_Unserved_Method_Make
-EXEC Trim_Unserved_ProductLocation
+--EXEC Trim_Unserved_ProductLocation
 EXEC Trim_Unused_ProductLocation
 EXEC Unset_Obsolete_Flag
 ------------ END: static post-processing

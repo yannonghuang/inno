@@ -57,10 +57,10 @@ insert into [adx_productlocation]  (
 
         ,'1'
         ,'D'
-        ,'10'
+        ,'1' --  min_lot
         ,'1000'
         ,'1000'
-        ,'10'
+        ,'1' --  incr_lot
         ,'-'
         ,'-'
         ,'-'
@@ -96,7 +96,7 @@ insert into [adx_productlocation]  (
 FROM [POCModel], [POCFG], Process, Process_Location
 where Work_order_code = work_order_model
 and Process.P_N = work_order_model and Process.process = Process_Location.process
-
+and exists (select * from adx_product where FG_PN = adx_product.PRODUCT_ID)
 
 ------------------------
 
@@ -156,10 +156,10 @@ insert into [adx_productlocation]  (
 
         ,'1'
         ,'D'
-        ,'10'
+        ,'1'
         ,'1000'
         ,'1000'
-        ,'10'
+        ,'1'
         ,'-'
         ,'-'
         ,'-'

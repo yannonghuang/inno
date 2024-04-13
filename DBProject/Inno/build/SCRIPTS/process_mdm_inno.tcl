@@ -263,10 +263,16 @@ proc Build_Method_Make {} {
 				set mthdId [format "M_%s_%s_%s_%s" $ProdId $Route $altBomId $Loc];
 				#set mthdId [format "M_%s_%s_%s" $ProdId $Route $altBomId];	YNH			
 				#echo "lAltBom method add_manufacture $mthdId $Loc"
-				method add_manufacture $mthdId $Loc;
+				
+				#if [catch {method add_manufacture $mthdId $Loc} err] {echo "$err...mthdId=$mthdId"; continue}; #YNH					
+				method add_manufacture $mthdId $Loc; 
+				
 				method set id $mthdId;
 				echo "...ProdId=$ProdId,BoMId=$BoMId,Route=$Route,altBomId=$altBomId";
-				method set bom $altBomId;
+				
+				if [catch {method set bom $altBomId} err] {echo "$err...altBomId=$altBomId"; continue}; #YNH						
+				#method set bom $altBomId;
+				
 				method set route $Route;
 				if {$Cost != "-"} {
 					method attribute_value set COST_DIRECT $Cost;
@@ -291,10 +297,12 @@ proc Build_Method_Make {} {
 				#}
 				com@location set id $ProdId@$Loc;
 				method attribute_value set LOC_ID [com@location attribute_value get LOC_ID];
-				# add method_alt elem
-				if {[catch {method_alt add $ProdId@$Loc}]} {
-					method_alt set id $ProdId@$Loc;
-				}
+				# add method_alt elem							
+				if {[catch {method_alt add $ProdId@$Loc}]} { 				
+					method_alt set id $ProdId@$Loc;			
+				} 
+
+				#if [catch {method_alt elem add $mthdId} err] {echo "$err...mthdId=$mthdId"; continue}; #YNH					
 				method_alt elem add $mthdId;
 				
 				if [catch {method_alt elem set pref $myPreference} err] {echo "$err...myPreference=$myPreference"}; #YNH				
@@ -316,7 +324,8 @@ proc Build_Method_Make {} {
 			method add_manufacture $mthdId $Loc;
 			method set id $mthdId;
 			#echo "...ProdId=$ProdId,BoMId=$BoMId,Route=$Route,dmSpec=$dmSpec";
-			if [catch {method set bom $BoMId} err] {echo "$err...ProdId=$ProdId,BoMId=$BoMId,Route=$Route, Loc=$Loc"}
+			if [catch {method set bom $BoMId} err] {echo "$err...ProdId=$ProdId,BoMId=$BoMId,Route=$Route, Loc=$Loc"; continue} #YNH
+			#if [catch {method set bom $BoMId} err] {echo "$err...ProdId=$ProdId,BoMId=$BoMId,Route=$Route, Loc=$Loc"} YNH
         
 			echo "...ProdId=$ProdId,BoMId=$BoMId,Route=$Route"		
 			method set route $Route;

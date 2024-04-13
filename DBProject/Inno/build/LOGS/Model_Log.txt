@@ -1,0 +1,35 @@
+Model Building starting.............................24/04/13 10:09:36
+Resource Alt - RESALT_Preform_Assembly_Machine : Invalid Resource RESOURCE_Preform_Assembly_Machine
+Resource Alt - RESALT_CB_TEST_Machine : Invalid Resource RESOURCE_CB_TEST_Machine
+Resource Alt - RESALT_Module_ASSY_Machine : Invalid Resource RESOURCE_Module_ASSY_Machine
+Resource Alt - RESALT_Preform_Assembly_Machine : Invalid Resource RESOURCE_Preform_Assembly_s_Machine
+Resource Alt - RESALT_CB_TEST_Machine : Invalid Resource RESOURCE_CB_TEST_s_Machine
+Resource Alt - RESALT_Module_ASSY_Machine : Invalid Resource RESOURCE_Module_ASSY_s_Machine
+BoR - BOR_Preform_OB : Resource Alt Already Exists RESALT_Preform_Assembly_Machine
+BoR - BOR_CB_TEST : Resource Alt Already Exists RESALT_CB_TEST_Machine
+BoR - BOR_Module_ASSY : Resource Alt Already Exists RESALT_Module_ASSY_Machine
+Route ROUTE_Module : Route Already Exists
+Route ROUTE_Module : Route Already Exists
+Route ROUTE_Module : Route Already Exists
+Route ROUTE_Module : Route Already Exists
+Route ROUTE_Module : Route Already Exists
+Route ROUTE_Module : Route Already Exists
+Route ROUTE_Module : Route Already Exists
+Route ROUTE_OB : Route Already Exists
+Route ROUTE_OB : Route Already Exists
+Route ROUTE_OB : Route Already Exists
+Route ROUTE_CB : Route Already Exists
+Route ROUTE_CB : Route Already Exists
+Route ROUTE_CB : Route Already Exists
+Route ROUTE_CB : Route Already Exists
+Route ROUTE_CB : Route Already Exists
+Route ROUTE_TX COC : Route Already Exists
+Route ROUTE_TX COC : Route Already Exists
+Route ROUTE_TX COC : Route Already Exists
+Route ROUTE_TX COC : Route Already Exists
+Route ROUTE_Preform : Route Already Exists
+Route ROUTE_Preform : Route Already Exists
+Route ROUTE_Preform : Route Already Exists
+Route ROUTE_Preform : Route Already Exists
+Route ROUTE_Preform : Route Already Exists
+Route ROUTE_Preform : Route Already Exists

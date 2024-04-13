@@ -45,5 +45,6 @@ AS
 FROM [POCModel], [POCFG], Process, Process_Location
 where Work_order_code = work_order_model
 and Process.P_N = work_order_model and Process.process = Process_Location.process
+and exists (select * from adx_product where FG_PN = adx_product.PRODUCT_ID)
 GO
 
