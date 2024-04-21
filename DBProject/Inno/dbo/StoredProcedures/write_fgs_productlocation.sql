@@ -72,9 +72,9 @@ insert into [adx_productlocation]  (
         ,'1'
         ,'1'
     ,'MODULE'
-    ,'MODULE'
-    ,'FACTORY'
-    ,'ALL'
+    ,'-' --,'MODULE'
+    ,'-' --,'FACTORY'
+    ,'-' --,'ALL'
         ,'-'
         ,'-'
         ,'-'
@@ -96,9 +96,9 @@ insert into [adx_productlocation]  (
   
 FROM FG_SUBSTITUTES, Process, Process_Location
 where Process.P_N = concat([PN_for_customer], '@', [Customer_abbreviate]) and Process.process = Process_Location.process
-
+and exists (select * from adx_product where FG_PN = adx_product.PRODUCT_ID)
 ---------------------
-
+/*
 insert into [adx_productlocation]  (
       [PRODUCT_ID]
       ,[DESCRIPTION]
@@ -196,5 +196,6 @@ insert into [adx_productlocation]  (
 FROM FG_SUBSTITUTES, Process, Process_Location
 where Process.P_N = concat([PN_for_customer], '@', [Customer_abbreviate]) and Process.process = Process_Location.process
 and exists (select * from adx_product where FG_PN = adx_product.PRODUCT_ID)
+*/
 GO
 

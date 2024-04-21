@@ -37,8 +37,10 @@ SELECT
   FROM [dbo].[DPM_CustomerPN_Customer]
   ,[FG_SUBSTITUTES]
   ,[DP_Models]
+  ,adx_product
   where DPM_CustomerPN_Customer.Customer = FG_SUBSTITUTES.Customer_abbreviate and DPM_CustomerPN_Customer.CustomerPN = FG_SUBSTITUTES.PN_for_customer
   and DP_Models.Code = DPM_CustomerPN_Customer.DPM
   and DP_Models.PN = FG_SUBSTITUTES.FG_PN
+  and DP_Models.PN = adx_product.PRODUCT_ID
 GO
 
