@@ -79,7 +79,11 @@ begin
         ',''-'' ' +   
         --'FROM ' + @table_name + ', Process, process_location ' +
         ' FROM ' + @table_name + 
-            ' left outer JOIN BOM_Single_Level on ' + @table_name + '.ParentPart = BOM_Single_Level.component ' + 
+            ' left outer JOIN BOM_Single_Level on ' + @table_name + '.ParentPart = BOM_Single_Level.FG ' + 
+            ' and ' + @table_name + '.partnumber = BOM_Single_Level.component ' + 
+
+            --' left outer JOIN BOM_Single_Level on ' + @table_name + '.ParentPart = BOM_Single_Level.component ' + 
+
             --' left outer JOIN Process on ' + @table_name + '.partnumber = Process.P_N ' + 
             --'left outer JOIN process_location on Process.process = process_location.process ' +        
         ' where ParentPart is not null ' -- + @table_name + '.SubstituteGroup is NULL and '

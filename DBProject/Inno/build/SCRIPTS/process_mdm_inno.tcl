@@ -683,6 +683,8 @@ proc Build_Operation {} {
 	   		set msg "Operation - $op : Invalid Operation Id $op"
 	   		puts $errfp $msg
 		} else {
+			#echo "first=$first,uph=$uph,[op get first],[op get incr]"
+			
 	   		op set desc $desc
 	   		if { $min_wait != "-" } {
 				op set min_wait $min_wait

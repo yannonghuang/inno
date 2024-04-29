@@ -74,11 +74,11 @@ SELECT
       ,'-'
       ,'-'
       
-      ,case 
-      when Machine_UPH <> '0' and Machine_UPH is not null then Machine_UPH
-      else Labor_UPH
-      end      
-      --,[UPH] --[UPH]
+      --,case 
+      --when Machine_UPH <> '0' and Machine_UPH is not null then Machine_UPH
+      --else Labor_UPH
+      --end      
+      ,[UPH] --[UPH]
 
       ,case 
       when postprocessing is not null then postprocessing

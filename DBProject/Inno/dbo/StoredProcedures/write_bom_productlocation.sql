@@ -90,8 +90,8 @@ begin
         ',''-'' ' +
         ',''-'' ' +
         ',''-'' ' +
-        ',''factor'' ' +
-        ',''2'' ' +
+        ',''cycle'' ' + -- ',''factor'' ' +
+        ',''3'' ' + -- ',''2'' ' +
         ',''-'' ' +
         ',''-'' ' +
         ',''1'' ' +
@@ -132,11 +132,11 @@ begin
         -- [UDA_string_TECHNOLOGY]
 
 
-        ',CASE   ' +
-        ' WHEN (POCFG.Work_order_code is not null) and (Process.Process is not null) and (Process.Process <> ''dummy'') THEN POCFG.Work_order_code ' +           
-        ' ELSE ''-'' ' +
-        ' END ' +  
-        --',''-'' ' +            
+        --',CASE   ' +
+        --' WHEN (POCFG.Work_order_code is not null) and (Process.Process is not null) and (Process.Process <> ''dummy'') THEN POCFG.Work_order_code ' +           
+        --' ELSE ''-'' ' +
+        --' END ' +  
+        ',''-'' ' +            
         -- UDA_string_PACKAGE
 
         ',''-'' ' +

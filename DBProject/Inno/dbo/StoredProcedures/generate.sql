@@ -10,6 +10,10 @@ EXEC Populate_Raw_Substitutes;
 EXEC Populate_DP_Models;
 EXEC Populate_Material_DP_Model;
 EXEC Populate_Finished_Goods;
+
+------------ write_cfi_family
+EXEC write_cfi_family;
+
 ------------ BEGIN: static
 EXEC write_bom_bom;
 EXEC write_bom_method_make;
@@ -102,7 +106,10 @@ EXEC write_mrp;
 ------------ BEGIN: graybox
 EXEC write_graybox;
 EXEC dedup_graybox;
+EXEC segregate_whitebox_greybox;
 ------------ END: graybox
+
+--EXEC Populate_CFI
 
 END
 GO

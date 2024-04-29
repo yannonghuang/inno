@@ -38,3 +38,4 @@ OPTICAL,ROUTE_PCBA,ROUTE_PCBA,1,1,OP_dummy
 OPTICAL,ROUTE_subcon,ROUTE_subcon,1,1,OP_dummy
 OPTICAL,ROUTE_SUP,ROUTE_SUP,1,1,OP_dummy
 OPTICAL,ROUTE_Receptacle,ROUTE_Receptacle,1,1,OP_dummy
+MODULE,ROUTE_Module_dummy,ROUTE_Module_dummy,1,1,OP_dummy

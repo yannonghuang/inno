@@ -18,10 +18,16 @@ DECLARE @sSQL nvarchar(1500)
             ' select * ' +
             ' from [PackageMaterial]' +
             ' where [PackageMaterial].[MATNR] = ' + @table_name + '.[partnumber]) ' +
-            ' or not exists (' +
-            ' select * ' +
-            ' from [InnoLight_Forecast]' +
-            ' where [InnoLight_Forecast].[FG_PN] = ' + @table_name + '.[FG]) '
+            ' or (' + 
+                ' not exists (' +
+                ' select * ' +
+                ' from [InnoLight_Forecast]' +
+                ' where [InnoLight_Forecast].[FG_PN] = ' + @table_name + '.[FG]) ' +
+                ' and not exists (' +
+                ' select * ' +
+                ' from [FG_In_Demand]' +
+                ' where [FG_In_Demand].[PN] = ' + @table_name + '.[FG]) ' + 
+            ') '               
 /*
             ' or ( ' +
                 ' not exists ( ' +
