@@ -9,12 +9,12 @@ insert into Saleable_Process (P_N, Plant, Process)
             where process_location.process = 'saleable'
 
 insert into Saleable_Process (P_N, Plant, Process) 
-            SELECT concat([PN_for_customer], '@', [Customer_abbreviate]), process_location.location, 'saleable'
+            SELECT concat([PN_for_customer], '__', [Customer_abbreviate]), process_location.location, 'saleable'
             FROM [FG_SUBSTITUTES], [process_location]
             where process_location.process = 'saleable'
 
 insert into Saleable_Process (P_N, Plant, Process) 
-            SELECT concat([DPM], '@', [Customer]), 'VIRTUAL', 'saleable'
+            SELECT concat([DPM], '__', [Customer]), 'VIRTUAL', 'saleable'
             FROM [DPM_CustomerPN_Customer]
 GO
 

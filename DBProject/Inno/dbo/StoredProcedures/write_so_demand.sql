@@ -39,8 +39,8 @@ SELECT
       ,DeliveryDate --substring(CONVERT(VARCHAR, DeliveryDate), 1, 4) + '/' + substring(CONVERT(VARCHAR, DeliveryDate), 6, 2) + '/' + substring(CONVERT(VARCHAR, DeliveryDate), 9, 2)    
 
       , case 
-        when abbreviate_customer_code is not null then IndustrialStandard + '@' + abbreviate_customer_code
-        -- else IndustrialStandard + '@domestic_others' -- ???   
+        when abbreviate_customer_code is not null then IndustrialStandard + '__' + abbreviate_customer_code
+        -- else IndustrialStandard + '__domestic_others' -- ???   
         else [PN]           
       end
 

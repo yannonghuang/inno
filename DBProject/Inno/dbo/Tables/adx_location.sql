@@ -8,8 +8,8 @@ CREATE TABLE [dbo].[adx_location] (
     [TIME_ZONE]             NVARCHAR (50) NULL,
     [holiday_id]            NVARCHAR (50) NULL,
     [dst_rule]              NVARCHAR (50) NULL,
-    [Latitude]              FLOAT (53)    NULL,
-    [Longitude]             FLOAT (53)    NULL,
+    [Latitude]              NVARCHAR (50) NULL,
+    [Longitude]             NVARCHAR (50) NULL,
     [LOC_ID]                NVARCHAR (50) NULL,
     [LOC_TYPE]              NVARCHAR (50) NULL,
     [REGION]                NVARCHAR (50) NULL

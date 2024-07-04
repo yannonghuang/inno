@@ -19,7 +19,7 @@ insert into [adx_product] (
 )
 
 SELECT
-    concat([PN_for_customer], '@', [Customer_abbreviate]),   
+    concat([PN_for_customer], '__', [Customer_abbreviate]),   
     'Virtual Product for FG Substitute ',  
     'M',  
     'MODULE',

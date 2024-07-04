@@ -68,18 +68,19 @@ begin
         -- ',' + @table_name + '.PartDescription ' +
         ', REPLACE(PartDescription, '','', '';'') ' +
 
-        ',CASE   ' +
+        ', process.plant ' +
+        --',CASE   ' +
         --' WHEN process_location.location is not null THEN process_location.location ' +            
-        ' WHEN process.plant is not null THEN process.plant ' +                       
-        ' ELSE  ' +
-            ' CASE   ' +
-            ' WHEN componenttype = ''P'' AND Method_Buy.LOCATION is not null THEN Method_Buy.LOCATION ' +
-            ' ELSE ''1000'' ' +            
+        --' WHEN process.plant is not null THEN process.plant ' +                       
+        --' ELSE  ' +
+        --    ' CASE   ' +
+        --    ' WHEN componenttype = ''P'' AND Method_Buy.LOCATION is not null THEN Method_Buy.LOCATION ' +
+        --    ' ELSE ''1000'' ' +            
             --' WHEN componenttype = ''P'' THEN ''VMI'' ' +
             --' ELSE ''VMI'' ' +
             --' ELSE ''dummy'' ' +            
-            ' END ' +          
-        ' END ' +
+        --    ' END ' +          
+        --' END ' +
 
         ',''1'' ' +
         ',''D'' ' +
@@ -125,7 +126,7 @@ begin
         ',''-'' ' +
        
         ',CASE   ' +
-        ' WHEN (Process.Process is not null) and (Process.Process <> ''dummy'') and (POCFG.Work_order_code is not null) THEN Process.Process ' +           
+        ' WHEN (Process.Process is not null) and (Process.Process <> ''dummy'') THEN Process.Process ' +           
         ' ELSE ''-'' ' +
         ' END ' +  
         --',''-'' ' +              
@@ -158,9 +159,7 @@ begin
             + ' or partnumber = Method_Buy.PRODUCT_ID '
 */ 
               
-        'FROM ' + @table_name + ' left outer JOIN Process on ' + @table_name + '.partnumber = Process.P_N '  
-            + ' left outer JOIN Method_Buy on partnumber = Method_Buy.PRODUCT_ID ' 
-            + ' left outer JOIN POCFG on FG = POCFG.FG_PN '     
+        'FROM ' + @table_name + ', Process where ' + @table_name + '.partnumber = Process.P_N '    
                              
         -- + ' left outer JOIN process_location on Process.process = process_location.process '
         --'where componenttype is not null ' 
@@ -286,8 +285,7 @@ begin
         EXEC(@sSQL)
 
 ------------------------------
-
-
+/**
         SET @sSQL = 
         'insert into [adx_productlocation]  (' +
 
@@ -403,7 +401,7 @@ begin
 
         print @sSQL
         EXEC(@sSQL)
-
+**/
         set @count = @count - 1
       end
    close MyCursor 

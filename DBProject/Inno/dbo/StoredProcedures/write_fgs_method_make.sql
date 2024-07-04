@@ -20,7 +20,7 @@ AS
     )
 
     SELECT
-        concat([PN_for_customer], '@', [Customer_abbreviate])    
+        concat([PN_for_customer], '__', [Customer_abbreviate])    
 
         ,CASE
          WHEN (process_location.location is not null) and (process_location.manufacture = 'M') THEN process_location.location         
@@ -31,7 +31,7 @@ AS
 
         ,'1'
         ,'0'
-        ,'BOM_' + concat([PN_for_customer], '@', [Customer_abbreviate])
+        ,'BOM_' + concat([PN_for_customer], '__', [Customer_abbreviate]) + '_' + FG_PN -- DB load
         ,'-'
         ,'-'
         ,'-'   
@@ -42,7 +42,8 @@ AS
         ,'-'
         ,'-'
         ,'-'   
-FROM FG_SUBSTITUTES, Process, Process_Location
-where Process.P_N = concat([PN_for_customer], '@', [Customer_abbreviate]) and Process.process = Process_Location.process
+FROM FG_SUBSTITUTES, Process, Process_Location, adx_product
+where Process.P_N = concat([PN_for_customer], '__', [Customer_abbreviate]) and Process.process = Process_Location.process
+and FG_PN = adx_product.PRODUCT_ID
 GO
 

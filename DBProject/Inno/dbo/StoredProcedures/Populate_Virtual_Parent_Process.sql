@@ -15,6 +15,8 @@ DECLARE @sSQL nvarchar(500)
         fetch MyCursor into @table_name
         print @table_name
 
+        set @table_name = '_' + @table_name
+
         SET @sSQL = 'insert into virtual_parent_process (part_number, parent_process, location) ' +
             'SELECT [partnumber], FG_Location_Scrap.Process, FG_Location_Scrap.Plant ' +
             'FROM [dbo].' + @table_name + ', FG_Location_Scrap ' +

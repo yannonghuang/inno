@@ -41,11 +41,15 @@ begin
         -- ',' + @table_name + '.PartDescription ' +
         ', REPLACE(PartDescription, '','', '';'') ' +
 
-        ',CASE  ' +
-        ' WHEN ' + @table_name + '.componenttype = ''P'' THEN ''P'' ' +
-        ' ELSE ''M'' ' +
-        ' END  ' +
-
+        ',CASE   ' +
+            ' WHEN partnumber = FG THEN ''F'' ' +
+            ' ELSE ' +
+            ' CASE  ' +
+                ' WHEN ' + @table_name + '.componenttype = ''P'' THEN ''P'' ' +
+                ' ELSE ''M'' ' +
+            ' END  ' +
+        ' END ' +   
+        
         ',CASE   ' +
         ' WHEN Process.Process is not null THEN ' +
             ' CASE   ' +
@@ -71,11 +75,13 @@ begin
         ' END ' +
 */        
         ',CASE   ' +
-        ' WHEN partnumber = FG THEN ' +
+        ' WHEN partnumber = FG THEN ''Module'' ' +
+/*        
             ' CASE   ' +
             ' WHEN DP_Models.Code is not null THEN DP_Models.Code ' + 
             ' ELSE ''NA'' ' +
-            ' END ' +               
+            ' END ' +   
+*/            
         ' ELSE ' +
             ' CASE   ' +
             ' WHEN Process.Process is not null THEN Process.Process ' +        
@@ -95,16 +101,21 @@ begin
         ' END ' +
 */        
         ',CASE   ' +
-        ' WHEN partnumber = FG THEN ' +
+        ' WHEN partnumber = FG THEN ''Module'' ' +
+/*        
             ' CASE   ' +
             ' WHEN MPS_Model is not null THEN MPS_Model ' +         
             ' ELSE ''NA'' ' +
-            ' END ' +               
-        ' ELSE ' +
+            ' END ' +      
+*/         
+        ' ELSE ''Optical'' ' +
+/*        
             ' CASE   ' +
-            ' WHEN Process.Process is not null THEN Process.Process ' +        
+            ' WHEN Process.Process is not null THEN ''NA'' ' +      
+--            ' WHEN Process.Process is not null THEN Process.Process ' +                  
             ' ELSE ''Raw'' ' +
-            ' END ' +        
+            ' END ' +  
+*/      
         ' END ' +       
         --',''-'' ' +
         -- HIER_LEVEL_2 -- 
@@ -116,11 +127,13 @@ begin
         ' END ' +    
 */         
         ',CASE   ' +
-        ' WHEN partnumber = FG THEN ' +         
+        ' WHEN partnumber = FG THEN ''Module'' ' +      
+/*   
             ' CASE   ' +
             ' WHEN MPS_Model is not null THEN ''Module'' ' +         
             ' ELSE ''NA'' ' +
             ' END ' +  
+*/
         ' ELSE ''Optical'' ' +
         ' END ' +   
         --',''-'' ' +

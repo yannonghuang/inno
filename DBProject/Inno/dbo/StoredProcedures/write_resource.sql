@@ -70,7 +70,7 @@ SELECT
       ,'-' -- [HIER_LEVEL_1_bak]
 
 FROM [dbo].[adx_resalt], COP_resource
-where RES_ID = 'RESOURCE_' + COP_resource.RESOURCE_ID + '_Machine' and COP_resource.Number_of_station <> 0
+where RES_ID = 'RESOURCE_' + COP_resource.RESOURCE_ID + '_Machine' -- and COP_resource.Number_of_station <> 0
 
 
 insert into [dbo].[adx_resource] (

@@ -31,7 +31,10 @@ AS
 
         ,'1'
         ,'0'
-        ,'BOM_' + work_order_model
+
+        --,'BOM_' + work_order_model
+        ,'BOM_' + work_order_model + '_' + FG_PN -- DB load
+
         ,'-'
         ,'-'
         ,'-'   

@@ -1,0 +1,11 @@
+CREATE TABLE [dbo].[ADX_GREYBOX_ACTION] (
+    [MODEL_ID]          NVARCHAR (255) NULL,
+    [CONSTRAINT_ID]     NVARCHAR (255) NULL,
+    [CAPACITY]          BIGINT         NULL,
+    [UOM]               NVARCHAR (255) NULL,
+    [START_DATE]        NVARCHAR (50)  NULL,
+    [END_DATE]          NVARCHAR (50)  NULL,
+    [DATA_LAST_UPDATED] NVARCHAR (50)  NULL
+);
+GO
+

@@ -1,15 +1,15 @@
 CREATE TABLE [dbo].[adx_sourcing] (
-    [column1]  NVARCHAR (50) NULL,
-    [column2]  NVARCHAR (50) NULL,
-    [column3]  NVARCHAR (50) NULL,
-    [column4]  NVARCHAR (50) NULL,
-    [column5]  NVARCHAR (50) NULL,
-    [column6]  NVARCHAR (50) NULL,
-    [column7]  NVARCHAR (50) NULL,
-    [column8]  NVARCHAR (50) NULL,
-    [column9]  NVARCHAR (50) NULL,
-    [column10] NVARCHAR (50) NULL,
-    [column11] NVARCHAR (50) NULL
+    [CASE]                     NVARCHAR (50) NULL,
+    [ROLE]                     NVARCHAR (50) NULL,
+    [COMLOCATION_UDA_LOCATION] NVARCHAR (50) NULL,
+    [COMLOCATION_UDA_SUFFIX]   NVARCHAR (50) NULL,
+    [METHOD_UDA_SRC_CON]       NVARCHAR (50) NULL,
+    [RULE_1]                   NVARCHAR (50) NULL,
+    [RULE_2]                   NVARCHAR (50) NULL,
+    [UOM]                      NVARCHAR (50) NULL,
+    [START]                    NVARCHAR (50) NULL,
+    [END]                      NVARCHAR (50) NULL,
+    [COP_PENALTY_COST]         NVARCHAR (50) NULL
 );
 GO
 

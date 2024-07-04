@@ -5,7 +5,7 @@ FROM
 (
 SELECT *
 , DupRank = ROW_NUMBER() OVER (
-              PARTITION BY PRODUCT_ID, LOCATION, UDA_string_TECHNOLOGY, UDA_string_PACKAGE
+              PARTITION BY PRODUCT_ID, LOCATION --, UDA_string_TECHNOLOGY, UDA_string_PACKAGE
               ORDER BY (SELECT NULL)
             )
 FROM [dbo].[adx_productlocation]

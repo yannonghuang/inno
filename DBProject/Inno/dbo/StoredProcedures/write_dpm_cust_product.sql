@@ -19,7 +19,7 @@ insert into [adx_product] (
     [LATE_SALES]
 )
 SELECT
-    [DPM] + '@' + Customer,   
+    [DPM] + '__' + Customer,   
     [DP_model], -- 'Virtual Product for Customer-Specific DP Model ',  
     'M',  
     'MODULE',

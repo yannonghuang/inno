@@ -240,7 +240,8 @@ select
 	PRODUCT_ID ,
 	[FROM_LOCATION],
     TO_LOCATION,
-    10 * ROW_NUMBER() over (partition by product_id, TO_LOCATION order by preference DESC)
+    -CAST(preference AS INT)
+    --10 * ROW_NUMBER() over (partition by product_id, TO_LOCATION order by preference DESC)
 from tmp_table0
 ---------------
 update adx_transportation
@@ -259,7 +260,7 @@ then
     where adx_transportation.PRODUCT = tmp_table.PRODUCT_ID 
     and adx_transportation.FROM_LOCATION = tmp_table.FROM_LOCATION and adx_transportation.TO_LOCATION = tmp_table.TO_LOCATION
 )
-else '5000'
+else '10000' --'5000'
 --PREFERENCE
 end
 

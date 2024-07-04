@@ -73,7 +73,8 @@ begin
 
         'FROM ' + @table_name + ', Process, process_location ' +       
         --'where componenttype is not null and componenttype <> ''P'' and ' + 
-        'where componenttype <> ''P'' and ' + 
+        --'where componenttype <> ''P'' and ' + 
+        'where ' +         
             @table_name + '.partnumber = Process.P_N and ' +
             ' Process.process = process_location.process and ' +
             ' process.plant = process_location.location '            

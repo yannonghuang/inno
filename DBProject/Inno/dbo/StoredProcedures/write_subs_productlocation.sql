@@ -128,9 +128,10 @@ begin
         ',''-'' ' +
         ',''-'' ' +
   
-        'FROM ' + @table_name + ', Process, process_location ' +       
-        'where ' + @table_name + '.Assemble_P_N = Process.P_N and ' +
-            ' Process.process = process_location.process and process.plant = process_location.location and (process_location.manufacture = ''M'') '    
+        'FROM ' + @table_name + ', Process, process_location, adx_product ' +       
+        'where component = adx_product.PRODUCT_ID and ' + @table_name + '.Assemble_P_N = Process.P_N and ' +
+            ' Process.process = process_location.process and process.plant = process_location.location and (process_location.manufacture = ''M'') ' +
+            ' and exists (select * from adx_product internalR where Assemble_P_N = internalR.PRODUCT_ID) '   
         --'FROM ' + @table_name + ' left outer JOIN Process on ' + @table_name + '.Assemble_P_N = Process.P_N ' +
         --    'left outer JOIN process_location on Process.process = process_location.process '
   

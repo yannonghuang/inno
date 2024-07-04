@@ -23,7 +23,7 @@ AS
     )
 
     SELECT
-        [DPM] + '@' + [Customer]
+        [DPM] + '__' + [Customer]
 
         ,'VIRTUAL'
        
@@ -31,7 +31,10 @@ AS
 
         ,'1'
         ,'0'
-        ,'BOM_' + [DPM] + '@' + [Customer]
+
+        --,'BOM_' + [DPM] + '__' + [Customer]
+        ,'BOM_' + [DPM] + '__' + Customer + '_' + adx_bom.CHILD_ID -- DB load
+
         ,'-'
         ,'-'
         ,'-'   
@@ -42,6 +45,8 @@ AS
         ,'-'
         ,'-'
         ,'-'   
-  FROM [dbo].[DPM_CustomerPN_Customer]
+  FROM [dbo].[DPM_CustomerPN_Customer], adx_bom --, adx_product
+  where DPM_CustomerPN_Customer.[DPM] + '__' + DPM_CustomerPN_Customer.[Customer] = adx_bom.PARENT_ID
+  --and DP_Models.PN = adx_product.PRODUCT_ID
 GO
 

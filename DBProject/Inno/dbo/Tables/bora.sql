@@ -1,7 +1,0 @@
-CREATE TABLE [dbo].[bora] (
-    [BORA_ID]    NVARCHAR (50) NOT NULL,
-    [BOR_ID]     NVARCHAR (50) NOT NULL,
-    [PREFERENCE] TINYINT       NOT NULL
-);
-GO
-

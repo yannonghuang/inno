@@ -20,7 +20,9 @@ insert into [adx_bom]  (
 )
 
 SELECT
-        'BOM_' + work_order_model
+        -- 'BOM_' + work_order_model
+        'BOM_' + work_order_model + '_' + FG_PN -- DB load
+
         ,'-'
         , work_order_model           
         , FG_PN

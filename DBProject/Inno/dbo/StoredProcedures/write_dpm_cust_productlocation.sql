@@ -49,7 +49,7 @@ insert into [adx_productlocation]  (
     )
 
     SELECT        
-         [DPM] + '@' + Customer
+         [DPM] + '__' + Customer
         ,[DP_model] -- 'Virtual Product for Customer-Specific DP Model'
 
         ,'VIRTUAL'

@@ -17,7 +17,9 @@ CREATE TABLE [dbo].[adx_demand] (
     [ASSY_LOC_S]           NVARCHAR (50)  NULL,
     [FAB_LOC_S]            NVARCHAR (50)  NULL,
     [DEMAND_ID_S]          NVARCHAR (50)  NULL,
-    [WIRE_COLOR_S]         NVARCHAR (50)  NULL
+    [WIRE_COLOR_S]         NVARCHAR (50)  NULL,
+    [REQUEST_DUE_TIME]     NVARCHAR (50)  NULL,
+    [ID]                   NVARCHAR (50)  NULL
 );
 GO
 

@@ -7,12 +7,19 @@ EXEC Truncate_ADX_Tables;
 EXEC populate_process;
 EXEC populate_method_buy;
 EXEC Populate_Raw_Substitutes;
+EXEC Populate_Native_Raw_Substitutes;
 EXEC Populate_DP_Models;
 EXEC Populate_Material_DP_Model;
 EXEC Populate_Finished_Goods;
 
------------- write_cfi_family
+------------ MSIC. --- write_cfi_family
 EXEC write_cfi_family;
+EXEC write_cappattern;
+EXEC write_location;
+EXEC write_period_manager;
+EXEC write_safety_stock;
+EXEC write_sourcing;
+EXEC write_uda;
 
 ------------ BEGIN: static
 EXEC write_bom_bom;
@@ -35,12 +42,12 @@ EXEC write_dpm_method_make;
 EXEC write_dpm_product;
 EXEC write_dpm_productlocation;
 
-/*
+
 EXEC write_fgs_bom
 EXEC write_fgs_method_make
 EXEC write_fgs_product
 EXEC write_fgs_productlocation
-*/
+
 
 EXEC dedup_bom;
 EXEC dedup_method_make;
@@ -62,7 +69,7 @@ EXEC dedup_transportation;
 ------------ BEGIN: static post-processing
 EXEC Trim_Unserved_Method_Make;
 --EXEC Trim_Unserved_ProductLocation
-EXEC Trim_Unused_ProductLocation;
+--EXEC Trim_Unused_ProductLocation;
 EXEC Unset_Obsolete_Flag;
 ------------ END: static post-processing
 
@@ -109,7 +116,12 @@ EXEC dedup_graybox;
 EXEC segregate_whitebox_greybox;
 ------------ END: graybox
 
---EXEC Populate_CFI
+
+
+EXEC Populate_CFI
+
+------------- Prepare_for_Database
+EXEC Prepare_for_Database
 
 END
 GO

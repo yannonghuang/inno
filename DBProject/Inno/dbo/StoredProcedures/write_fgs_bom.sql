@@ -20,9 +20,9 @@ insert into [adx_bom]  (
 )
 
 SELECT
-        'BOM_' + concat( [PN_for_customer], '@', [Customer_abbreviate]) 
+        'BOM_' + concat( [PN_for_customer], '__', [Customer_abbreviate]) + '_' + FG_PN -- DB load
         ,'-'
-        , concat( [PN_for_customer], '@', [Customer_abbreviate])           
+        , concat( [PN_for_customer], '__', [Customer_abbreviate])           
         , FG_PN
         ,'1'
         ,'1'        
@@ -34,7 +34,8 @@ SELECT
         ,'-'
         ,'-'  
         ,'-'
-  FROM [dbo].[FG_SUBSTITUTES] --, adx_product, Process
+  FROM [dbo].[FG_SUBSTITUTES], adx_product, Process
+  where FG_PN = adx_product.PRODUCT_ID and FG_PN = Process.P_N and Process.Process = 'Module' --, adx_product, Process
   -- where FG_PN = adx_product.PRODUCT_ID and FG_PN = Process.P_N and Process.Process = 'Module'
 GO
 

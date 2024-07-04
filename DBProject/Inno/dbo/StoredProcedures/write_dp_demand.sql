@@ -29,7 +29,7 @@ SELECT
       ,'100'
       ,substring(Month, 7, 2) + '/01/' + substring(Month, 4, 2)
       ,substring(Month, 7, 2) + '/01/' + substring(Month, 4, 2)
-      ,New_Model.Code + '@' + Customer --New_Model.Code
+      ,New_Model.Code + '__' + Customer --New_Model.Code
       ,'VIRTUAL'
       ,replace(Forecast, ',', '')
 

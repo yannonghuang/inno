@@ -109,9 +109,15 @@ begin
         ',''-'' ' +
         ',''-'' ' +        
         ',''-'' ' + 
-  
-        'FROM ' + @table_name + ' left outer JOIN Process on ' + @table_name + '.Assemble_P_N = Process.P_N ' 
-            + ' left outer JOIN adx_product on ' + @table_name + '.Assemble_P_N = adx_product.PRODUCT_ID '
+
+        'FROM ' + @table_name + ', Process, adx_product ' +       
+        'where component = adx_product.PRODUCT_ID and ' + @table_name + '.Assemble_P_N = Process.P_N ' +
+            ' and exists (select * from adx_product internalR where Assemble_P_N = internalR.PRODUCT_ID) '
+--        'FROM ' + @table_name + ' left outer JOIN Process on ' + @table_name + '.Assemble_P_N = Process.P_N ' 
+--            + ' left outer JOIN adx_product on ' + @table_name + '.Assemble_P_N = adx_product.PRODUCT_ID '
+--            + ', adx_product ' +
+--        'where component = adx_product.PRODUCT_ID'
+
         print @sSQL
         EXEC(@sSQL)
 

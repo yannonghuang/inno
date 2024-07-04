@@ -52,6 +52,7 @@ SELECT
 
 -------------
 CREATE TABLE [dbo].[tmp_table0] (
+	BOM_ID [nvarchar](100) NOT NULL,  -- DB load
 	PRODUCT_ID [nvarchar](100) NOT NULL,
 	[LOCATION_ID] [nvarchar](50) NOT NULL,
 	[CHILD_ID] [nvarchar](50) NOT NULL,
@@ -59,6 +60,7 @@ CREATE TABLE [dbo].[tmp_table0] (
 ) 
 
 CREATE TABLE [dbo].[tmp_table] (
+	BOM_ID [nvarchar](100) NOT NULL,  -- DB load      
 	PRODUCT_ID [nvarchar](100) NOT NULL,
 	[LOCATION_ID] [nvarchar](50) NOT NULL,
 	[CHILD_ID] [nvarchar](50) NOT NULL,
@@ -66,13 +68,16 @@ CREATE TABLE [dbo].[tmp_table] (
 ) 
 ------------
 insert into [dbo].[tmp_table0] (
+    BOM_ID, -- DB load
 	PRODUCT_ID ,
 	[LOCATION_ID],
 	[CHILD_ID],
     preference 
 ) 
 select 
-        adx_method_make.PRODUCT_ID
+        adx_method_make.BOM_ID -- DB load
+
+        ,adx_method_make.PRODUCT_ID
         ,adx_method_make.[LOCATION]
         ,adx_bom.CHILD_ID
 
@@ -236,6 +241,7 @@ select
         --,[PREFERENCE]   
 from adx_method_make, adx_bom
 where adx_method_make.PRODUCT_ID = adx_bom.PARENT_ID and adx_bom.ALT_GROUP <> '-' 
+and adx_method_make.BOM_ID = adx_bom.BOM_ID -- DB load
 
 ---------------
 /*
@@ -247,16 +253,19 @@ set preference = round(
 */    
 ---------------
 insert into tmp_table(
+    BOM_ID, -- DB load
 	PRODUCT_ID ,
 	[LOCATION_ID],
 	[CHILD_ID] ,
     preference
 )    
 select 
+    BOM_ID, -- DB load
 	PRODUCT_ID ,
 	[LOCATION_ID],
-	[CHILD_ID] ,
-    10 * ROW_NUMBER() over (partition by product_id, location_id order by preference DESC)
+	[CHILD_ID],
+    -CAST(preference AS INT)
+    --10 * ROW_NUMBER() over (partition by product_id, location_id order by preference DESC)
 from tmp_table0
 ---------------
 update adx_method_make
@@ -266,6 +275,7 @@ exists (
     SELECT *      
     FROM [tmp_table]
     where adx_method_make.PRODUCT_ID = tmp_table.PRODUCT_ID and adx_method_make.LOCATION = tmp_table.LOCATION_ID
+    and adx_method_make.BOM_ID = tmp_table.BOM_ID -- DB load
 )
 then
 (
@@ -274,11 +284,12 @@ then
         '|') WITHIN GROUP (ORDER BY [tmp_table].CHILD_ID)      
     FROM [tmp_table]
     where adx_method_make.PRODUCT_ID = tmp_table.PRODUCT_ID and adx_method_make.LOCATION = tmp_table.LOCATION_ID
-    group by [tmp_table].[PRODUCT_ID], [tmp_table].[LOCATION_ID]
+    and adx_method_make.BOM_ID = tmp_table.BOM_ID -- DB load
+    group by [tmp_table].[PRODUCT_ID], [tmp_table].[LOCATION_ID], tmp_table.BOM_ID
 )
-else '5000'
---PREFERENCE
+else '10000' --'10000'
 end
+--PREFERENCE
 
 /*-------------
 update adx_method_make

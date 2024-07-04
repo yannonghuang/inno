@@ -1,0 +1,184 @@
+ERROR_ID,SOURCE_TABLE_NAME,SOURCE_COLUMN_NAME,LOOKUP_TABLE_NAME,RESULT,ACTION,CATEGORY,SEVERITY,DESCRIPTION
+502,NULL,NULL,NULL,NULL,NULL,Method,high,method has both a bill of coproduct and a route containing yield loss which are not permitted to coexist
+600,NULL,NULL,NULL,NULL,NULL,Model References,low,this data model object is not used
+601,NULL,NULL,NULL,NULL,NULL,Model References,low,this com@location is not used in a bom of a method and it has no demands for it
+51,ADX_METHOD_MAKE,BOM_ID,NULL,Bom Id is null in Method Make,Add Bom Id to method make,NULL,high,NULL
+52,ADX_BOM,BOM_ID,ADX_METHOD_MAKE,Bom Id is not exists in the Method Make,Add Bom Id in the Method Make,NULL,high,NULL
+53,ADX_OPERATION,OPERATION_ID,ADX_BOR,Operation time is available in SAP but no Resource Alternative available in ADEXA,Update Resource Alternative in MDM Table for the Operation id.,NULL,high,NULL
+22011,NULL,NULL,NULL,NULL,NULL,Broken Bom,high,"No Method for com@loc: but exists in bom "
+22012,NULL,NULL,NULL,NULL,NULL,Broken Bom,high,"No Method for com@loc: "
+54,DSM_ROUTE_OP_BOR,OPERATION_ID,ADX_OPERATION,Route Family Operation ID not in Operation,Update Route Family Operation ID.,ROUTES,high,NULL
+55,DSM_ROUTE_OP_BOR,Resource Alternatives,DSM_RESALT,Route Family Resource Alternatives not in Resalt,Add Route Family Resource Alternatives in Resalt.,Resource,high,NULL
+56,DSM_RESALT,RESOURCE,DSM_RESOURCE,Resalt Resource not in Resource,Add Resource ID in Resource.,Resource,high,NULL
+57,DSM_ROUTE_OP_BOR,OPERATION_ID,ADX_OPERATION,"All Default setup time, Move Time, Labour Time are zero.",Correct Route Family Operation ID,ROUTES,high,NULL
+58,DSM_ROUTE_OP_BOR,OPERATION_ID,ADX_OPERATION,Step Not in SAP,Correct Route Family Step ID,STEP,high,NULL
+59,METHOD_MAKE,incr_lot_size,METHOD_MAKE,incr_lot_size value is null in Method Make,Ensure incr_lot_size value,Lot Sizing,high,In Method Make for this product incr_lot_size not defined.
+60,PRODUCTLOCATION,incr_lot_size,PRODUCTLOCATION,min_lot_size is not in multipal of incr_lot_size for Product Location,Correct incr_lot_size value for Product Location,Lot Sizing,high,In the Product Location min_lot_size is not in multipal of incr_lot_size.
+22013,NULL,NULL,NULL,NULL,NULL,Methods,medium,Created Method with DUMMY Vendor as there is no method exists but product is in demand or supply or workorder.
+602,NULL,NULL,NULL,NULL,NULL,Model References,low,this data model object has no elements
+603,NULL,NULL,NULL,NULL,NULL,Model References,high,this com@location is not used in a bom of a method and has not means of being acquired through methods
+700,NULL,NULL,NULL,NULL,NULL,Constraint Targets,high,this element has an invalid group
+701,NULL,NULL,NULL,NULL,NULL,Constraint Targets,high,this element has an invalid target for the selected group (object does not exist)
+702,NULL,NULL,NULL,NULL,NULL,Constraint Targets,high,this element has an invalid uda_name for the selected group (uda does not exist)
+703,NULL,NULL,NULL,NULL,NULL,Constraints,high,this complex_uda constraint has an invalid action_one: must be a valid UDA name
+704,NULL,NULL,NULL,NULL,NULL,Constraints,high,this complex_uda constraint has an invalid action_two: must be two characters separated by a space character
+705,NULL,NULL,NULL,NULL,NULL,Constraint Targets,medium,this element with workorder group must have an order value of 1 not 2
+706,NULL,NULL,NULL,NULL,NULL,Constraint Targets,high,this element with workorder group must have an order value of 1
+707,NULL,NULL,NULL,NULL,NULL,Constraints,high,this constraint must have one or more constraint targets
+909,NULL,NULL,NULL,NULL,NULL,Lot Sizing,high,maximum lot size for com@location is smaller than min supply for purchase method (if overridden by method then id of method provided)
+10000,NULL,NULL,NULL,NULL,NULL,WIP,low,only on-hold work orders should have a wip start time set
+10002,NULL,NULL,NULL,NULL,NULL,WIP,high,remaining time of waiting before WIP should not exceed min wait of operation
+10003,NULL,NULL,NULL,NULL,NULL,WIP,low,remaining time of waiting after WIP should not exceed post-process of operation
+10100,NULL,NULL,NULL,NULL,NULL,Bill Of Material,high,rate of consuming com@location in this bom must be an integer
+10101,NULL,NULL,NULL,NULL,NULL,Bill Of Material,high,multiple elements with the same com@location
+10200,NULL,NULL,NULL,NULL,NULL,Bill Of CoProduct,high,a BoC cannot be used in a method that does not have a BoM
+10201,NULL,NULL,NULL,NULL,NULL,Bill Of CoProduct,high,Sum of BoC rates does not equal batch size of BoM in this method
+10202,NULL,NULL,NULL,NULL,NULL,Bill Of CoProduct,high,BoC does not produce through this method the com@location utilizing it
+11001,NULL,NULL,NULL,NULL,NULL,Constraint (Tank),high,no tank defined in constraint_target
+11002,NULL,NULL,NULL,NULL,NULL,Constraint (Tank),high,no tank location defined in constraint_target
+11003,NULL,NULL,NULL,NULL,NULL,Constraint (Tank),high,no tank commodities defined in constraint_target
+11004,NULL,NULL,NULL,NULL,NULL,Constraint (Tank),high,no tank methods defined in constraint_target
+11005,NULL,NULL,NULL,NULL,NULL,Constraint (Tank),high,constraint_target references an invalid storage type resource
+11006,NULL,NULL,NULL,NULL,NULL,Constraint (Tank),high,constraint_target references an invalid storage location
+11007,NULL,NULL,NULL,NULL,NULL,Constraint (Tank),high,commodity referenced in constraint_target does not have a com@location that uses a valid storage location
+11008,NULL,NULL,NULL,NULL,NULL,Constraint (Tank),high,method referenced in constraint_target does not have a route
+11009,NULL,NULL,NULL,NULL,NULL,Constraint (Tank),high,method referenced in constraint_target does not use a valid storage resource
+11010,NULL,NULL,NULL,NULL,NULL,Constraint (Tank),high,method referenced in constraint_target does not have a com@location that produces into a valid storage location
+11011,NULL,NULL,NULL,NULL,NULL,Constraint (Tank),high,method referenced in constraint_target does not have a valid storage location
+11012,NULL,NULL,NULL,NULL,NULL,Constraint (Tank),high,method referenced in constraint_target does not have a valid bom
+11013,NULL,NULL,NULL,NULL,NULL,Constraint (Tank),high,method referenced in constraint_target does not consume a com@location that uses a valid storage location
+11015,NULL,NULL,NULL,NULL,NULL,Constraint (Tank),high,constraint has invalid action_two at specified index must be of form supply_tank_uda=
+11016,NULL,NULL,NULL,NULL,NULL,Constraint (Tank),high,constraint has invalid action_two at specified index must be valid supply uda
+11017,NULL,NULL,NULL,NULL,NULL,Constraint (Tank),high,constraint has invalid action_one at specified index must define a shelf_life
+11018,NULL,NULL,NULL,NULL,NULL,Constraint (Tank),high,constraint has invalid action_one at specified index must have positive numeric shelf_life
+11019,NULL,NULL,NULL,NULL,NULL,Constraint (Tank),high,constraint has invalid action_one at specified index must have non-negative numeric wait_period
+11020,NULL,NULL,NULL,NULL,NULL,Constraint (Tank),high,constraint has invalid action_one at specified index must have wait_period greater than shelf life
+11021,NULL,NULL,NULL,NULL,NULL,Constraint (Tank),high,constraint has invalid action_one at specified index must have non-negative numeric tolerated_earliness
+11022,NULL,NULL,NULL,NULL,NULL,Constraint (Tank),high,constraint has invalid action_one at specified index must have non-negative numeric tolerated_lateness
+11023,NULL,NULL,NULL,NULL,NULL,Constraint (Tank),high,constraint has invalid action_two at specified index must have a defined UDA for tolerated_earliness_uda
+11024,NULL,NULL,NULL,NULL,NULL,Constraint (Tank),high,constraint has invalid action_two at specified index must have a defined UDA for tolerated_lateness_uda
+11025,NULL,NULL,NULL,NULL,NULL,Constraint Target,high,no instances match this target element
+11026,NULL,NULL,NULL,NULL,NULL,Constraint Target,high,not a valid uda_name for this group target element
+11027,NULL,NULL,NULL,NULL,NULL,Constraint Target,high,there is no match for target uda_value
+12001,NULL,NULL,NULL,NULL,NULL,Bill of Material (Tank),high,method specifies tank consumption but multiple bom elements do not
+12002,NULL,NULL,NULL,NULL,NULL,Bill of Material (Tank),high,multiple elements consuming from tanks in the same bom
+13000,NULL,NULL,NULL,NULL,NULL,XML Safety,high,XML unsafe characters in UDA name for object
+13001,NULL,NULL,NULL,NULL,NULL,XML Safety,high,XML unsafe characters in identifier for object
+13002,NULL,NULL,NULL,NULL,NULL,XML Safety,high,XML unsafe characters in description for object
+13003,NULL,NULL,NULL,NULL,NULL,XML Safety,high,XML unsafe characters in UDA value for object
+13004,NULL,NULL,NULL,NULL,NULL,TCL Safety,medium,TCL unsafe characters in UDA name for object
+13005,NULL,NULL,NULL,NULL,NULL,TCL Safety,medium,TCL unsafe characters in identifier for object
+13006,NULL,NULL,NULL,NULL,NULL,TCL Safety,medium,TCL unsafe characters in description for object
+13007,NULL,NULL,NULL,NULL,NULL,TCL Safety,medium,TCL unsafe characters in UDA value for object
+1,BOM,PARENT_ID,PRODUCTLOCATION,Bom is not created in the model,Add PARENT_ID@LOCATION_ID to ProductLocation,NULL,NULL,NULL
+2,BOM,CHILD_ID,PRODUCT,Bom is not created in the model,Add CHILD_ID to Product,NULL,NULL,NULL
+3,BORA,BOR_ID,BOR,BOR is not created in the model,Add BOR_ID to BOR,NULL,NULL,NULL
+7,METHOD_MAKE,ROUTE_ID,ROUTE,Method is not created in the model,Add ROUTE_ID to Route,NULL,NULL,NULL
+4,CFI,CFI_TYPE,NULL,NULL,NULL,NULL,NULL,NULL
+5,METHOD_BUY,PRODUCT_ID@LOCATION,PRODUCTLOCATION,Method is not created in the model,Add PRODUCT_ID@LOCATION_ID to ProductLocation,NULL,NULL,NULL
+6,METHOD_MAKE,PRODUCT_ID@LOCATION,PRODUCTLOCATION,Method is not created in the model,Add PRODUCT_ID@LOCATION_ID to ProductLocation,NULL,NULL,NULL
+12,SUPPLY,PRODUCT_ID@LOCATION,PRODUCTLOCATION,Supply is not created in the model,Add PRODUCT_ID@LOCATION_ID to ProductLocation,NULL,NULL,NULL
+9,RESALT,RES_ID,RESOURCE,Resalt is not created in the model,Add RESOURCE_ID to Resource,NULL,NULL,NULL
+13,PRODUCT_LOCATION,LOCATION_ID,ADX_LOCATION,Location will be created by the integration code,NULL,NULL,NULL,NULL
+10,OPERATION,BORA_ID,BORALT,Operation is not associated with any RESALT,Add BORA_ID to BORA,NULL,NULL,NULL
+11,ROUTE,OPERATION_ID,OPERATION,NULL,NULL,NULL,NULL,NULL
+14,PRODUCT_LOCATION,PRODUCT_ID,PRODUCT,ComLoc is not created in the model,Add PRODUCT_ID to Product,NULL,NULL,NULL
+21000,NULL,NULL,NULL,NULL,NULL,Methods,high,Circular Dependency between Inventory/Commodity
+22000,NULL,NULL,NULL,NULL,NULL,Broken Bom,low,No Method alt group and not referenced in any Staging table
+22010,NULL,NULL,NULL,NULL,NULL,Broken Bom,low,No Method for the com@loc
+22,OPEN_SALES_ORDERS,PRODUCT_ID@LOCATION,PRODUCTLOCATION,Demand is not included in the model,Add PRODUCT_ID@LOCATION_ID to ProductLocation,NULL,NULL,NULL
+25,BOM,CHILD_ID,PRODUCTLOCATION,BOM is not created in the model,Add CHILD_ID@LOCATION_ID to ProductLocation,NULL,NULL,NULL
+24,WIP,LOT_ID,WORKORDERS,WIP is not created in the model,Add LOT_ID to WORKORDERS,NULL,NULL,NULL
+26,WIP,ROUTE and STEP,ROUTE,WIP is not created in the model,Add ROUTE + STEP to ROUTE,NULL,NULL,NULL
+27,WIP,RESOURCE_ID,RESOURCE,WIP is not created in the model,Add RESOURCE_ID to RESOURCE,NULL,NULL,NULL
+99,,NULL,NULL,Duplicate data found - Data removed,Remove duplicate data to ensure correct data is in the model,NULL,NULL,NULL
+21,SOURCING,PRODUCT_ID@LOCATION-ID,METHOD_BUY,Sourcing Constraint is not applied to the Purchase Method,NULL,NULL,NULL,NULL
+23,WORKORDERS,PRODUCT_ID@LOCATION,PRODUCTLOCATION,WO is not created in the model,Add PRODUCT_ID@LOCATION_ID to ProductLocation,NULL,NULL,NULL
+90,GREYBOX_ACTION or GREYBOX_TARGET,CONSTRAINT_ID,NULL,Constraint not created in the model,Add CONSTRAINT_ID to GREYBOX_HEADER,NULL,medium,Constraint ID does not exist on GREYBOX_HEADER
+91,GREYBOX_ACTION or GREYBOX_HEADER,CONSTRAINT_ID,NULL,Constraint not created in the model,Add CONSTRAINT_ID to GREYBOX_TARGET,NULL,medium,Constraint ID does not exist on GREYBOX_TARGET
+92,ADX_GREYBOX_HEADER or GREYBOX_TARGET,CONSTRAINT_ID,NULL,Contraint not created in the model,Add CONSTRAINT_ID to GREYBOX_ACTION,NULL,medium,Constraint ID does not exist in GREYBOX_ACTION
+28,OPEN_SALES_ORDERS,LOCATION,ADX_LOCATION,Demand not created in model,Add Location to ADX_LOCATION or correct Location on ADX_DEMAND. check location exists in the same format on ADX_LOCATION,NULL,NULL,NULL
+29,OPEN_SALES_ORDERS,PRODUCT_ID,ADX_PRODUCT,Demand not created in model,Add product ID to ADX_PRODUCT or correct Product ID on ADX_DEMAND,NULL,NULL,NULL
+30,SUPPLY,LOCATION_ID,ADX_LOCATION,Location will be created by the integration code,,NULL,NULL,NULL
+31,SUPPLY,PRODUCT_ID,ADX_PRODUCT,Supply not created in model,Add product ID to ADX_PRODUCT or correct Product ID on ADX_SUPPLY,NULL,NULL,NULL
+86,PRODUCTLOCATION,LOT_SIZE,NULL,STD_LOT_SIZE is set to MAX_LOT_SIZE and MIN_LOT_SIZE is set to STD_LOT_SIZE,NULL,NULL,NULL,NULL
+87,METHOD,LOT_SIZE,NULL,STD_LOT_SIZE is set to MAX_LOT_SIZE and MIN_LOT_SIZE is set to STD_LOT_SIZE,NULL,NULL,NULL,NULL
+88,TRANSPORTATION,LOCATION,NULL,Transportation Method is not created in the model,NULL,NULL,NULL,NULL
+89,RESOURCE,LOCATION,NULL,Resource is not created in the model,NULL,NULL,NULL,NULL
+32,ADX_DEMAND,NULL,NULL,Demand not created in model quantity < 0,Ensure demand quantity > 0,NULL,NULL,NULL
+33,ADX_SUPPLY,NULL,NULL,Supply not created in model quantity < 0,Ensure supply quantity > 0,NULL,NULL,NULL
+34,ADX_METHOD_BUY,PRODUCT_ID,ADX_PRODUCT,Purchase method not created in model,Add Product ID to ADX_PRODUCT or correct Product ID on ADX_METHOD_BUY,NULL,NULL,NULL
+35,ADX_INVENTORY,PRODUCT_ID,ADX_PRODUCT,Starting Inventory not created in model,Add product ID to ADX_PRODUCT or correct Product ID on ADX_INVENTORY,NULL,NULL,NULL
+36,ADX_TRANSPORTATION,PRODUCT_ID,ADX_PRODUCT,Transportation for product not created in model,Add Product ID to ADX_PRODUCT or correct Product ID on ADX_TRANSPORTATION,NULL,NULL,NULL
+37,METHOD_BUY,LOCATION_ID,ADX_LOCATION,Purchase method not created in model,"Add LOCATION_ID to ADX_LOCATION or correct Location on ADX_METHOD_BUY. Check format is the same on ADX_LOCATION ",NULL,NULL,NULL
+38,METHOD_MAKE,NULL,NULL,Method not created in the model. Effective Start > Effective End,Ensure Effective End is not earlier than Effective Start,NULL,NULL,NULL
+18,RESOURCE,LOCATION_ID,LOCATION,Location will be created by the integration code,NULL,NULL,NULL,NULL
+19,RESOURCE,PERIOD_MGR_ID,PERIOD_MANAGER,Resource is not included in the model,Fix the Period Mgr ID or add it to Period Manager,NULL,NULL,NULL
+80,ROUTE,ROUTE_ID,NULL,Route Step is not created,Provide STEP_SEQ_ID,ROUTES,high,STEP_SEQ_ID is not provided. Route Step is not created
+81,ROUTE,ROUTE_ID,NULL,NULL,NULL,ROUTES,high,ROUTE_SEGMENT_ID is not provided. Route Segment is not created
+20000,NULL,NULL,NULL,NULL,NULL,Hierarchy,high,Shared child member
+8,METHOD_MAKE,BOM_ID,BOM,Method is not created in the model,Add BOM_ID to Bom,NULL,NULL,NULL
+82,ROUTE,"ROUTE_ID, OP_ID",NULL,Route Step is not created,Provide STEP_IX,STEP,high,STEP_IX is not provided. Route Step is not created
+20,BOR,RESALT_ID,RESALT,BOR not in the model,Add RESALT_ID TO Resalt,NULL,NULL,NULL
+42,GRAYBOX,LOCATION,ADX_LOCATION,Constraint is not created in the Model,Add LOCATION to Location table,NULL,,NULL
+15,SAFETY_STOCK,PRODUCT_ID@LOCATION_ID,PRODUCTLOCATION,Safety Stock not in the model,Add PRODUCT_ID@LOCATION_ID to ProductLocation,NULL,NULL,NULL
+16,TRANSPORTATION,FROM_LOCATION,ADX_LOCATION,Location will be created by the integration code,,NULL,NULL,NULL
+17,TRANSPORTATION,TO_LOCATION,ADX_LOCATION,Location will be created by the integration code,,NULL,NULL,NULL
+100,NULL,NULL,NULL,NULL,NULL,Grade Set,medium,grade set includes all of the grades defined for the com@location
+101,NULL,NULL,NULL,NULL,NULL,Grade Set,high,grade set contains an invalid grade name or index
+102,NULL,NULL,NULL,NULL,NULL,Grade Set,high,substitute flag in element is not set when grade set is defined
+103,NULL,NULL,NULL,NULL,NULL,Grade Set,high,grade defined in element is not set to the lowest grade in the grade set
+104,NULL,NULL,NULL,NULL,NULL,Grade Set,high,grade defined in element is not valid
+200,NULL,NULL,NULL,NULL,NULL,Capable Type,high,in this role the capable type is not permitted to contain a negation symbol
+201,NULL,NULL,NULL,NULL,NULL,Capable Type,high,no capable resource found for operation when running this commodity
+202,NULL,NULL,NULL,NULL,NULL,Capable Type,high,there is no secondary resource that is capable to run with a primary for this operation BoR
+300,NULL,NULL,NULL,NULL,NULL,Resource,high,capacity factors on resource interval prevents it from ever being used in capacity constrained planning
+301,NULL,NULL,NULL,NULL,NULL,Resource,low,for a do-not-care resource - capacity factors on resource interval prevents it from ever being used in capacity constrained planning
+302,NULL,NULL,NULL,NULL,NULL,Resource,high,invalid ordering of res alts in this bor - first res alt mentioned must come after the second
+303,NULL,NULL,NULL,NULL,NULL,Resource,high,invalid usage of res alts in this bor - both res alts here contain the same singleton resource
+304,NULL,NULL,NULL,NULL,NULL,Resource,high,storage resource requires a non-zero min volume
+305,NULL,NULL,NULL,NULL,NULL,Resource,high,storage resource requires a non-zero ideal volume
+306,NULL,NULL,NULL,NULL,NULL,Resource,high,storage resource requires a non-zero max volume
+307,NULL,NULL,NULL,NULL,NULL,Resource,high,com@location (or method) minimum lot size is greater than storage resource max volume
+308,NULL,NULL,NULL,NULL,NULL,Resource,high,com@location (or method) maximum lot size is greater than storage resource max volume
+309,NULL,NULL,NULL,NULL,NULL,Resource,low,com@location (or method) minimum lot size is smaller than storage resource min volume
+310,NULL,NULL,NULL,NULL,NULL,Resource,low,com@location (or method) maximum lot size is smaller than storage resource max volume
+311,NULL,NULL,NULL,NULL,NULL,Resource,high,bor usage rate greater than 1 for storage resource
+400,NULL,NULL,NULL,NULL,NULL,Bill Of Grade,high,the ratios of this bill of grade do not add up to 100 percent
+401,NULL,NULL,NULL,NULL,NULL,Bill Of Grade,high,the specified grade in this bog do not exist in the com@location using it and bog has more grades than com@location
+402,NULL,NULL,NULL,NULL,NULL,Bill Of Grade,high,the specified grade in this bog do not exist in the com@location using it
+403,NULL,NULL,NULL,NULL,NULL,Bill Of Grade,high,this bog has no elements
+500,NULL,NULL,NULL,NULL,NULL,Method,high,there are no methods available in the given time period in this method alternative group
+501,NULL,NULL,NULL,NULL,NULL,Method,high,method has both a bill of coproduct and a bill of grade which are not permitted to coexist
+708,NULL,NULL,NULL,NULL,NULL,Constraints,high,this complex_uda constraint must have only one constraint target
+709,NULL,NULL,NULL,NULL,NULL,Constraints,high,this constraint has no action element - it will have NO effect
+710,NULL,NULL,NULL,NULL,NULL,Constraints,high,this constraint has overlapping action elements
+711,NULL,NULL,NULL,NULL,NULL,Constraint Targets,high,this constraint_target has no elements
+800,NULL,NULL,NULL,NULL,NULL,Commodity@Locations,medium,the replenish period of this com@location is smaller than this upstream com@location
+801,NULL,NULL,NULL,NULL,NULL,Commodity@Locations,high,this com@location has no defined commodity
+802,NULL,NULL,NULL,NULL,NULL,Commodity@Locations,high,the com@location has no defined location
+803,NULL,NULL,NULL,NULL,NULL,Commodity@Locations,high,the com@location has both safety stock elements AND minimum periods (or dependent periods) of cover
+804,NULL,NULL,NULL,NULL,NULL,Commodity@Locations,high,the com@location has both safety stock elements AND periods of cover elements defined
+805,NULL,NULL,NULL,NULL,NULL,Commodity@Locations,high,the com@location has both safety stock elements AND inventory push defined
+806,NULL,NULL,NULL,NULL,NULL,Commodity@Locations,high,the com@location level_look_ahead is zero: critical if using EMS
+807,NULL,NULL,NULL,NULL,NULL,Commodity@Locations,high,the com@location level_look_ahead is less than explosion depth: critical if using EMS
+900,NULL,NULL,NULL,NULL,NULL,Lot Sizing,high,min lot size for com@location not multiple of incremental lot size (if overridden by method then id of method provided)
+901,NULL,NULL,NULL,NULL,NULL,Lot Sizing,high,max lot size for com@location not multiple of incremental lot size (if overridden by method then id of method provided)
+902,NULL,NULL,NULL,NULL,NULL,Lot Sizing,high,standard lot size for com@location not multiple of incremental lot size (if overridden by method then id of method provided)
+903,NULL,NULL,NULL,NULL,NULL,Lot Sizing,medium,standard lot size for com@location is an unacceptably small multiple of max lot size (if overridden by method then id of method provided)
+904,NULL,NULL,NULL,NULL,NULL,Lot Sizing,high,incremental lot size for com@location is not a multiple of bom batch size (if overridden by method then id of method provided)
+905,NULL,NULL,NULL,NULL,NULL,Lot Sizing,high,standard lot size for com@location is not a multiple of bom batch size (if overridden by method then id of method provided)
+906,NULL,NULL,NULL,NULL,NULL,Lot Sizing,high,maximum lot size for com@location is not a multiple of bom batch size (if overridden by method then id of method provided)
+907,NULL,NULL,NULL,NULL,NULL,Lot Sizing,high,minimum lot size for com@location is not a multiple of bom batch size (if overridden by method then id of method provided)
+908,NULL,NULL,NULL,NULL,NULL,Lot Sizing,high,minimum lot size for com@location is greater than max supply for purchase method (if overridden by method then id of method provided)
+93,ADX_WIP,LOT_ID,ADX_WORKORDERS,Workorder has a status between 1 and 6 has no WIP Workorder not in model,Add data to ADX_WIP for workorders with a status 1-Waiting_Before 2-In_Setup 3-In_Process 4-Waiting_After 5-In_Tranport 6-On_Hold,,,NULL
+40,ADX_WORKORDERS,NULL,ADX_METHOD_MAKE,Workorder referencing commodity and Location that doesnot exist in ADX_METHOD_MAKE,Add a method make record to ADX_METHOD_MAKE for the commodity and location,NULL,NULL,NULL
+41,BOM,ROUTE_CODE,ADX_ROUTE,MFG Method is not created in the model,Add ROUTE_CODE to Routes,NULL,NULL,NULL
+43,GRAYBOX,OPERATION,AOS_ROUTE,Constraint is not created in the Model,Add OPERATION to the Routes,NULL,NULL,NULL
+44,GRAYBOX,ROUTE,AOS_ROUTE,Constraint is not craeted in the Model,Add ROUTE to the Routes,NULL,NULL,NULL
+45,GRAYBOXELEM,LOCATION,ADX_LOCATION,Constraint is not craeted in the Model,Add LOCATION to Locations,NULL,NULL,NULL
+46,GRAYBOXELEM,OPERATION,AOS_ROUTE,Constraint is not craeted in the Model,Add OPERATION to Routes,NULL,NULL,NULL
+47,GRAYBOXELEM,ROUTE,AOS_ROUTE,Constraint is not craeted in the Model,Add ROUTE to Routes,NULL,NULL,NULL
+94,GRAYBOX,NULL,NULL,The Duplicate rows were removed from the model,NULL,NULL,high,Duplicate rows were found
+48,GRAYBOX,UDA,PRODLOC,Constraint is not created in the model,Add UDA to PRODLOC or change the UDA on the Graybox,NULL,NULL,NULL
+NULL,GRAYBOXELEM,UDA and TARGET_uda,PRODLOC,Constraint is not created,Add UDA to PRODLOC or change the UDA on the Graybox,NULL,NULL,NULL

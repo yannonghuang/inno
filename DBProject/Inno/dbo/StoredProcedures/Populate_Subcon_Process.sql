@@ -16,6 +16,8 @@ DECLARE @sSQL nvarchar(500)
         fetch MyCursor into @table_name
         print @table_name
 
+        set @table_name = '_' + @table_name
+        
         SET @sSQL = 'insert into Subcon_Process (P_N, Plant, Process) ' +
             'SELECT [partnumber], ''SUB_PCBA'', ''subcon'' ' +
             'FROM [dbo].' + @table_name + 

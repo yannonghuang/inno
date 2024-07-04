@@ -37,7 +37,8 @@ begin
 
         'SELECT ' +
         --' ''BOM_'' + ''VirtualProduct_'' + Assemble_P_N + ''_'' + component + ''_'' + substitution_group ' + 
-        ' ''BOM_'' + ''VirtualProduct_'' + Assemble_P_N + ''_'' + substitution_group ' + 
+        --' ''BOM_'' + ''VirtualProduct_'' + Assemble_P_N + ''_'' + substitution_group ' + 
+        ' ''BOM_'' + ''VirtualProduct_'' + Assemble_P_N + ''_'' + substitution_group + ''_'' + component ' + -- DB load
 
         ',''-'' ' +
         --', process_location.location ' +

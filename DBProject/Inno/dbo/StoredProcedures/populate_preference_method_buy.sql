@@ -92,7 +92,8 @@ select
 	PRODUCT_ID ,
 	[LOCATION_ID],
 	[Vendor_ID] ,
-    10 * ROW_NUMBER() over (partition by product_id, location_id order by preference DESC)
+    -CAST(preference AS INT)
+    --10 * ROW_NUMBER() over (partition by product_id, location_id order by preference DESC)
 from tmp_table0
 ---------------
 update adx_method_buy
@@ -109,7 +110,7 @@ then
     FROM [tmp_table]
     where adx_method_buy.PRODUCT_ID = tmp_table.PRODUCT_ID and adx_method_buy.LOCATION = tmp_table.LOCATION_ID and adx_method_buy.[VENDOR_ID] = tmp_table.Vendor_ID
 )
-else '5000'
+else '10000' --'5000'
 --PREFERENCE
 end
 

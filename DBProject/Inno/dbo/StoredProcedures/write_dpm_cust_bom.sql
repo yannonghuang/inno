@@ -20,13 +20,15 @@ insert into [adx_bom]  (
         ,[OBSOLETE]        
 )
 SELECT
-        'BOM_' + [DPM] + '@' + Customer
+        --'BOM_' + [DPM] + '__' + Customer
+        'BOM_' + [DPM] + '__' + Customer + '_' + FG_SUBSTITUTES.FG_PN -- DB load
+
         ,'-'
-        , [DPM] + '@' + Customer
-        , FG_SUBSTITUTES.FG_PN -- [CustomerPN] + '@' + Customer
+        , [DPM] + '__' + Customer
+        , FG_SUBSTITUTES.FG_PN -- [CustomerPN] + '__' + Customer
         ,'1'
         ,'1'        
-        , FG_SUBSTITUTES.FG_PN -- [CustomerPN] + '@' + Customer
+        , FG_SUBSTITUTES.FG_PN -- [CustomerPN] + '__' + Customer
         ,'-'
         ,'-'   
         ,'1'   

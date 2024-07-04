@@ -1,0 +1,28 @@
+MODEL_ID,PLAN_ID,PARAM_NAME,PARAM_VALUE,LOCATION_ID,COMMENTS
+ALL,ALL,SCENARIO_ID,CONS,NULL,"Plan_id indicates the type of plan running, DAILY, WEEKLY, MONTHLY, UNC (Unconstrained), CON (Constrained)"
+ALL,ALL,FLOW_TYPE,SCP,NULL,Parameter to indicate MDM is building an SCP or COP model
+ALL,ALL,GRAYBOX_START_WEEK,SUNDAY,NULL,Indicates which day of the week the graybox constraint start
+ALL,ALL,HORIZON_LENGTH,104,NULL,Horizon length for the model
+ALL,ALL,HORIZON_START,NULL,NULL,"Set the horizon start to start on a specific date, if blank todays date is used"
+ALL,ALL,NUM_OF_MONTHS_BEYOND_HORIZON,6,NULL,Used to set the effective date a number of months beyond the horizon end
+ALL,ALL,NUM_OF_WEEKLY_PERIODS,24,NULL,Number of weekly periods in period manager
+ALL,ALL,PM_NAME,DAILY_PM,NULL,Period manager name
+ALL,ALL,PURCHASE_MAX_SUPPLY,500,NULL,Default max supply for purchases
+ALL,ALL,PURCHASE_MIN_SUPPLY,500,NULL,Default min supply for purchases
+ALL,ALL,SCP_DAILY_PERIODS,14,NULL,Number of weekly periods for SCP Period Manager
+ALL,ALL,SCP_WEEKLY_PERIODS,11,NULL,Number of weekly periods for SCP Period Manager
+ALL,ALL,SCP_MONTHLY_PERIODS,24,NULL,Number of weekly periods for SCP Period Manager
+ALL,ALL,WEEK_START_DAY,SUNDAY,NULL,Week start day
+ALL,ALL,MIN_LOT_SIZE,100,NULL,Default minimum lot size
+ALL,ALL,MAX_LOT_SIZE,10000,NULL,Default aximum lot size
+ALL,ALL,INCR_LOT_SIZE,1,NULL,Default incremental lot size
+ALL,ALL,STD_LOT_SIZE,10000,NULL,Default standard lot size
+ALL,ALL,MIN_LOT_SIZE_RATIO,5,NULL,Default minimum lot size ratio
+ALL,ALL,BAK_NET_PERIODS,0,NULL,Number of periods to go back in the forecast netting
+ALL,ALL,FWD_NET_PERIODS,3,NULL,Number of periods to look forward in the forecast netting
+ALL,ALL,MODEL_ID,DSM,NULL,"The data model to be executed, valid values: RNA, GT - Gene Therapy"
+ALL,ALL,VERSION,7.0.0.0,NULL,Current Version of SCPUDS model build
+ALL,ALL,TRANSPORT_PRODUCT,E,NULL,"E - exclude any transportation if PRODUCT_ID is set for a specific route, I - Only include transoirtation methods for PRODUCT_IDs specified in ADX_TRANSPORTATION"
+ALL,ALL,STAGING_OWNER,ADX_STAGING,NULL,NULL
+ALL,ALL,UDS_OWNER,ADX_SCP_UDS,NULL,NULL
+All,ALL,PRODUCTLOCATIONSEPARATOR,@,NULL,Product Location separator

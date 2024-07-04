@@ -91,7 +91,7 @@ SELECT
 FROM [Method_Buy], adx_product, [VMI], [process], [process_location] -- adx_productlocation, 
 where Method_Buy.PRODUCT_ID = adx_product.PRODUCT_ID and (
     exists (select * from [adx_bom] where Method_Buy.PRODUCT_ID = adx_bom.CHILD_ID and adx_bom.PARENT_ID = process.P_N)
-    or exists (select * from [RAW_SUBSTITUTES] where Method_Buy.PRODUCT_ID = RAW_SUBSTITUTES.component and RAW_SUBSTITUTES.Assemble_P_N = process.P_N)
+    or exists (select * from [NATIVE_RAW_SUBSTITUTES] where Method_Buy.PRODUCT_ID = NATIVE_RAW_SUBSTITUTES.component and NATIVE_RAW_SUBSTITUTES.Assemble_P_N = process.P_N)
 ) 
 /*
 and (process.Plant = 'SUB_PCBA' 

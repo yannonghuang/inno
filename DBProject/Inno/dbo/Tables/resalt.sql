@@ -1,9 +1,0 @@
-CREATE TABLE [dbo].[resalt] (
-    [OPERATION_ID] NVARCHAR (50) NULL,
-    [RESALT_ID]    NVARCHAR (50) NOT NULL,
-    [PREFERENCE]   TINYINT       NOT NULL,
-    [RES_ID]       NVARCHAR (50) NOT NULL,
-    [ELEM_IX]      TINYINT       NOT NULL
-);
-GO
-

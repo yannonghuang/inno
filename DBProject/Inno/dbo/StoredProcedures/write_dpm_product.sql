@@ -20,14 +20,14 @@ insert into [adx_product] (
 SELECT
     [work_order_model],   
     [DP_model], -- 'Virtual Product for DP Model ',  
-    'F',  
+    'M',  
     'MODULE',
-        'Model', -- DP_Models.MPS_Model, -- 'DP Model', -- 'MODULE',
-        'Model', -- DP_Models.MPS_Model, -- '-', -- 'FACTORY',
-        'Model', -- 'ALL',        
-        DP_Models.MPS_Model, --'DP Model',
-        DP_Models.MPS_Model, --'-',
-        DP_Models.MPS_Model, --'-',
+        'NA', -- 'Model', -- DP_Models.MPS_Model, -- 'DP Model', -- 'MODULE',
+        'NA', -- 'Model', -- DP_Models.MPS_Model, -- '-', -- 'FACTORY',
+        'NA', -- 'Model', -- 'ALL',        
+        'NA', -- DP_Models.MPS_Model, --'DP Model',
+        'NA', -- DP_Models.MPS_Model, --'-',
+        'NA', -- DP_Models.MPS_Model, --'-',
 
         '-',
         '-',
@@ -35,6 +35,16 @@ SELECT
         '-'  
 FROM [POCModel], DP_Models, adx_product
 where POCModel.work_order_model = DP_Models.Code and DP_Models.PN = adx_product.PRODUCT_ID
+--FROM [POCModel], DP_Models
+--where POCModel.work_order_model = DP_Models.Code
+--FROM [POCModel], DP_Models
+--where POCModel.work_order_model = DP_Models.Code
+--FROM [POCModel], DP_Models
+--where POCModel.work_order_model = DP_Models.Code
+--FROM [POCModel], DP_Models
+--where POCModel.work_order_model = DP_Models.Code
+--FROM [POCModel], DP_Models
+--where POCModel.work_order_model = DP_Models.Code
 --FROM [POCModel], DP_Models
 --where POCModel.work_order_model = DP_Models.Code
 GO
