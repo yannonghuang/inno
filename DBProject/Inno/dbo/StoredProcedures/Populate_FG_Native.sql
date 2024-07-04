@@ -14,6 +14,9 @@ DECLARE @sSQL nvarchar(1500)
    while @count > 0
       begin
         fetch MyCursor into @table_name
+
+        set @table_name = '_' + @table_name
+
         print @table_name
         SET @sSQL = 'insert into FG_Native (PN) ' + 
             ' select FG from ' + @table_name
