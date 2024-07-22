@@ -49,6 +49,12 @@ begin
         ' ELSE ''OPTICAL'' ' +
         ' END ' +
 
+        ',''-'' ' +
+        ',''-'' ' +
+        ',''-'' ' +        
+        ',''-'' ' +
+        ',''-'' ' +        
+        ',''-'' ' +         
 /*
         ',CASE   ' +
         ' WHEN Process.Process is not null THEN Process.Process ' +          
@@ -60,7 +66,7 @@ begin
             ' ELSE ''-'' ' +
         ' END ' +     
 */              
-        ',''NA'' ' +
+--        ',''Virtual'' ' +
         -- HIER_LEVEL_1 --   
 
 /*
@@ -69,7 +75,7 @@ begin
             ' ELSE ''NA'' ' +
         ' END ' +   
 */        
-        ',''NA'' ' +
+--        ',''Make'' ' +
         -- ',adx_product.HIER_LEVEL_2 ' +
         -- HIER_LEVEL_2 --   
         -- ',''FACTORY'' ' +
@@ -80,7 +86,7 @@ begin
             ' ELSE ''NA'' ' +
         ' END ' +     
 */
-        ',''NA'' ' +
+--        ',''Optical'' ' +
         --',adx_product.HIER_LEVEL_3 ' +
         -- HIER_LEVEL_3 --         
         -- ',''ALL'' ' +
@@ -96,13 +102,13 @@ begin
             ' ELSE ''-'' ' +
         ' END ' +     
 */                 
-        ',''NA'' ' +
+--        ',''NA'' ' +
         -- FG_HIER_LEVEL_1 --  
 
-        ',''NA'' ' +
+--        ',''NA'' ' +
         -- FG_HIER_LEVEL_2 --         
 
-        ',''NA'' ' +
+--        ',''NA'' ' +
         -- FG_HIER_LEVEL_3 -- 
 
         ',''-'' ' +

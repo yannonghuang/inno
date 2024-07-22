@@ -11,7 +11,9 @@ set PROD_SKU_ID = PRODUCT_ID,
 LOCATION_ID = LOCATION,
 CYCLE_TIME_FAMILY=CYCLE_FAMILY,
 CYCLE_TIME_TYPE=CYCLE_TYPE,
-TECHNOLOGY=UDA_string_TECHNOLOGY
+TECHNOLOGY=UDA_string_TECHNOLOGY,
+PACKAGE=UDA_string_PACKAGE
+
 ---------
 update adx_resource
 set LOCATION_ID = LOCATION
@@ -27,12 +29,30 @@ TRANSPORTATION_MODE=MODE
 ---------
 update adx_method_buy
 set LOCATION_ID = LOCATION
+
 ---------
 update adx_demand
-set REQUEST_DUE_TIME = REQ_DUE_DATE,
+set 
+--REQUEST_DUE_TIME = convert(datetime, REQ_DUE_DATE, 101),
+ REQUEST_DUE_TIME = REQ_DUE_DATE,
+--COMMITTED_DUE_TIME = convert(datetime, COMMITTED_DUE_TIME, 101),
 ID = DEMAND_ID
 ---------
+
+update adx_supply
+set SUPPLY_DATE = 
+	case 
+		when len(SUPPLY_DATE) >= 8 then convert(datetime, SUPPLY_DATE, 101)		
+		else convert(datetime, SUPPLY_DATE, 1)
+	end
+where SUPPLY_DATE is not null and SUPPLY_DATE <> '-'
+
+---------
 EXEC write_greybox_db
+
+---------
+
+
 
 END
 GO

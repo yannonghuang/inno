@@ -28,7 +28,9 @@ proc load_model {} {
       uds opendb MS_SQL $datasrc $uname $pword
       uds case_id set $load_tables
       uds validate schema
-      uds log_file set_name "$path(error)/uds_load_errors\_$fdate.csv"
+      uds log_file set_name "$path(error)/uds_load_errors_$fdate.txt"
+	  #uds log_file set_name "c:/test/uds_load_errors_fdate.txt"
+	  #uds errors_allowed set 0
       uds errors_allowed set 1000000
       #uds errors_allowed set 0
       uds load

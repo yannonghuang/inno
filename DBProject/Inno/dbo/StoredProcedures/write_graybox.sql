@@ -1,8 +1,8 @@
 CREATE PROCEDURE [dbo].[write_graybox]
 AS
 
-delete FROM [dbo].[SR4AOC rough capacity] 
-where [SR4AOC rough capacity].capacity is null or [SR4AOC rough capacity].capacity = 0
+delete FROM [dbo].[Capacity] 
+where [Capacity].capacity is null or [Capacity].capacity = 0
 
 DELETE T
 FROM
@@ -16,7 +16,7 @@ SELECT *
                 ,[end]
               ORDER BY (SELECT NULL)
             )
-FROM [SR4AOC rough capacity]
+FROM [Capacity]
 ) AS T
 WHERE DupRank > 1
 
@@ -52,7 +52,7 @@ SELECT
        '-' -- [CASE]
       ,concat(
             process.plant, '_'
-            ,[SR4AOC rough capacity].process, '_'
+            ,[Capacity].process, '_'
             ,POCModel.work_order_model, '_'
             ,[START], '_'
             ,[END]         
@@ -70,21 +70,21 @@ SELECT
         END
         --[COMLOCATION_UDA_PROD_AREA]
     
-      ,[SR4AOC rough capacity].process -- [COMLOCATION_UDA_TECHNOLOGY]
+      ,[Capacity].process -- [COMLOCATION_UDA_TECHNOLOGY]
 
       ,'-' --[COMLOCATION_UDA_SHARED]
 
       ,POCModel.work_order_model --[COMLOCATION_UDA_PACKAGE]
 
-      ,[SR4AOC rough capacity].CAPACITY -- [CAPACITY]   
+      ,[Capacity].CAPACITY -- [CAPACITY]   
 
       ,[UOM] --'WEEK' --[UOM]
       ,'-' -- [BUILDPOLICY]
       ,'-' -- [BUILDEARLYLIMIT]
       ,'-' -- [BUILD_AHEAD]
 
-      ,[SR4AOC rough capacity].[START]
-      ,[SR4AOC rough capacity].[END]
+      ,[Capacity].[START]
+      ,[Capacity].[END]
 
       ,'NA' -- 'HIER_LEVEL_1'
       ,'NA' -- 'HIER_LEVEL_2'
@@ -98,8 +98,10 @@ SELECT
       ,'-' -- [TIME_LEVEL]
       ,'-' -- [CORRESPONDS]
 
-FROM [dbo].[SR4AOC rough capacity] left outer join process on process.Process = [SR4AOC rough capacity].process
-    left outer join POCModel on POCModel.[DP_model] = [SR4AOC rough capacity].model
-where [SR4AOC rough capacity].capacity <> 0
+FROM [dbo].[Capacity], process, POCModel
+where [Capacity].capacity <> 0
+    and process.Process = [Capacity].process
+    and process.plant = [Capacity].plant
+    and POCModel.[OLD_DP_model] = [Capacity].model
 GO
 

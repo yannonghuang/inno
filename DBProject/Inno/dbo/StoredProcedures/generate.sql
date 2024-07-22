@@ -117,11 +117,12 @@ EXEC segregate_whitebox_greybox;
 ------------ END: graybox
 
 
-
-EXEC Populate_CFI
+------------- Populate CFI
+EXEC Populate_CFI;
+EXEC dedup_productlocation;
 
 ------------- Prepare_for_Database
-EXEC Prepare_for_Database
+EXEC Prepare_for_Database;
 
 END
 GO

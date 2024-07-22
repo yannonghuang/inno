@@ -20,6 +20,7 @@ insert into [dbo].[adx_demand] (
       ,[FAB_LOC_S]
       ,[DEMAND_ID_S]
       ,[WIRE_COLOR_S]
+      ,PACKAGE
 )
 SELECT
       concat(Customer, '_', New_Model.Code, Month)
@@ -43,7 +44,7 @@ SELECT
       ,'-'   
       ,'-'
       ,'-'               
-
+      ,New_Model.Code -- PACKAGE
 from New_Model, adx_productlocation, customer, (
 SELECT Customer, Model, Month, Forecast  
 FROM 
@@ -63,7 +64,16 @@ FROM
       ,[_2025_01]
       ,[_2025_02]
       ,[_2025_03]
-      ,[_2025_04]      
+      ,[_2025_04]   
+      ,[_2025_05]
+      ,[_2025_06]
+      ,[_2025_07]
+      ,[_2025_08]
+      ,[_2025_09]
+      ,[_2025_10]
+      ,[_2025_11]
+      ,[_2025_12]
+
    FROM DP
    where Category = 'forecast') p  
 UNPIVOT  
@@ -83,7 +93,15 @@ UNPIVOT
       ,[_2025_01]
       ,[_2025_02]
       ,[_2025_03]
-      ,[_2025_04]        
+      ,[_2025_04]     
+      ,[_2025_05]
+      ,[_2025_06]
+      ,[_2025_07]
+      ,[_2025_08]
+      ,[_2025_09]
+      ,[_2025_10]
+      ,[_2025_11]
+      ,[_2025_12]         
     )  
 ) AS unpvt
 ) TranposedDP

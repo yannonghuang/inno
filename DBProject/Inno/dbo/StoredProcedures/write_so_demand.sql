@@ -22,9 +22,14 @@ insert into [dbo].[adx_demand] (
       ,[FAB_LOC_S]
       ,[DEMAND_ID_S]
       ,[WIRE_COLOR_S]
+      ,PACKAGE
 )
 SELECT
-      concat([SONumber], '_', [ItemId])
+      --concat([SONumber], '_', [ItemId])
+      concat([SONumber], '_', 
+        10 * ROW_NUMBER() over (partition by SONumber ORDER BY (SELECT NULL))
+      )
+      
       ,[Description]
 
       , case 
@@ -45,14 +50,11 @@ SELECT
       end
 
       ,'VIRTUAL'
-      ,replace(UnmetQuantity, ',', '') -- [Quantity]
+      ,UnmetQuantity -- replace(UnmetQuantity, ',', '') -- [Quantity]
       ,'-'
       ,'-'
 
-      ,CASE
-      when [REVENUE] is not null then [REVENUE]
-      else '-'
-      END      
+      ,'-'    
       -- [REVENUE]
 
       ,'-'
@@ -61,12 +63,13 @@ SELECT
       ,'-'   
       ,'-'
       ,'-'               
+      ,POCFG.Work_order_code -- PACKAGE
 
-  FROM [dbo].[SO] left OUTER JOIN customer on
+  FROM POCFG, [dbo].[SO] left OUTER JOIN customer on
    [CustomerCode] = customer.Sold_to_customer or ('0000' + [CustomerCode] = customer.Sold_to_customer)
     -- left OUTER JOIN customer on [CustomerCode] = customer.Sold_to_customer
     --left OUTER JOIN customer on '0000' + [CustomerCode] = customer.Sold_to_customer
-  where UnmetQuantity <> '0'
+  where UnmetQuantity <> 0 and [POCFG].FG_PN = SO.PN
 END
 GO
 

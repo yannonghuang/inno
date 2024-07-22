@@ -172,19 +172,19 @@ select
         when exists (
          select *
          FROM  [SO] 
-         where adx_bom.CHILD_ID = [SO].PN and (adx_method_make.[LOCATION] = 'VIRTUAL' or adx_method_make.[LOCATION] = [SO].CompanyCode)
+         where adx_bom.CHILD_ID = [SO].PN and (adx_method_make.[LOCATION] = 'VIRTUAL') -- or adx_method_make.[LOCATION] = [SO].CompanyCode)
         ) then (
             case
             when adx_method_make.[LOCATION] = 'VIRTUAL' then (
-                select SUM(TRY_CAST(SO.Quantity as decimal))
+                select SUM(TRY_CAST(SO.UnmetQuantity as decimal))
                 FROM SO 
-                where adx_bom.CHILD_ID = [SO].PN and (adx_method_make.[LOCATION] = 'VIRTUAL' or adx_method_make.[LOCATION] = [SO].CompanyCode)
+                where adx_bom.CHILD_ID = [SO].PN and (adx_method_make.[LOCATION] = 'VIRTUAL') -- or adx_method_make.[LOCATION] = [SO].CompanyCode)
                 group by [SO].PN
             ) else (
-                select SUM(TRY_CAST(SO.Quantity as decimal))
+                select SUM(TRY_CAST(SO.UnmetQuantity as decimal))
                 FROM SO 
-                where adx_bom.CHILD_ID = [SO].PN and (adx_method_make.[LOCATION] = 'VIRTUAL' or adx_method_make.[LOCATION] = [SO].CompanyCode)
-                group by [SO].PN, [SO].CompanyCode
+                where adx_bom.CHILD_ID = [SO].PN and (adx_method_make.[LOCATION] = 'VIRTUAL') -- or adx_method_make.[LOCATION] = [SO].CompanyCode)
+                group by [SO].PN--, [SO].CompanyCode
             )
             end
         ) 
@@ -200,19 +200,19 @@ select
         when exists (
          select *
          FROM  shipments 
-         where adx_bom.CHILD_ID = shipments.product_id and (adx_method_make.[LOCATION] = 'VIRTUAL' or adx_method_make.[LOCATION] = shipments.location_id)           
+         where adx_bom.CHILD_ID = shipments.product_id and (adx_method_make.[LOCATION] = 'VIRTUAL') -- or adx_method_make.[LOCATION] = shipments.location_id)           
         ) then (
             case
             when adx_method_make.[LOCATION] = 'VIRTUAL' then (
                 select SUM(quantity)
                 FROM  shipments 
-                where adx_bom.CHILD_ID = shipments.product_id and (adx_method_make.[LOCATION] = 'VIRTUAL' or adx_method_make.[LOCATION] = shipments.location_id)      
+                where adx_bom.CHILD_ID = shipments.product_id and (adx_method_make.[LOCATION] = 'VIRTUAL') -- or adx_method_make.[LOCATION] = shipments.location_id)      
                 group by shipments.product_id
             ) else (
                 select SUM(quantity)
                 FROM  shipments 
-                where adx_bom.CHILD_ID = shipments.product_id and (adx_method_make.[LOCATION] = 'VIRTUAL' or adx_method_make.[LOCATION] = shipments.location_id)      
-                group by shipments.product_id, shipments.location_id
+                where adx_bom.CHILD_ID = shipments.product_id and (adx_method_make.[LOCATION] = 'VIRTUAL') -- or adx_method_make.[LOCATION] = shipments.location_id)      
+                group by shipments.product_id--, shipments.location_id
             )
             end
         )        

@@ -21,15 +21,19 @@ DECLARE @sSQL nvarchar(1500)
                 ' not exists ( ' +
                     ' select * from [Method_Buy] where ' + @table_name + '.partnumber = Method_Buy.PRODUCT_ID ' +
                 ' ) ' +
+                ' ) AND ' +
+                ' not exists ( ' +
+                    ' select * from Process where ' + @table_name + '.partnumber = process.P_N ' +
+                ' ) ' +                
             ' ) '
                        
         print @sSQL
-        set @countAffected = 1
-        while @countAffected > 0
-        BEGIN
+--        set @countAffected = 1
+--        while @countAffected > 0
+--        BEGIN
             EXEC(@sSQL)
-            set @countAffected = @@rowcount;
-        END
+--            set @countAffected = @@rowcount;
+--        END
         set @count = @count - 1
       end
    close MyCursor 

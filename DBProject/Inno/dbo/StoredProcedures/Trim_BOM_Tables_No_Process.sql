@@ -26,12 +26,12 @@ DECLARE @sSQL nvarchar(1500)
             ' ) '
                       
         print @sSQL
-        set @countAffected = 1
-        while @countAffected > 0
-        BEGIN      
+--        set @countAffected = 1
+--        while @countAffected > 0
+--        BEGIN      
             EXEC(@sSQL)
-            set @countAffected = @@rowcount;
-        END            
+--            set @countAffected = @@rowcount;
+--        END            
         set @count = @count - 1
       end
    close MyCursor 

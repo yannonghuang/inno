@@ -13,9 +13,9 @@ insert into adx_cfi_family (
 SELECT 
       [CFI_FAMILY]
       ,'CYCLE'
-      ,[Lead_time]
-      ,[Lead_time]
-      ,[Lead_time]      
-FROM [Inno].[dbo].[SR4AOC_Production_LeadTime]
+      ,[Lead_time] * 86400
+      ,[Lead_time] * 86400
+      ,[Lead_time] * 86400     
+FROM [Inno].[dbo].[Production_LeadTime]
 GO
 

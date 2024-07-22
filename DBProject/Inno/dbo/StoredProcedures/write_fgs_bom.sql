@@ -21,7 +21,7 @@ insert into [adx_bom]  (
 
 SELECT
         'BOM_' + concat( [PN_for_customer], '__', [Customer_abbreviate]) + '_' + FG_PN -- DB load
-        ,'-'
+        ,'VIRTUAL'
         , concat( [PN_for_customer], '__', [Customer_abbreviate])           
         , FG_PN
         ,'1'

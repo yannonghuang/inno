@@ -1,14 +1,14 @@
 CREATE TABLE [dbo].[DP] (
-    [Category]    NVARCHAR (50)  NULL,
-    [Plant]       NVARCHAR (50)  NULL,
-    [Customer]    NVARCHAR (50)  NULL,
-    [Territory]   NVARCHAR (50)  NULL,
-    [Series]      NVARCHAR (50)  NULL,
-    [Model]       NVARCHAR (100) NULL,
-    [Version]     NVARCHAR (50)  NULL,
-    [状态]          NVARCHAR (1)   NULL,
-    [Application] NVARCHAR (50)  NULL,
-    [备注]          NVARCHAR (1)   NULL,
+    [Category]    NVARCHAR (50)  NOT NULL,
+    [Plant]       NVARCHAR (50)  NOT NULL,
+    [Customer]    NVARCHAR (50)  NOT NULL,
+    [Territory]   NVARCHAR (50)  NOT NULL,
+    [Series]      NVARCHAR (50)  NOT NULL,
+    [Model]       NVARCHAR (100) NOT NULL,
+    [Version]     NVARCHAR (50)  NOT NULL,
+    [状态]          NVARCHAR (50)  NULL,
+    [Application] NVARCHAR (50)  NOT NULL,
+    [备注]          NVARCHAR (50)  NULL,
     [_2024_01]    NVARCHAR (50)  NULL,
     [_2024_02]    NVARCHAR (50)  NULL,
     [_2024_03]    NVARCHAR (50)  NULL,
@@ -24,7 +24,15 @@ CREATE TABLE [dbo].[DP] (
     [_2025_01]    NVARCHAR (50)  NULL,
     [_2025_02]    NVARCHAR (50)  NULL,
     [_2025_03]    NVARCHAR (50)  NULL,
-    [_2025_04]    NVARCHAR (50)  NULL
+    [_2025_04]    NVARCHAR (50)  NULL,
+    [_2025_05]    NVARCHAR (50)  NULL,
+    [_2025_06]    NVARCHAR (50)  NULL,
+    [_2025_07]    NVARCHAR (50)  NULL,
+    [_2025_08]    NVARCHAR (50)  NULL,
+    [_2025_09]    NVARCHAR (50)  NULL,
+    [_2025_10]    NVARCHAR (50)  NULL,
+    [_2025_11]    NVARCHAR (50)  NULL,
+    [_2025_12]    NVARCHAR (50)  NULL
 );
 GO
 

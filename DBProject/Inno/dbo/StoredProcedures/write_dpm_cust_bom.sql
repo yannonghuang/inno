@@ -23,7 +23,7 @@ SELECT
         --'BOM_' + [DPM] + '__' + Customer
         'BOM_' + [DPM] + '__' + Customer + '_' + FG_SUBSTITUTES.FG_PN -- DB load
 
-        ,'-'
+        ,'VIRTUAL'
         , [DPM] + '__' + Customer
         , FG_SUBSTITUTES.FG_PN -- [CustomerPN] + '__' + Customer
         ,'1'

@@ -2,6 +2,9 @@ CREATE PROCEDURE [dbo].[write_raw_productlocation]
 AS
 
 begin
+
+/*****
+
     insert into [adx_productlocation]  (
       [PRODUCT_ID] 
       ,[DESCRIPTION] 
@@ -61,8 +64,8 @@ begin
         ,'-' 
         ,'-' 
         ,'-' 
-        ,'factor' 
-        ,'2' 
+        ,'cycle' 
+        ,'1' 
         ,'-' 
         ,'-' 
         ,'1' 
@@ -141,7 +144,7 @@ begin
     and process.Process = process_location.process 
     and process.Plant = process_location.location and process_location.Manufacture = 'M' 
 
-
+*****/
 ---------------
 
     insert into [adx_productlocation]  (
@@ -201,15 +204,15 @@ begin
         ,'-' 
         ,'-' 
         ,'-' 
-        ,'factor' 
-        ,'2' 
+        ,'cycle' 
+        ,'1' 
         ,'-' 
         ,'-' 
         ,'1' 
         ,'1' 
 
-        ,'OPTICAL' 
-        ,'OPTICAL' 
+        ,'-' --,'OPTICAL' 
+        ,'-' --,'OPTICAL' 
         ,'FACTORY' 
         ,'ALL' 
 
@@ -218,8 +221,10 @@ begin
         ,'-' 
         ,'-' 
         ,'-' 
-        ,'-' 
-        ,'-'    
+        
+        ,isnull(adx_productlocation.UDA_string_TECHNOLOGY, '-') -- technology'-' 
+        ,isnull(adx_productlocation.UDA_string_PACKAGE, '-') -- package '-' 
+
         ,'-' 
         ,'-' 
         ,'-' 
@@ -232,7 +237,11 @@ begin
         ,'-' 
         ,'-' 
 
-    FROM [Method_Buy], adx_product
+    FROM [Method_Buy] 
+        left outer join adx_productlocation on 
+        adx_productlocation.PRODUCT_ID = Method_Buy.PRODUCT_ID 
+        and adx_productlocation.[LOCATION] = Method_Buy.LOCATION
+        , adx_product
     where Method_Buy.PRODUCT_ID = adx_product.PRODUCT_ID  
 
 

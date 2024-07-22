@@ -1,13 +1,12 @@
 CREATE TABLE [dbo].[Shipments] (
-    [LOCATION_ID]          SMALLINT      NULL,
-    [PRODUCT_ID]           NVARCHAR (50) NULL,
-    [Description]          NVARCHAR (50) NULL,
-    [Special]              NVARCHAR (50) NULL,
-    [DATE_ID_SHIPPED]      NVARCHAR (50) NULL,
-    [CUSTOMER_ID]          NVARCHAR (50) NULL,
-    [Shipment_ID]          INT           NULL,
-    [Quantity]             INT           NULL,
-    [manufacture_location] SMALLINT      NULL
+    [Customer_ID]        NVARCHAR (50) NOT NULL,
+    [CustomerName]       NVARCHAR (50) NOT NULL,
+    [PRODUCT_ID]         NVARCHAR (50) NOT NULL,
+    [IndustrialStandard] NVARCHAR (50) NOT NULL,
+    [PO_Delivery_Date]   NVARCHAR (50) NOT NULL,
+    [PO_Quantity]        FLOAT (53)    NOT NULL,
+    [Quantity]           FLOAT (53)    NOT NULL,
+    [DATE_ID_SHIPPED]    NVARCHAR (50) NOT NULL
 );
 GO
 

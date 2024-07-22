@@ -12,7 +12,9 @@ begin
       begin
         fetch MyCursor into @table_name
         print @table_name
-        if @table_name <> 'adx_graybox' and @table_name <> 'adx_product_mirror' and @table_name <> 'adx_cfi_family' and @table_name <> 'ADX_CUSTOMER'
+        if @table_name <> 'adx_graybox' and @table_name <> 'adx_product_mirror' 
+            and @table_name <> 'adx_productlocation_mirror'
+            and @table_name <> 'adx_cfi_family' and @table_name <> 'ADX_CUSTOMER'
         begin
 
             declare @remote_table_name varchar(500)

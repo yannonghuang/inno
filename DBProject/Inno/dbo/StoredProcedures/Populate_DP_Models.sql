@@ -6,10 +6,11 @@ BEGIN
 Truncate Table DP_Models
 
 
-insert into DP_Models (Code, DESCRIPTION, PN, MPS_Model)
+insert into DP_Models (Code, DESCRIPTION, OLD_DESCRIPTION, PN, MPS_Model)
 SELECT
     work_order_model,
     DP_model,
+    OLD_DP_model,    
     FG_PN,
     SUBSTRING(MPS_Model, CHARINDEX(' ', MPS_Model) + 1, 1000) 
 FROM [POCModel], POCFG

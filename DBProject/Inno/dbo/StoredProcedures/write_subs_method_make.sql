@@ -2,7 +2,7 @@ CREATE PROCEDURE [dbo].[write_subs_method_make]
 AS
 
 begin
-    DECLARE @sSQL nvarchar(1000)
+    DECLARE @sSQL nvarchar(max)
     --declare @table_name varchar(500)
     --set @table_name = 'BOM_1000_part1'
 
@@ -53,7 +53,7 @@ begin
         ',''0'' ' +
 
         -- ',''BOM_'' + ''VirtualProduct_'' + Assemble_P_N + ''_'' + substitution_group ' +
-        ', ''BOM_'' + ''VirtualProduct_'' + Assemble_P_N + ''_'' + substitution_group + ''_'' + component ' + -- DB load
+        ', ''BOM_'' + ''VirtualProduct_'' + Assemble_P_N + ''_'' + substitution_group + ''_'' + component + ''_'' + process.plant ' + -- DB load
 
         ',''-'' ' +
         ',''-'' ' +

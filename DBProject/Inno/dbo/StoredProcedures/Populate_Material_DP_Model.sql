@@ -23,6 +23,7 @@ truncate table Material_DP_Model
         'insert into [Material_DP_Model]  (' +
         '[PN] ' +
         ',[DESCRIPTION] ' +
+        ',[OLD_DESCRIPTION] ' +        
         ',[CODE] ' +
         ',[MPS_MODEL] ' +
         ') ' +
@@ -34,6 +35,11 @@ truncate table Material_DP_Model
             ' WHEN DP_Models.DESCRIPTION is not null THEN DP_Models.DESCRIPTION ' +
             ' ELSE ''-'' ' +
         ' END ' +     
+
+        ', CASE   ' +
+            ' WHEN DP_Models.OLD_DESCRIPTION is not null THEN DP_Models.OLD_DESCRIPTION ' +
+            ' ELSE ''-'' ' +
+        ' END ' +   
 
         ', CASE   ' +
             ' WHEN DP_Models.Code is not null THEN DP_Models.Code ' +

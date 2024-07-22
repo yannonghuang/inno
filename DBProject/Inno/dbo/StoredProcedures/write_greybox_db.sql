@@ -15,7 +15,7 @@ insert into [dbo].[ADX_GREYBOX_HEADER] (
       --,[DATA_LAST_UPDATED]
 )
 SELECT 
-    [LOCATION] + '_' + [COMLOCATION_UDA_PROD_AREA] + '_' + [COMLOCATION_UDA_TECHNOLOGY]
+    [LOCATION] + '_' + [COMLOCATION_UDA_TECHNOLOGY] + '_' + [COMLOCATION_UDA_PACKAGE]
     ,[BUILDPOLICY]
     ,[BUILDEARLYLIMIT]
     ,[BUILD_AHEAD]
@@ -50,7 +50,7 @@ insert into [dbo].[ADX_GREYBOX_TARGET] (
       --,[DATA_LAST_UPDATED]
 )
 SELECT
-    [LOCATION] + '_' + [COMLOCATION_UDA_PROD_AREA] + '_' + [COMLOCATION_UDA_TECHNOLOGY]    
+    [LOCATION] + '_' + [COMLOCATION_UDA_TECHNOLOGY] + '_' + [COMLOCATION_UDA_PACKAGE]
     ,'LOCATION'
     ,'RESTRICTION'
     ,[LOCATION]
@@ -58,6 +58,7 @@ SELECT
 FROM [Inno].[dbo].[adx_graybox]
 
 -----------------------------------
+
 insert into [dbo].[ADX_GREYBOX_TARGET] (
        [CONSTRAINT_ID]
       ,[CSTR_OBJECT_NAME]
@@ -68,11 +69,11 @@ insert into [dbo].[ADX_GREYBOX_TARGET] (
       --,[DATA_LAST_UPDATED]
 )
 SELECT
-    [LOCATION] + '_' + [COMLOCATION_UDA_PROD_AREA] + '_' + [COMLOCATION_UDA_TECHNOLOGY]    
+    [LOCATION] + '_' + [COMLOCATION_UDA_TECHNOLOGY] + '_' + [COMLOCATION_UDA_PACKAGE]
     ,'COMLOCATION'
-    ,'PROD_AREA'
+    ,'TECHNOLOGY'
     ,'RESTRICTION'
-    ,[COMLOCATION_UDA_PROD_AREA]
+    ,[COMLOCATION_UDA_TECHNOLOGY]
     ,'1'
 FROM [Inno].[dbo].[adx_graybox]
 -----------------------------------
@@ -86,15 +87,16 @@ insert into [dbo].[ADX_GREYBOX_TARGET] (
       --,[DATA_LAST_UPDATED]
 )
 SELECT
-    [LOCATION] + '_' + [COMLOCATION_UDA_PROD_AREA] + '_' + [COMLOCATION_UDA_TECHNOLOGY]    
+    [LOCATION] + '_' + [COMLOCATION_UDA_TECHNOLOGY] + '_' + [COMLOCATION_UDA_PACKAGE]
     ,'COMLOCATION'
-    ,'TECHNOLOGY'
+    ,'PACKAGE'
     ,'RESTRICTION'
-    ,[COMLOCATION_UDA_TECHNOLOGY]
+    ,[COMLOCATION_UDA_PACKAGE]
     ,'2'
 FROM [Inno].[dbo].[adx_graybox]
 
 
+-----------------------------------
 DELETE T
 FROM
 (
@@ -120,11 +122,11 @@ insert into ADX_GREYBOX_ACTION (
       --,[DATA_LAST_UPDATED]
 )
 SELECT 
-    [LOCATION] + '_' + [COMLOCATION_UDA_PROD_AREA] + '_' + [COMLOCATION_UDA_TECHNOLOGY]    
+    [LOCATION] + '_' + [COMLOCATION_UDA_TECHNOLOGY] + '_' + [COMLOCATION_UDA_PACKAGE]
     ,[CAPACITY]
     ,[UOM]
-    ,[START]
-    ,[END]
+    ,[START] -- convert(datetime, [START], 1)
+    ,[END]   -- convert(datetime, [END], 1)
 FROM [Inno].[dbo].[adx_graybox]
 
 DELETE T

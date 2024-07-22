@@ -148,12 +148,12 @@ select
         when exists (
          select *
          FROM  [SO] 
-         where adx_transportation.PRODUCT = [SO].PN and (adx_transportation.FROM_LOCATION = [SO].CompanyCode)
+         where adx_transportation.PRODUCT = [SO].PN --and (adx_transportation.FROM_LOCATION = [SO].CompanyCode)
         ) then (
-            select SUM(TRY_CAST(SO.Quantity as decimal))
+            select SUM(TRY_CAST(SO.UnmetQuantity as decimal))
             FROM SO 
-            where adx_transportation.PRODUCT = [SO].PN and (adx_transportation.FROM_LOCATION = [SO].CompanyCode)
-            group by [SO].PN, [SO].CompanyCode
+            where adx_transportation.PRODUCT = [SO].PN --and (adx_transportation.FROM_LOCATION = [SO].CompanyCode)
+            group by [SO].PN--, [SO].CompanyCode
         ) 
         else 0
         end    
@@ -167,12 +167,12 @@ select
         when exists (
          select *
          FROM  shipments 
-         where adx_transportation.PRODUCT = shipments.product_id and (adx_transportation.FROM_LOCATION = shipments.location_id)           
+         where adx_transportation.PRODUCT = shipments.product_id --and (adx_transportation.FROM_LOCATION = shipments.location_id)           
         ) then (
             select SUM(quantity)
             FROM  shipments 
-            where adx_transportation.PRODUCT = shipments.product_id and (adx_transportation.FROM_LOCATION = shipments.location_id)      
-            group by shipments.product_id, shipments.location_id
+            where adx_transportation.PRODUCT = shipments.product_id --and (adx_transportation.FROM_LOCATION = shipments.location_id)      
+            group by shipments.product_id--, shipments.location_id
         )        
         else 0     
         end

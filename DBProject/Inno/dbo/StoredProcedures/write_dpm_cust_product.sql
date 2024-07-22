@@ -23,12 +23,22 @@ SELECT
     [DP_model], -- 'Virtual Product for Customer-Specific DP Model ',  
     'M',  
     'MODULE',
-        'NA', -- 'MODULE',
-        'NA', -- 'FACTORY',
-        'NA', -- 'ALL',        
-        'NA',
-        'NA',
-        'NA',
+
+        '-',
+        '-',
+        '-',
+        '-',
+        '-',
+        '-',            
+/**        
+        DPM, -- FG_HIER_LEVEL_1 'NA', 'MODULE',
+        DPM_CustomerPN_Customer.MPS_Model, -- FG_HIER_LEVEL_2 'NA', 'FACTORY',
+        'Forecast', -- FG_HIER_LEVEL_3 'NA', 'ALL', 
+
+        DPM, -- FG_HIER_LEVEL_1 'NA',
+        DPM_CustomerPN_Customer.MPS_Model, -- FG_HIER_LEVEL_2 'NA',
+        'Forecast', -- FG_HIER_LEVEL_3 'NA',
+**/
         '-',
         '-',
         '-',

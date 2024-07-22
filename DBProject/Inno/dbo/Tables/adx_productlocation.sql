@@ -12,7 +12,7 @@ CREATE TABLE [dbo].[adx_productlocation] (
     [OBSOLETE]                  NVARCHAR (50)  NULL,
     [TIME_FENCE]                NVARCHAR (50)  NULL,
     [CYCLE_TYPE]                NVARCHAR (50)  NULL,
-    [CYCLE_FAMILY]              TINYINT        NULL,
+    [CYCLE_FAMILY]              NVARCHAR (50)  NULL,
     [INVENTORY]                 NVARCHAR (50)  NULL,
     [REVENUE]                   NVARCHAR (50)  NULL,
     [SHARE_FLAG]                TINYINT        NULL,
@@ -27,7 +27,7 @@ CREATE TABLE [dbo].[adx_productlocation] (
     [UDA_string_PRODUCT_FAMILY] NVARCHAR (50)  NULL,
     [UDA_string_PRODUCT_GROUP]  NVARCHAR (50)  NULL,
     [UDA_string_TECHNOLOGY]     NVARCHAR (50)  NULL,
-    [UDA_string_PACKAGE]        NVARCHAR (50)  NULL,
+    [UDA_string_PACKAGE]        NVARCHAR (500) NULL,
     [UDA_string_SHARED]         NVARCHAR (50)  NULL,
     [UDA_string_FAB_LOC]        NVARCHAR (50)  NULL,
     [UDA_string_MASK_LAYERS]    NVARCHAR (50)  NULL,
@@ -39,12 +39,13 @@ CREATE TABLE [dbo].[adx_productlocation] (
     [UDA_string_ASSY_LOC]       NVARCHAR (50)  NULL,
     [UDA_string_TEST_LOC]       NVARCHAR (50)  NULL,
     [UDA_string_A_MAT_STATUS]   NVARCHAR (50)  NULL,
-    [c]                         INT            NULL,
+    [c]                         INT            CONSTRAINT [DEFAULT_adx_productlocation_c] DEFAULT ((1)) NULL,
     [PROD_SKU_ID]               NVARCHAR (50)  NULL,
     [LOCATION_ID]               NVARCHAR (50)  NULL,
     [CYCLE_TIME_TYPE]           NVARCHAR (50)  NULL,
     [CYCLE_TIME_FAMILY]         TINYINT        NULL,
-    [TECHNOLOGY]                NVARCHAR (50)  NULL
+    [TECHNOLOGY]                NVARCHAR (50)  NULL,
+    [PACKAGE]                   NVARCHAR (150) NULL
 );
 GO
 

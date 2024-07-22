@@ -22,19 +22,29 @@ SELECT
     [DP_model], -- 'Virtual Product for DP Model ',  
     'M',  
     'MODULE',
+
+        '-',
+        '-',
+        '-',
+        '-',
+        '-',
+        '-',
+/**          
         'NA', -- 'Model', -- DP_Models.MPS_Model, -- 'DP Model', -- 'MODULE',
         'NA', -- 'Model', -- DP_Models.MPS_Model, -- '-', -- 'FACTORY',
         'NA', -- 'Model', -- 'ALL',        
         'NA', -- DP_Models.MPS_Model, --'DP Model',
         'NA', -- DP_Models.MPS_Model, --'-',
         'NA', -- DP_Models.MPS_Model, --'-',
-
+**/
         '-',
         '-',
         '-',
         '-'  
 FROM [POCModel], DP_Models, adx_product
 where POCModel.work_order_model = DP_Models.Code and DP_Models.PN = adx_product.PRODUCT_ID
+--FROM [POCModel], DP_Models
+--where POCModel.work_order_model = DP_Models.Code
 --FROM [POCModel], DP_Models
 --where POCModel.work_order_model = DP_Models.Code
 --FROM [POCModel], DP_Models

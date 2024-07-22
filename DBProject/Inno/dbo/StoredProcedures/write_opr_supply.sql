@@ -34,12 +34,12 @@ insert into [dbo].[adx_supply] (
 )
 SELECT
     concat(OPR.[PN], '_', OPR.[Plant], '_', OPR.Supply_Date) --[WO]
-    , REPLACE(OPR.[Description], ',', ';') -- [Description]        
+    , '-' -- REPLACE(OPR.[Description], ',', ';') -- [Description]        
     , '-'    
     ,OPR.[Plant]
     ,OPR.[PN]
-    ,substring(OPR.Supply_Date, 5, 2) + '/' + substring(OPR.Supply_Date, 7, 2) + '/' + substring(OPR.Supply_Date, 1, 4)
-    ,REPLACE(OPR.[Quantity], ',', '') -- OPR.[Quantity]
+    ,OPR.Supply_Date -- substring(OPR.Supply_Date, 5, 2) + '/' + substring(OPR.Supply_Date, 7, 2) + '/' + substring(OPR.Supply_Date, 1, 4)
+    ,OPR.[Quantity] -- REPLACE(OPR.[Quantity], ',', '') 
     ,'f'
     ,'-'
     ,'-'
@@ -65,5 +65,6 @@ SELECT
     ,'-'               
   FROM [dbo].[OPR], adx_productlocation
   where PN = adx_productlocation.PRODUCT_ID and Plant = adx_productlocation.[LOCATION]
+    and OPR.[Quantity] > 0
 GO
 

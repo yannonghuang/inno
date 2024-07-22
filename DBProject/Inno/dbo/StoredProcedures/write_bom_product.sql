@@ -74,20 +74,21 @@ begin
         ' ELSE ''OPTICAL'' ' +
         ' END ' +
 */        
-        ',CASE   ' +
-        ' WHEN partnumber = FG THEN ''Module'' ' +
+--        ',CASE   ' +
+--        ' WHEN partnumber = FG THEN DP_Models.Code ' +
 /*        
             ' CASE   ' +
             ' WHEN DP_Models.Code is not null THEN DP_Models.Code ' + 
             ' ELSE ''NA'' ' +
             ' END ' +   
 */            
-        ' ELSE ' +
-            ' CASE   ' +
-            ' WHEN Process.Process is not null THEN Process.Process ' +        
-            ' ELSE ''Raw'' ' +
-            ' END ' +        
-        ' END ' +   
+--        ' ELSE ' +
+--            ' CASE   ' +
+--            ' WHEN Process.Process is not null THEN Process.Process ' +        
+--            ' ELSE ''Raw'' ' +
+--            ' END ' +        
+--        ' END ' +   
+        ',''-'' ' +
         -- HIER_LEVEL_1 -- 
 
 /*
@@ -100,24 +101,21 @@ begin
         ' ELSE ''OPTICAL'' ' +
         ' END ' +
 */        
-        ',CASE   ' +
-        ' WHEN partnumber = FG THEN ''Module'' ' +
+--        ',CASE   ' +
+--        ' WHEN partnumber = FG THEN MPS_Model ' +
 /*        
             ' CASE   ' +
             ' WHEN MPS_Model is not null THEN MPS_Model ' +         
             ' ELSE ''NA'' ' +
             ' END ' +      
 */         
-        ' ELSE ''Optical'' ' +
-/*        
-            ' CASE   ' +
-            ' WHEN Process.Process is not null THEN ''NA'' ' +      
---            ' WHEN Process.Process is not null THEN Process.Process ' +                  
-            ' ELSE ''Raw'' ' +
-            ' END ' +  
-*/      
-        ' END ' +       
-        --',''-'' ' +
+--        ' ELSE ' +
+--            ' CASE   ' +
+--            ' WHEN Process.Process is not null THEN ''Make'' ' +                   
+--            ' ELSE ''Buy'' ' +
+--            ' END ' +  
+--        ' END ' +       
+        ',''-'' ' +
         -- HIER_LEVEL_2 -- 
 
 /*
@@ -126,50 +124,63 @@ begin
             ' ELSE ''-'' ' +
         ' END ' +    
 */         
-        ',CASE   ' +
-        ' WHEN partnumber = FG THEN ''Module'' ' +      
+        ', CASE   ' +
+        ' WHEN partnumber = FG THEN ''A_Module'' ' +      
 /*   
             ' CASE   ' +
             ' WHEN MPS_Model is not null THEN ''Module'' ' +         
             ' ELSE ''NA'' ' +
             ' END ' +  
 */
-        ' ELSE ''Optical'' ' +
+        ' ELSE ' +
+            ' CASE   ' +
+            ' WHEN Process.Process is not null THEN Process.Process ' +        
+            ' ELSE ''Z_Raw'' ' +
+            ' END ' +    
         ' END ' +   
         --',''-'' ' +
         -- HIER_LEVEL_3 -- 
                 
 
-        ',CASE   ' +
-        ' WHEN partnumber = FG THEN ' +
+        ',''-'' ' +
+--        ',CASE   ' +
+--        ' WHEN partnumber = FG THEN DP_Models.Code ' +
+/*        
             ' CASE   ' +
             ' WHEN DP_Models.Code is not null THEN DP_Models.Code ' +
             ' ELSE ''NA'' ' +
-            ' END ' +             
-        ' ELSE ''NA'' ' +
-        ' END ' +               
+            ' END ' +         
+*/                
+--        ' ELSE ''NA'' ' +
+--        ' END ' +               
         -- ',''NA'' ' +
         -- FG_HIER_LEVEL_1 -- 
 
-        ',CASE   ' +
-        ' WHEN partnumber = FG THEN ' +
+        ',''-'' ' +
+--        ',CASE   ' +
+--        ' WHEN partnumber = FG THEN MPS_Model ' +
+/*        
             ' CASE   ' +
             ' WHEN MPS_Model is not null THEN MPS_Model ' +
             ' ELSE ''NA'' ' +
-            ' END ' +             
-        ' ELSE ''NA'' ' +
-        ' END ' +               
+            ' END ' +           
+*/              
+--        ' ELSE ''NA'' ' +
+--        ' END ' +               
         -- ',''NA'' ' +
         -- FG_HIER_LEVEL_2 -- 
 
-        ',CASE   ' +
-        ' WHEN partnumber = FG THEN ' +
+        ',''-'' ' +
+--        ',CASE   ' +
+--        ' WHEN partnumber = FG THEN ''Module'' ' +
+/*        
             ' CASE   ' +
             ' WHEN MPS_Model is not null THEN MPS_Model ' +
             ' ELSE ''NA'' ' +
-            ' END ' +             
-        ' ELSE ''NA'' ' +
-        ' END ' +               
+            ' END ' +      
+*/                   
+--        ' ELSE ''NA'' ' +
+--        ' END ' +               
         -- ',''NA'' ' +
         -- FG_HIER_LEVEL_3 -- 
 

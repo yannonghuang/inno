@@ -92,11 +92,15 @@ begin
         ',''-'' ' +
         ',''-'' ' +
         ',''cycle'' ' + -- ',''factor'' ' +
-        ',''3'' ' + -- ',''2'' ' +
+        ',''1'' ' + -- ',''2'' ' +
         ',''-'' ' +
         ',''-'' ' +
         ',''1'' ' +
         ',''1'' ' +
+
+        ',''-'' ' +
+        ',''-'' ' +
+/**
 
         ',CASE   ' +
         ' WHEN Process.Process is not null THEN ' +
@@ -115,6 +119,7 @@ begin
             ' END ' +             
         ' ELSE ''OPTICAL'' ' +
         ' END ' +
+**/
 
         ',''FACTORY'' ' +
         ',''ALL'' ' +
@@ -137,7 +142,7 @@ begin
         --' WHEN (POCFG.Work_order_code is not null) and (Process.Process is not null) and (Process.Process <> ''dummy'') THEN POCFG.Work_order_code ' +           
         --' ELSE ''-'' ' +
         --' END ' +  
-        ',''-'' ' +            
+        ', POCFG.Work_order_code ' + -- ',''-'' ' +            
         -- UDA_string_PACKAGE
 
         ',''-'' ' +
@@ -159,7 +164,10 @@ begin
             + ' or partnumber = Method_Buy.PRODUCT_ID '
 */ 
               
-        'FROM ' + @table_name + ', Process where ' + @table_name + '.partnumber = Process.P_N '    
+        'FROM ' + @table_name + ', Process ' + 
+            ', POCFG' +
+        ' where ' + @table_name + '.partnumber = Process.P_N ' +
+            ' and FG = POCFG.FG_PN'
                              
         -- + ' left outer JOIN process_location on Process.process = process_location.process '
         --'where componenttype is not null ' 
@@ -229,30 +237,35 @@ begin
         ',''-'' ' +
         ',''-'' ' +
         ',''-'' ' +
-        ',''factor'' ' +
-        ',''2'' ' +
+        ',''cycle'' ' +
+        ',''1'' ' +
         ',''-'' ' +
         ',''-'' ' +
         ',''1'' ' +
         ',''1'' ' +
 
+        ',''-'' ' +
+        ',''-'' ' +
+     
+/**
         ',CASE   ' +
-        ' WHEN Process.Process is not null THEN ' +
+        ' WHEN p2.Process is not null THEN ' +
             ' CASE   ' +
-            ' WHEN Process.Process = ''Module'' THEN ''MODULE'' ' +
+            ' WHEN p2.Process = ''Module'' THEN ''MODULE'' ' +
             ' ELSE ''OPTICAL'' ' +
             ' END ' +             
         ' ELSE ''OPTICAL'' ' +
         ' END ' +
 
         ',CASE   ' +
-        ' WHEN Process.Process is not null THEN ' +
+        ' WHEN p2.Process is not null THEN ' +
             ' CASE   ' +
-            ' WHEN Process.Process = ''Module'' THEN ''MODULE'' ' +
+            ' WHEN p2.Process = ''Module'' THEN ''MODULE'' ' +
             ' ELSE ''OPTICAL'' ' +
             ' END ' +             
         ' ELSE ''OPTICAL'' ' +
         ' END ' +
+**/
 
         ',''FACTORY'' ' +
         ',''ALL'' ' +
@@ -262,8 +275,22 @@ begin
         ',''-'' ' +
         ',''-'' ' +
         ',''-'' ' +
-        ',''-'' ' +
-        ',''-'' ' +   
+        
+--        ',CASE   ' +
+--        ' WHEN (p2.Process is not null) and (p2.Process <> ''dummy'') THEN p2.Process ' +           
+--        ' ELSE ''-'' ' +
+--        ' END ' +  
+        ',''-'' ' +              
+        -- [UDA_string_TECHNOLOGY]
+
+
+        --',CASE   ' +
+        --' WHEN (POCFG.Work_order_code is not null) and (Process.Process is not null) and (Process.Process <> ''dummy'') THEN POCFG.Work_order_code ' +           
+        --' ELSE ''-'' ' +
+        --' END ' +  
+        ', POCFG.Work_order_code ' + -- ',''-'' ' +            
+        -- UDA_string_PACKAGE
+
         ',''-'' ' +
         ',''-'' ' +
         ',''-'' ' +
@@ -276,11 +303,21 @@ begin
         ',''-'' ' +
         ',''-'' ' +
                 
-        'FROM ' + @table_name + ', process, process_location ' +
+--        'FROM ' + @table_name + ' left outer join Process p2 on partnumber = p2.P_N, process ' +                
+        'FROM ' + @table_name + ', process ' +
+            ', POCFG' +        
+--        'FROM ' + @table_name + ', process, process_location ' +        
         ' where   ' +
-        ' (ParentPart = process.P_N) ' +    
-        ' and process.Process = process_location.process and process.Plant = process_location.location and process_location.Manufacture = ''M''  '
-
+        ' (ParentPart = process.P_N) ' +
+            ' and FG = POCFG.FG_PN '  
+--            + ' and (process.plant = p2.plant) '            
+--        + ' and process.Process = process_location.process and process.Plant = process_location.location and process_location.Manufacture = ''M''  '
+/**
+        + ' and ('
+        + ' exists (select * from Method_Buy, VMI where partnumber = Method_Buy.PRODUCT_ID and Method_Buy.LOCATION = VMI.VMI and VMI.Plant = process.plant)'
+        + ' or exists (select * from Process internalR, Transportation where partnumber = internalR.P_N and internalR.Plant = Transportation.From and Transportation.To = process.plant)'
+        + ')'
+**/
         print @sSQL
         EXEC(@sSQL)
 

@@ -23,16 +23,33 @@ SELECT
     'Virtual Product for FG Substitute ',  
     'M',  
     'MODULE',
-        '-', --'NA', -- 'MODULE',
-        '-', --'NA', -- 'FACTORY',
-        '-', --'NA', -- 'ALL',        
-        '-', --'NA',
-        '-', --'NA',
-        '-', --'NA',
+        
+        '-',
+        '-',
+        '-',
+        '-',
+        '-',
+        '-',
+/*                
+        'NA', -- 'MODULE',
+        'NA', -- 'FACTORY',
+        'NA', -- 'ALL',      
+        'NA',
+        'NA',
+        'NA',
+*/        
+        --[work_order_model], -- FG_HIER_LEVEL_1 'NA', 'MODULE',
+        --substring(MPS_model, CHARINDEX(' ', MPS_model) + 1, 3), -- FG_HIER_LEVEL_2 'NA', 'FACTORY',
+        --'Saleable', -- FG_HIER_LEVEL_3 'NA', 'ALL',         
+        --[work_order_model], -- FG_HIER_LEVEL_1 'NA',
+        --substring(MPS_model, CHARINDEX(' ', MPS_model) + 1, 3), -- FG_HIER_LEVEL_2 'NA',
+        --'Saleable', -- FG_HIER_LEVEL_3 'NA',
+
         '-',
         '-',
         '-',
         '-'  
-FROM [FG_SUBSTITUTES]
+FROM [FG_SUBSTITUTES] --, POCModel
+--where POCModel.OLD_DP_model = FG_SUBSTITUTES.Model or POCModel.DP_model = FG_SUBSTITUTES.Model
 GO
 

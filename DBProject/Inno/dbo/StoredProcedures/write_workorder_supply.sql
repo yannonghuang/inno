@@ -39,7 +39,7 @@ SELECT
     ,[Plant]
     ,[PN]
     ,Due_Date --REPLACE(Due_Date, '-', '/')
-    ,[Quantity_GMEIN]
+    ,[Quantity_GMEIN] - Delivered_Quantity_GMEIN - Scrap_GMEIN
     ,'f'
     ,'-'
     ,'-'
@@ -66,5 +66,6 @@ SELECT
   FROM [dbo].[production_order], adx_productlocation
   where WO is not NULL
   and PN = adx_productlocation.PRODUCT_ID and Plant = adx_productlocation.[LOCATION]
+  and [Quantity_GMEIN] - Delivered_Quantity_GMEIN - Scrap_GMEIN >= 0
 GO
 

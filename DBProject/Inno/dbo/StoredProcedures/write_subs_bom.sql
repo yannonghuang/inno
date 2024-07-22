@@ -38,9 +38,9 @@ begin
         'SELECT ' +
         --' ''BOM_'' + ''VirtualProduct_'' + Assemble_P_N + ''_'' + component + ''_'' + substitution_group ' + 
         --' ''BOM_'' + ''VirtualProduct_'' + Assemble_P_N + ''_'' + substitution_group ' + 
-        ' ''BOM_'' + ''VirtualProduct_'' + Assemble_P_N + ''_'' + substitution_group + ''_'' + component ' + -- DB load
+        ' ''BOM_'' + ''VirtualProduct_'' + Assemble_P_N + ''_'' + substitution_group + ''_'' + component + ''_'' + process.plant ' + -- DB load
 
-        ',''-'' ' +
+        ', process.plant ' +
         --', process_location.location ' +
 
         ', ''VirtualProduct_'' + Assemble_P_N + ''_'' + substitution_group ' +           
@@ -74,11 +74,13 @@ begin
         --'FROM ' + @table_name + ', Process, process_location ' +
         --'WHERE not exists (select * from orphan where component = PRODUCT_ID) and ' + 
         'FROM ' + @table_name + ', adx_product ' + 
+        ', Process ' +        
         -- ', Process, process_location ' +
         'WHERE component = adx_product.PRODUCT_ID ' +   
             ' and exists (select * from adx_product internalR where Assemble_P_N = internalR.PRODUCT_ID) '      
+            + ' and ' + @table_name + '.Assemble_P_N = Process.P_N '
         --    @table_name + '.Assemble_P_N = Process.P_N and Process.process = process_location.process '
-  
+
         print @sSQL
         EXEC(@sSQL)
 

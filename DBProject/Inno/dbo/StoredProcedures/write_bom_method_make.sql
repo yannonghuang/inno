@@ -59,7 +59,7 @@ begin
 
         ',''1'' ' +
         ',''0'' ' +
-        ',''BOM_'' + [partnumber] ' +
+        ',''BOM_'' + [partnumber] + ''_'' + process.plant' + -- 
         ',''-'' ' +
         ',''-'' ' +
         ',''-'' ' +   

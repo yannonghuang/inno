@@ -37,9 +37,9 @@ begin
 
         'SELECT ' +
 
-        '''BOM_'' + ParentPart ' +
+        '''BOM_'' + ParentPart + ''_'' + process.plant' +
 
-        ',''-'' ' +
+        ', process.plant ' +
         --',CASE   ' +
         --' WHEN process_location.location is not null THEN process_location.location ' +                   
         --' ELSE ''1000'' ' + 

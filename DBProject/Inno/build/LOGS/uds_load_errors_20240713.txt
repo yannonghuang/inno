@@ -1,0 +1,120 @@
+*******************************************************************************
+Entry No: 1			Date:		Sat Jul 13 23:08:54 2024
+
+CfiCycle
+load cfi: error reading cycle class at index 2
+factor_class : 1
+minimal : 0
+ideal : 0
+tolerated : 0
+ideal_stdf : 0.0000000000
+tm_stamp : <null>
+
+*******************************************************************************
+Entry No: 2			Date:		Sat Jul 13 23:08:54 2024
+
+CfiCycle
+load cfi: error reading cycle class at index 3
+factor_class : 2
+minimal : 0
+ideal : 0
+tolerated : 0
+ideal_stdf : 0.0000000000
+tm_stamp : <null>
+
+*******************************************************************************
+Entry No: 3			Date:		Sat Jul 13 23:08:54 2024
+
+CfiCycle
+load cfi: error reading cycle class at index 4
+factor_class : 3
+minimal : 0
+ideal : 0
+tolerated : 0
+ideal_stdf : 0.0000000000
+tm_stamp : <null>
+
+*******************************************************************************
+Entry No: 4			Date:		Sat Jul 13 23:08:54 2024
+
+CfiCycle
+load cfi: error reading cycle class at index 5
+factor_class : 4
+minimal : 0
+ideal : 0
+tolerated : 0
+ideal_stdf : 0.0000000000
+tm_stamp : <null>
+
+*******************************************************************************
+Entry No: 5			Date:		Sat Jul 13 23:08:54 2024
+
+CfiCycle
+load cfi: error reading cycle class at index 6
+factor_class : 5
+minimal : 0
+ideal : 0
+tolerated : 0
+ideal_stdf : 0.0000000000
+tm_stamp : <null>
+
+*******************************************************************************
+Entry No: 6			Date:		Sat Jul 13 23:08:54 2024
+
+CfiCycle
+load cfi: error reading cycle class at index 7
+factor_class : 6
+minimal : 0
+ideal : 0
+tolerated : 0
+ideal_stdf : 0.0000000000
+tm_stamp : <null>
+
+*******************************************************************************
+Entry No: 7			Date:		Sat Jul 13 23:08:54 2024
+
+CfiCycle
+load cfi: error reading cycle class at index 8
+factor_class : 7
+minimal : 0
+ideal : 0
+tolerated : 0
+ideal_stdf : 0.0000000000
+tm_stamp : <null>
+
+*******************************************************************************
+Entry No: 8			Date:		Sat Jul 13 23:08:54 2024
+
+CfiCycle
+load cfi: error reading cycle class at index 9
+factor_class : 8
+minimal : 0
+ideal : 0
+tolerated : 0
+ideal_stdf : 0.0000000000
+tm_stamp : <null>
+
+*******************************************************************************
+Entry No: 9			Date:		Sat Jul 13 23:08:54 2024
+
+CfiCycle
+load cfi: error reading cycle class at index 10
+factor_class : 9
+minimal : 0
+ideal : 0
+tolerated : 0
+ideal_stdf : 0.0000000000
+tm_stamp : <null>
+
+*******************************************************************************
+Entry No: 10			Date:		Sat Jul 13 23:08:54 2024
+
+CfiCycle
+load cfi: error reading cycle class at index 11
+factor_class : 10
+minimal : 8
+ideal : 0
+tolerated : 8
+ideal_stdf : 0.0000000000
+tm_stamp : <null>
+
